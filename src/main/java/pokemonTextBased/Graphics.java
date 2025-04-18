@@ -7827,8 +7827,7 @@ public class Graphics {
             System.out.println(line);
         }
     }
-    public static void printNightClub()
-    {
+    public static void printNightClub() {
         String[] imgToPrint = {
                 "⠀ SAFFRON NIGHT CLUB ⢸⡀⣿⣿⡏⡿⢀⠄⣠⣤⣄⡀⣠⢀⣥⢦⣶⠀⣮⢰⣇⣦⣴⣾⣥⢸⣦⢌⠰⣧⣮⣤⠆⠀⢀⣤⣼⢠⡆⣼⣦",
                 "⠀⠀⢠⢀⣿⢸⣿⠀⣿⢸⡇⢸⡆⢸⢹⡇⢸⠀⢸⡀⣿⣿⡏⡿⠀⠈⠀⣹⣿⣏⠆⢸⠁⠪⡔⣿⢧⣟⢸⡿⢱⢻⣿⡆⢸⣧⢹⢸⣿⡟⡻⢸⠃⠸⣟⣻⢸⡇⣿⡯",

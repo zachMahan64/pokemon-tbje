@@ -260,7 +260,7 @@ public class Party {
         swapActivePokemon(slot, p[slot]);
         Graphics.printPokemon(p[0].getName(), false, p[0].isShiny());
         System.out.println("Switched to " + p[0].getName() + "!\n");
-        Sound.playSoundOnce("src/main/music/catchFail.wav");
+        Sound.playSoundOnce("src/main/music/catchFail.mp3");
         Thread.sleep(User.textSpeed);
         return true;
     }
@@ -403,7 +403,7 @@ public class Party {
     }
     //tools
     public static void levelUpEntirePartyByOne() throws InterruptedException {
-        Sound.playSoundOnce("src/main/music/levelUp.wav");
+        Sound.playSoundOnce("src/main/music/levelUp.mp3");
         for (Pokemon pokemon : p) {
             if (pokemon != null) {
                 pokemon.levelUpPokemonTwoThirdsChance();

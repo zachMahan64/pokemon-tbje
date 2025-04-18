@@ -31,16 +31,17 @@ package pokemonTextBased;// Zach Mahan, started 20250228, for fun Pokemon Game
 
 import java.util.*;
 import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
 
 public class Game {
 
     public static boolean playStatus = true;
     public static boolean testStatus = true;
-    public static boolean enteredBattleRushMode = false;
 
     public static void main(String[] args) throws InterruptedException, ExecutionException {
         new javafx.embed.swing.JFXPanel();
         Scanner sc1 = new Scanner(System.in);
+        Thread.sleep(100);
         Graphics.printClearLines(50);
         bootIntoVer(testStatus, sc1);
         enterDummyMainMenu(sc1);
@@ -54,26 +55,12 @@ public class Game {
         sc1.close();
     }
 
-    public static void bootFromGUI() throws InterruptedException, ExecutionException {
-        Scanner sc1 = new Scanner(System.in);
-        bootIntoVer(testStatus, sc1);
-        playStatus = askToPlay(sc1);
-        Sound.playMusicOnLoop("src/main/music/titleMusic.wav");
-        User.textSpeed = User.getTextSpeed(sc1);
-        enteredBattleRushMode = askToPlayBattleRushMode(sc1);
-        playOpening(sc1);
-        while (playStatus) {
-            enterMainMenu(sc1);
-        }
-        sc1.close();
-    }
-
     //cutscenes
     public static void playOpening(Scanner sc1) throws InterruptedException {
         Graphics.printSmallTitleImage();
         Graphics.printLoadingBar(60);
         Sound.stopAllSounds();
-        Sound.playMusicOnLoop("src/main/music/labTheme.wav");
+        Sound.playMusicOnLoop("src/main/music/labTheme.mp3");
         int openingWaitTime = User.textSpeed;
         Graphics.printProfessorOak();
         System.out.println("Welcome to the world of Pokemon! I'm Professor Oak.");
@@ -149,9 +136,9 @@ public class Game {
         System.out.println("Ah! I think it likes you. Why don't you go take " + starter.getName() + " home?");
         Thread.sleep((long) (1.5 * openingWaitTime));
         pressEnterToContinue(sc1);
-        Sound.stopMusic("src/main/music/labTheme.wav");
+        Sound.stopMusic("src/main/music/labTheme.mp3");
         Graphics.printLoadingBar(60);
-        Sound.playMusicOnLoop("src/main/music/palletTownTheme.wav");
+        Sound.playMusicOnLoop("src/main/music/palletTownTheme.mp3");
         System.out.println();
         Graphics.printHomeImage();
         Thread.sleep(openingWaitTime);
@@ -243,18 +230,19 @@ public class Game {
     public static void enterMainMenu(Scanner sc1) throws InterruptedException, ExecutionException {
         Sound.stopAllSounds();
         while (true) {
-            Sound.playMusicOnLoop("src/main/music/manWhoSoldTheWorld.wav");
+            Sound.playMusicOnLoop("src/main/music/manWhoSoldTheWorld.mp3");
             for(int i = 0; i < 10; i++) {
                 System.out.println("=".repeat(137));
             }
             Graphics.printBigTitleImage();
             System.out.println("=".repeat(137));
+            System.out.println("----------------------------------");
             System.out.println("| [ENTER] to start | [E] to exit |");
             System.out.println("----------------------------------");
             String choice = sc1.nextLine().trim().toUpperCase();
 
             if (choice.isBlank()) {
-                Sound.playSoundOnce("src/main/music/click.wav");
+                Sound.playSoundOnce("src/main/music/click.mp3");
                 Sound.stopAllSounds();
                 enterPlayMenu(sc1);
                 break;
@@ -270,18 +258,19 @@ public class Game {
     public static void enterDummyMainMenu(Scanner sc1) throws InterruptedException, ExecutionException {
         Sound.stopAllSounds();
         while (true) {
-            Sound.playMusicOnLoop("src/main/music/manWhoSoldTheWorld.wav");
+            Sound.playMusicOnLoop("src/main/music/manWhoSoldTheWorld.mp3");
             for(int i = 0; i < 10; i++) {
                 System.out.println("=".repeat(137));
             }
             Graphics.printBigTitleImage();
             System.out.println("=".repeat(137));
+            System.out.println("----------------------------------");
             System.out.println("| [ENTER] to start | [E] to exit |");
             System.out.println("----------------------------------");
             String choice = sc1.nextLine().trim().toUpperCase();
 
             if (choice.isBlank()) {
-                Sound.playSoundOnce("src/main/music/click.wav");
+                Sound.playSoundOnce("src/main/music/click.mp3");
                 break;
             } else if (choice.equals("E")) {
                 askToConfirmExit(sc1);
@@ -295,7 +284,7 @@ public class Game {
     public static void enterPlayMenu(Scanner sc1) throws InterruptedException, ExecutionException {
         label:
         while (true) {
-            Sound.playMusicOnLoop("src/main/music/titleMusic.wav");
+            Sound.playMusicOnLoop("src/main/music/titleMusic.mp3");
             Graphics.printPlayer(true);
             System.out.println("==========================================================================");
             System.out.println("| [M] Open Map | [V] View Badges | [O] Options | [R] Return to Main Menu |");

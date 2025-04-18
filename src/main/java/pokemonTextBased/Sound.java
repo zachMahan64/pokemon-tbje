@@ -152,6 +152,6 @@ public class Sound {
     // specific
     public static void click() {
         if (disableSound) return;
-        playSoundOnce("src/main/music/click.wav");
+        playSoundOnce("src/main/music/click.mp3");
     }
 }
