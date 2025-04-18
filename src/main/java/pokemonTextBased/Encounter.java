@@ -1128,7 +1128,6 @@ public class Encounter {
         recipientSpeed = recipientSpeed * recipientParalysisMult;
         boolean dealerIsFaster = false;
         if (dealerSpeed > recipientSpeed) dealerIsFaster = true;
-        else if(dealerSpeed == recipientSpeed) dealerIsFaster = Math.random() < .5;
         if (arena.trickRoomIsUp) dealerIsFaster = !dealerIsFaster;
         return dealerIsFaster;
     }
