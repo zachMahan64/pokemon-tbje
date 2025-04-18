@@ -1,0 +1,82 @@
+<html>
+<head>
+<title>Pokemon.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cf8e6d;}
+.s1 { color: #bcbec4;}
+.s2 { color: #bcbec4;}
+.s3 { color: #7a7e85;}
+.s4 { color: #6aab73;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+Pokemon.java</font>
+</center></td></tr></table>
+<pre><span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">util</span><span class="s2">.</span><span class="s1">List</span><span class="s2">;</span>
+
+<span class="s0">public class </span><span class="s1">Pokemon </span><span class="s2">{</span>
+    <span class="s0">private </span><span class="s1">String name</span><span class="s2">;</span>
+    <span class="s0">private </span><span class="s1">String type</span><span class="s2">;</span>
+    <span class="s0">private int </span><span class="s1">baseAttack</span><span class="s2">;</span>
+    <span class="s0">private int </span><span class="s1">baseDefense</span><span class="s2">;</span>
+    <span class="s0">private int </span><span class="s1">baseHp</span><span class="s2">;</span>
+    <span class="s0">private </span><span class="s1">List</span><span class="s2">&lt;</span><span class="s1">Move</span><span class="s2">&gt; </span><span class="s1">moves</span><span class="s2">;  </span><span class="s3">// List of moves available to this Pokemon</span>
+
+    <span class="s3">// Constructor</span>
+    <span class="s0">public </span><span class="s1">Pokemon</span><span class="s2">(</span><span class="s1">Species species</span><span class="s2">) {</span>
+        <span class="s0">this</span><span class="s2">.</span><span class="s1">name </span><span class="s2">= </span><span class="s1">species</span><span class="s2">.</span><span class="s1">getName</span><span class="s2">();</span>
+        <span class="s0">this</span><span class="s2">.</span><span class="s1">type </span><span class="s2">= </span><span class="s1">species</span><span class="s2">.</span><span class="s1">getType</span><span class="s2">();</span>
+        <span class="s0">this</span><span class="s2">.</span><span class="s1">baseAttack </span><span class="s2">= </span><span class="s1">species</span><span class="s2">.</span><span class="s1">getBaseAttack</span><span class="s2">();</span>
+        <span class="s0">this</span><span class="s2">.</span><span class="s1">baseDefense </span><span class="s2">= </span><span class="s1">species</span><span class="s2">.</span><span class="s1">getBaseDefense</span><span class="s2">();</span>
+        <span class="s0">this</span><span class="s2">.</span><span class="s1">baseHp </span><span class="s2">= </span><span class="s1">species</span><span class="s2">.</span><span class="s1">getBaseHp</span><span class="s2">();</span>
+        <span class="s0">this</span><span class="s2">.</span><span class="s1">moves </span><span class="s2">= </span><span class="s1">species</span><span class="s2">.</span><span class="s1">getMoves</span><span class="s2">();  </span><span class="s3">// Set the moves from the species</span>
+    <span class="s2">}</span>
+
+    <span class="s3">// Getter for moves</span>
+    <span class="s0">public </span><span class="s1">List</span><span class="s2">&lt;</span><span class="s1">Move</span><span class="s2">&gt; </span><span class="s1">getMoves</span><span class="s2">() {</span>
+        <span class="s0">return this</span><span class="s2">.</span><span class="s1">moves</span><span class="s2">;</span>
+    <span class="s2">}</span>
+
+    <span class="s3">// Method to get a move by name (for user input)</span>
+    <span class="s0">public </span><span class="s1">Move getMove</span><span class="s2">(</span><span class="s1">String moveName</span><span class="s2">) {</span>
+        <span class="s0">for </span><span class="s2">(</span><span class="s1">Move move </span><span class="s2">: </span><span class="s1">moves</span><span class="s2">) {</span>
+            <span class="s0">if </span><span class="s2">(</span><span class="s1">move</span><span class="s2">.</span><span class="s1">getName</span><span class="s2">().</span><span class="s1">equalsIgnoreCase</span><span class="s2">(</span><span class="s1">moveName</span><span class="s2">)) {</span>
+                <span class="s0">return </span><span class="s1">move</span><span class="s2">;  </span><span class="s3">// Return the move if names match</span>
+            <span class="s2">}</span>
+        <span class="s2">}</span>
+        <span class="s0">return null</span><span class="s2">;  </span><span class="s3">// Return null if no matching move found</span>
+    <span class="s2">}</span>
+
+    <span class="s3">// Getters for other attributes</span>
+    <span class="s0">public </span><span class="s1">String getName</span><span class="s2">() {</span>
+        <span class="s0">return </span><span class="s1">name</span><span class="s2">;</span>
+    <span class="s2">}</span>
+
+    <span class="s0">public </span><span class="s1">String getType</span><span class="s2">() {</span>
+        <span class="s0">return </span><span class="s1">type</span><span class="s2">;</span>
+    <span class="s2">}</span>
+
+    <span class="s0">public int </span><span class="s1">getAttack</span><span class="s2">() {</span>
+        <span class="s0">return </span><span class="s1">baseAttack</span><span class="s2">;</span>
+    <span class="s2">}</span>
+
+    <span class="s0">public int </span><span class="s1">getDefense</span><span class="s2">() {</span>
+        <span class="s0">return </span><span class="s1">baseDefense</span><span class="s2">;</span>
+    <span class="s2">}</span>
+
+    <span class="s0">public int </span><span class="s1">getHp</span><span class="s2">() {</span>
+        <span class="s0">return </span><span class="s1">baseHp</span><span class="s2">;</span>
+    <span class="s2">}</span>
+
+    <span class="s1">@Override</span>
+    <span class="s0">public </span><span class="s1">String toString</span><span class="s2">() {</span>
+        <span class="s0">return </span><span class="s1">name </span><span class="s2">+ </span><span class="s4">&quot; | Type: &quot; </span><span class="s2">+ </span><span class="s1">type </span><span class="s2">+ </span><span class="s4">&quot; | HP: &quot; </span><span class="s2">+ </span><span class="s1">baseHp </span><span class="s2">+ </span><span class="s4">&quot; | Attack: &quot; </span><span class="s2">+ </span><span class="s1">baseAttack </span><span class="s2">+ </span><span class="s4">&quot; | Defense: &quot; </span><span class="s2">+ </span><span class="s1">baseDefense</span><span class="s2">;</span>
+    <span class="s2">}</span>
+<span class="s2">}</span>
+</pre>
+</body>
+</html>

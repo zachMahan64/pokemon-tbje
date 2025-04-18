@@ -1,0 +1,143 @@
+<html>
+<head>
+<title>Party.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cf8e6d;}
+.s1 { color: #bcbec4;}
+.s2 { color: #bcbec4;}
+.s3 { color: #6aab73;}
+.s4 { color: #7a7e85;}
+.s5 { color: #2aacb8;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+Party.java</font>
+</center></td></tr></table>
+<pre><span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">util</span><span class="s2">.</span><span class="s1">Scanner</span><span class="s2">;</span>
+
+<span class="s0">public class </span><span class="s1">Party </span><span class="s2">{</span>
+    <span class="s0">public static </span><span class="s1">Pokemon pkm1 </span><span class="s2">= </span><span class="s0">null</span><span class="s2">;</span>
+    <span class="s0">public static </span><span class="s1">Pokemon pkm2 </span><span class="s2">= </span><span class="s0">null</span><span class="s2">;</span>
+    <span class="s0">public static </span><span class="s1">Pokemon pkm3 </span><span class="s2">= </span><span class="s0">null</span><span class="s2">;</span>
+    <span class="s0">public static </span><span class="s1">Pokemon pkm4 </span><span class="s2">= </span><span class="s0">null</span><span class="s2">;</span>
+    <span class="s0">public static </span><span class="s1">Pokemon pkm5 </span><span class="s2">= </span><span class="s0">null</span><span class="s2">;</span>
+    <span class="s0">public static </span><span class="s1">Pokemon pkm6 </span><span class="s2">= </span><span class="s0">null</span><span class="s2">;</span>
+
+    <span class="s0">public static void </span><span class="s1">addToParty</span><span class="s2">(</span><span class="s1">Pokemon pokemon</span><span class="s2">) {</span>
+        <span class="s0">if </span><span class="s2">(</span><span class="s1">pkm1 </span><span class="s2">== </span><span class="s0">null</span><span class="s2">) {</span>
+            <span class="s1">pkm1 </span><span class="s2">= </span><span class="s1">pokemon</span><span class="s2">;</span>
+        <span class="s2">} </span><span class="s0">else if </span><span class="s2">(</span><span class="s1">pkm2 </span><span class="s2">== </span><span class="s0">null</span><span class="s2">) {</span>
+            <span class="s1">pkm2 </span><span class="s2">= </span><span class="s1">pokemon</span><span class="s2">;</span>
+        <span class="s2">} </span><span class="s0">else if </span><span class="s2">(</span><span class="s1">pkm3 </span><span class="s2">== </span><span class="s0">null</span><span class="s2">) {</span>
+            <span class="s1">pkm3 </span><span class="s2">= </span><span class="s1">pokemon</span><span class="s2">;</span>
+        <span class="s2">} </span><span class="s0">else if </span><span class="s2">(</span><span class="s1">pkm4 </span><span class="s2">== </span><span class="s0">null</span><span class="s2">) {</span>
+            <span class="s1">pkm4 </span><span class="s2">= </span><span class="s1">pokemon</span><span class="s2">;</span>
+        <span class="s2">} </span><span class="s0">else if </span><span class="s2">(</span><span class="s1">pkm5 </span><span class="s2">== </span><span class="s0">null</span><span class="s2">) {</span>
+            <span class="s1">pkm5 </span><span class="s2">= </span><span class="s1">pokemon</span><span class="s2">;</span>
+        <span class="s2">} </span><span class="s0">else if </span><span class="s2">(</span><span class="s1">pkm6 </span><span class="s2">== </span><span class="s0">null</span><span class="s2">) {</span>
+            <span class="s1">pkm6 </span><span class="s2">= </span><span class="s1">pokemon</span><span class="s2">;</span>
+        <span class="s2">} </span><span class="s0">else </span><span class="s2">{</span>
+            <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s3">&quot;Your party is full! Cannot add &quot; </span><span class="s2">+ </span><span class="s1">pokemon</span><span class="s2">.</span><span class="s1">getName</span><span class="s2">() + </span><span class="s3">&quot;.&quot;</span><span class="s2">);</span>
+        <span class="s2">}</span>
+    <span class="s2">}</span>
+
+    <span class="s0">public static void </span><span class="s1">printParty</span><span class="s2">() {</span>
+        <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s3">&quot;Your Pokémon Party:&quot;</span><span class="s2">);</span>
+        <span class="s0">if </span><span class="s2">(</span><span class="s1">pkm1 </span><span class="s2">!= </span><span class="s0">null</span><span class="s2">) {</span>
+            <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s3">&quot;1. &quot; </span><span class="s2">+ </span><span class="s1">pkm1</span><span class="s2">.</span><span class="s1">getName</span><span class="s2">() + </span><span class="s3">&quot; | HP: &quot; </span><span class="s2">+ </span><span class="s1">pkm1</span><span class="s2">.</span><span class="s1">getHp</span><span class="s2">() + </span><span class="s3">&quot; | Attack: &quot; </span><span class="s2">+ </span><span class="s1">pkm1</span><span class="s2">.</span><span class="s1">getAttack</span><span class="s2">() + </span><span class="s3">&quot; | Defense: &quot; </span><span class="s2">+ </span><span class="s1">pkm1</span><span class="s2">.</span><span class="s1">getDefense</span><span class="s2">());</span>
+        <span class="s2">}</span>
+        <span class="s0">if </span><span class="s2">(</span><span class="s1">pkm2 </span><span class="s2">!= </span><span class="s0">null</span><span class="s2">) {</span>
+            <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s3">&quot;2. &quot; </span><span class="s2">+ </span><span class="s1">pkm2</span><span class="s2">.</span><span class="s1">getName</span><span class="s2">() + </span><span class="s3">&quot; | HP: &quot; </span><span class="s2">+ </span><span class="s1">pkm2</span><span class="s2">.</span><span class="s1">getHp</span><span class="s2">() + </span><span class="s3">&quot; | Attack: &quot; </span><span class="s2">+ </span><span class="s1">pkm2</span><span class="s2">.</span><span class="s1">getAttack</span><span class="s2">() + </span><span class="s3">&quot; | Defense: &quot; </span><span class="s2">+ </span><span class="s1">pkm2</span><span class="s2">.</span><span class="s1">getDefense</span><span class="s2">());</span>
+        <span class="s2">}</span>
+        <span class="s0">if </span><span class="s2">(</span><span class="s1">pkm3 </span><span class="s2">!= </span><span class="s0">null</span><span class="s2">) {</span>
+            <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s3">&quot;3. &quot; </span><span class="s2">+ </span><span class="s1">pkm3</span><span class="s2">.</span><span class="s1">getName</span><span class="s2">() + </span><span class="s3">&quot; | HP: &quot; </span><span class="s2">+ </span><span class="s1">pkm3</span><span class="s2">.</span><span class="s1">getHp</span><span class="s2">() + </span><span class="s3">&quot; | Attack: &quot; </span><span class="s2">+ </span><span class="s1">pkm3</span><span class="s2">.</span><span class="s1">getAttack</span><span class="s2">() + </span><span class="s3">&quot; | Defense: &quot; </span><span class="s2">+ </span><span class="s1">pkm3</span><span class="s2">.</span><span class="s1">getDefense</span><span class="s2">());</span>
+        <span class="s2">}</span>
+        <span class="s0">if </span><span class="s2">(</span><span class="s1">pkm4 </span><span class="s2">!= </span><span class="s0">null</span><span class="s2">) {</span>
+            <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s3">&quot;4. &quot; </span><span class="s2">+ </span><span class="s1">pkm4</span><span class="s2">.</span><span class="s1">getName</span><span class="s2">() + </span><span class="s3">&quot; | HP: &quot; </span><span class="s2">+ </span><span class="s1">pkm4</span><span class="s2">.</span><span class="s1">getHp</span><span class="s2">() + </span><span class="s3">&quot; | Attack: &quot; </span><span class="s2">+ </span><span class="s1">pkm4</span><span class="s2">.</span><span class="s1">getAttack</span><span class="s2">() + </span><span class="s3">&quot; | Defense: &quot; </span><span class="s2">+ </span><span class="s1">pkm4</span><span class="s2">.</span><span class="s1">getDefense</span><span class="s2">());</span>
+        <span class="s2">}</span>
+        <span class="s0">if </span><span class="s2">(</span><span class="s1">pkm5 </span><span class="s2">!= </span><span class="s0">null</span><span class="s2">) {</span>
+            <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s3">&quot;5. &quot; </span><span class="s2">+ </span><span class="s1">pkm5</span><span class="s2">.</span><span class="s1">getName</span><span class="s2">() + </span><span class="s3">&quot; | HP: &quot; </span><span class="s2">+ </span><span class="s1">pkm5</span><span class="s2">.</span><span class="s1">getHp</span><span class="s2">() + </span><span class="s3">&quot; | Attack: &quot; </span><span class="s2">+ </span><span class="s1">pkm5</span><span class="s2">.</span><span class="s1">getAttack</span><span class="s2">() + </span><span class="s3">&quot; | Defense: &quot; </span><span class="s2">+ </span><span class="s1">pkm5</span><span class="s2">.</span><span class="s1">getDefense</span><span class="s2">());</span>
+        <span class="s2">}</span>
+        <span class="s0">if </span><span class="s2">(</span><span class="s1">pkm6 </span><span class="s2">!= </span><span class="s0">null</span><span class="s2">) {</span>
+            <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s3">&quot;6. &quot; </span><span class="s2">+ </span><span class="s1">pkm6</span><span class="s2">.</span><span class="s1">getName</span><span class="s2">() + </span><span class="s3">&quot; | HP: &quot; </span><span class="s2">+ </span><span class="s1">pkm6</span><span class="s2">.</span><span class="s1">getHp</span><span class="s2">() + </span><span class="s3">&quot; | Attack: &quot; </span><span class="s2">+ </span><span class="s1">pkm6</span><span class="s2">.</span><span class="s1">getAttack</span><span class="s2">() + </span><span class="s3">&quot; | Defense: &quot; </span><span class="s2">+ </span><span class="s1">pkm6</span><span class="s2">.</span><span class="s1">getDefense</span><span class="s2">());</span>
+        <span class="s2">}</span>
+
+        <span class="s0">if </span><span class="s2">(</span><span class="s1">pkm1 </span><span class="s2">== </span><span class="s0">null </span><span class="s2">&amp;&amp; </span><span class="s1">pkm2 </span><span class="s2">== </span><span class="s0">null </span><span class="s2">&amp;&amp; </span><span class="s1">pkm3 </span><span class="s2">== </span><span class="s0">null </span><span class="s2">&amp;&amp; </span><span class="s1">pkm4 </span><span class="s2">== </span><span class="s0">null </span><span class="s2">&amp;&amp; </span><span class="s1">pkm5 </span><span class="s2">== </span><span class="s0">null </span><span class="s2">&amp;&amp; </span><span class="s1">pkm6 </span><span class="s2">== </span><span class="s0">null</span><span class="s2">) {</span>
+            <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s3">&quot;Your party is empty.&quot;</span><span class="s2">);</span>
+        <span class="s2">}</span>
+    <span class="s2">}</span>
+
+    <span class="s0">public static void </span><span class="s1">switchPokemon</span><span class="s2">(</span><span class="s1">Scanner sc1</span><span class="s2">) {</span>
+        <span class="s0">int </span><span class="s1">slot</span><span class="s2">;</span>
+        <span class="s1">Pokemon selectedPokemon </span><span class="s2">= </span><span class="s0">null</span><span class="s2">;</span>
+
+        <span class="s4">// Loop until a valid selection is made</span>
+        <span class="s0">while </span><span class="s2">(</span><span class="s0">true</span><span class="s2">) {</span>
+            <span class="s1">slot </span><span class="s2">= </span><span class="s1">askToSwitchPokemon</span><span class="s2">(</span><span class="s1">sc1</span><span class="s2">);</span>
+
+            <span class="s4">// If user chose to go back, exit method</span>
+            <span class="s0">if </span><span class="s2">(</span><span class="s1">slot </span><span class="s2">== -</span><span class="s5">1</span><span class="s2">) {</span>
+                <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s3">&quot;Switching canceled.&quot;</span><span class="s2">);</span>
+                <span class="s0">return</span><span class="s2">;</span>
+            <span class="s2">}</span>
+
+            <span class="s4">// Assign selected Pokémon</span>
+            <span class="s0">switch </span><span class="s2">(</span><span class="s1">slot</span><span class="s2">) {</span>
+                <span class="s0">case </span><span class="s5">2</span><span class="s2">: </span><span class="s1">selectedPokemon </span><span class="s2">= </span><span class="s1">pkm2</span><span class="s2">; </span><span class="s0">break</span><span class="s2">;</span>
+                <span class="s0">case </span><span class="s5">3</span><span class="s2">: </span><span class="s1">selectedPokemon </span><span class="s2">= </span><span class="s1">pkm3</span><span class="s2">; </span><span class="s0">break</span><span class="s2">;</span>
+                <span class="s0">case </span><span class="s5">4</span><span class="s2">: </span><span class="s1">selectedPokemon </span><span class="s2">= </span><span class="s1">pkm4</span><span class="s2">; </span><span class="s0">break</span><span class="s2">;</span>
+                <span class="s0">case </span><span class="s5">5</span><span class="s2">: </span><span class="s1">selectedPokemon </span><span class="s2">= </span><span class="s1">pkm5</span><span class="s2">; </span><span class="s0">break</span><span class="s2">;</span>
+                <span class="s0">case </span><span class="s5">6</span><span class="s2">: </span><span class="s1">selectedPokemon </span><span class="s2">= </span><span class="s1">pkm6</span><span class="s2">; </span><span class="s0">break</span><span class="s2">;</span>
+                <span class="s0">default</span><span class="s2">:</span>
+                    <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s3">&quot;Invalid choice. Please choose again.&quot;</span><span class="s2">);</span>
+                    <span class="s0">continue</span><span class="s2">;</span>
+            <span class="s2">}</span>
+
+            <span class="s0">if </span><span class="s2">(</span><span class="s1">selectedPokemon </span><span class="s2">!= </span><span class="s0">null</span><span class="s2">) {</span>
+                <span class="s0">break</span><span class="s2">; </span><span class="s4">// Valid Pokémon found, exit loop</span>
+            <span class="s2">} </span><span class="s0">else </span><span class="s2">{</span>
+                <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s3">&quot;No Pokémon in that slot! Choose a different slot.&quot;</span><span class="s2">);</span>
+            <span class="s2">}</span>
+        <span class="s2">}</span>
+
+        <span class="s4">// Swap the active Pokémon (pkm1) with the selected one</span>
+        <span class="s0">switch </span><span class="s2">(</span><span class="s1">slot</span><span class="s2">) {</span>
+            <span class="s0">case </span><span class="s5">2</span><span class="s2">: </span><span class="s1">pkm2 </span><span class="s2">= </span><span class="s1">pkm1</span><span class="s2">; </span><span class="s0">break</span><span class="s2">;</span>
+            <span class="s0">case </span><span class="s5">3</span><span class="s2">: </span><span class="s1">pkm3 </span><span class="s2">= </span><span class="s1">pkm1</span><span class="s2">; </span><span class="s0">break</span><span class="s2">;</span>
+            <span class="s0">case </span><span class="s5">4</span><span class="s2">: </span><span class="s1">pkm4 </span><span class="s2">= </span><span class="s1">pkm1</span><span class="s2">; </span><span class="s0">break</span><span class="s2">;</span>
+            <span class="s0">case </span><span class="s5">5</span><span class="s2">: </span><span class="s1">pkm5 </span><span class="s2">= </span><span class="s1">pkm1</span><span class="s2">; </span><span class="s0">break</span><span class="s2">;</span>
+            <span class="s0">case </span><span class="s5">6</span><span class="s2">: </span><span class="s1">pkm6 </span><span class="s2">= </span><span class="s1">pkm1</span><span class="s2">; </span><span class="s0">break</span><span class="s2">;</span>
+        <span class="s2">}</span>
+        <span class="s1">pkm1 </span><span class="s2">= </span><span class="s1">selectedPokemon</span><span class="s2">;</span>
+
+        <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s3">&quot;Switched to &quot; </span><span class="s2">+ </span><span class="s1">pkm1</span><span class="s2">.</span><span class="s1">getName</span><span class="s2">() + </span><span class="s3">&quot;!&quot;</span><span class="s2">);</span>
+    <span class="s2">}</span>
+
+    <span class="s0">public static int </span><span class="s1">askToSwitchPokemon</span><span class="s2">(</span><span class="s1">Scanner sc1</span><span class="s2">) {</span>
+        <span class="s0">while </span><span class="s2">(</span><span class="s0">true</span><span class="s2">) {</span>
+            <span class="s1">printParty</span><span class="s2">();</span>
+            <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s3">&quot;Enter a Pokémon (2-6) to switch to, or 'C' to cancel:&quot;</span><span class="s2">);</span>
+
+            <span class="s1">String input </span><span class="s2">= </span><span class="s1">sc1</span><span class="s2">.</span><span class="s1">nextLine</span><span class="s2">().</span><span class="s1">trim</span><span class="s2">(); </span><span class="s4">// Use nextLine() to consume newline</span>
+            <span class="s0">if </span><span class="s2">(</span><span class="s1">input</span><span class="s2">.</span><span class="s1">equalsIgnoreCase</span><span class="s2">(</span><span class="s3">&quot;C&quot;</span><span class="s2">)) {</span>
+                <span class="s0">return </span><span class="s2">-</span><span class="s5">1</span><span class="s2">; </span><span class="s4">// Return -1 to indicate cancellation</span>
+            <span class="s2">}</span>
+            <span class="s0">try </span><span class="s2">{</span>
+                <span class="s0">int </span><span class="s1">choiceSwitchPokemon </span><span class="s2">= </span><span class="s1">Integer</span><span class="s2">.</span><span class="s1">parseInt</span><span class="s2">(</span><span class="s1">input</span><span class="s2">);</span>
+                <span class="s0">if </span><span class="s2">(</span><span class="s1">choiceSwitchPokemon </span><span class="s2">&gt;= </span><span class="s5">2 </span><span class="s2">&amp;&amp; </span><span class="s1">choiceSwitchPokemon </span><span class="s2">&lt;= </span><span class="s5">6</span><span class="s2">) {</span>
+                    <span class="s0">return </span><span class="s1">choiceSwitchPokemon</span><span class="s2">; </span><span class="s4">// Return valid choice</span>
+                <span class="s2">}</span>
+            <span class="s2">} </span><span class="s0">catch </span><span class="s2">(</span><span class="s1">NumberFormatException e</span><span class="s2">) {</span>
+            <span class="s2">}</span>
+            <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s3">&quot;Invalid input! Please enter a number between 2-6 or 'C' to cancel.&quot;</span><span class="s2">);</span>
+        <span class="s2">}</span>
+    <span class="s2">}</span>
+<span class="s2">}</span>
+
+</pre>
+</body>
+</html>

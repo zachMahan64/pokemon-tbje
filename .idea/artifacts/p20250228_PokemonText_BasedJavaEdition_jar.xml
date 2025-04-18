@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="p20250228_PokemonText-BasedJavaEdition:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/p20250228_PokemonText_BasedJavaEdition_jar</output-path>
+    <root id="archive" name="p20250228_PokemonText-BasedJavaEdition.jar">
+      <element id="module-output" name="p20250228_PokemonText-BasedJavaEdition" />
+    </root>
+  </artifact>
+</component>
