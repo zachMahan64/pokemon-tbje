@@ -55,9 +55,10 @@ public class Location {
     }
     //map logic
     public static void openMap(Scanner sc1) throws InterruptedException, ExecutionException {
+        Sound.stopAllSounds();
         label:
         while (!Party.checkIfEveryPkmHasFainted()) {
-            Sound.playMusicOnLoop("src/main/music/titleMusic.mp3");
+            Sound.playMusicOnLoop("src/main/music/creditsTheme.mp3");
             Graphics.printMap();
             System.out.println("Where would you like to go?");
 
@@ -125,6 +126,7 @@ public class Location {
                     break;
             }
         }
+        Sound.stopAllSounds();
         rushToNearestPokemonCenterIfFainted();
     }
     public static void rushToNearestPokemonCenterIfFainted() throws InterruptedException {
@@ -728,7 +730,6 @@ public class Location {
         } while (!choice.equals("L"));
         Sound.stopAllSounds();
     }
-
     public static void goToRocketopolisGym(Scanner sc1) throws InterruptedException, ExecutionException {
         String choice= "";
         do{
@@ -743,7 +744,6 @@ public class Location {
             }
         } while (!choice.equals("L"));
     }
-
     public static void enterCasino(Scanner sc1) throws  InterruptedException{
         Sound.stopAllSounds();
         Sound.playMusicOnLoop("src/main/music/casinoTheme.mp3");
