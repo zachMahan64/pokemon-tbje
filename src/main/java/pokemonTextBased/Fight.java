@@ -878,7 +878,7 @@ public class Fight {
                 points += engine.SWITCH_MOVE_BONUS_WHEN_OPP_HAS_A_KO_MOVE;
             }
         }
-        if ((move.getOtherEffect().equals("Opponent Sleep")) && !dealer.getStatusCondition().equals("Sleep")) {
+        if ((move.getOtherEffect().equals("Opponent Sleep")) && !recipient.getStatusCondition().equals("Sleep")) {
             int SLEEP_BONUS_IN_EFF = (int) (engine.SLEEP_BONUS * (double) move.getAccuracy()/100);
             points += SLEEP_BONUS_IN_EFF;
             if(checkIfPokemonHasAKOMove(arena, recipient, dealer) && dealerIsFaster){

@@ -1054,7 +1054,7 @@ public class Encounter {
             Fight.useMove(arena, playerMove, arena.p[0], arena.fp[0]);
         }
         else if (arena.p[0].getCurrentHp() > 0 && arena.p[0].getStatusCondition().equals("Sleep")) {
-            if(arena.playerEngine.battleDialogsAreEnabled) System.out.println(arena.p[0].getName() + " is still asleep!\n");
+            if(arena.playerEngine.battleDialogsAreEnabled) System.out.println(arena.p[0].getName() + " is fast asleep!\n");
             Thread.sleep((long) (.75 * User.textSpeed));
         }
         //do nothing if player fainted
@@ -1068,7 +1068,7 @@ public class Encounter {
             Thread.sleep((long)(.75* User.textSpeed));
         }
         if (arena.fp[0].getCurrentHp() > 0 && arena.fp[0].getStatusCondition().equals("Sleep") && (arena.fp[0].getWakeUpTurn() != arena.getTurnNum() +3)){
-            if(arena.playerEngine.battleDialogsAreEnabled) System.out.println(arena.fp[0].getName() + " is still asleep!\n");
+            if(arena.playerEngine.battleDialogsAreEnabled) System.out.println(arena.fp[0].getName() + " is fast asleep!\n");
             Thread.sleep((long) (.75 * User.textSpeed));
         }
     }
