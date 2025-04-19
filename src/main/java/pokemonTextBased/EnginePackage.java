@@ -23,6 +23,7 @@ public class EnginePackage {
     public static String BASE_SWITCH_MOVE_BONUS = "BASE_SWITCH_MOVE_BONUS";
     public static String SWITCH_MOVE_BONUS_WHEN_OPP_HAS_A_KO_MOVE = "SWITCH_MOVE_BONUS_WHEN_OPP_HAS_A_KO_MOVE";
     public static String SLEEP_BONUS = "SLEEP_BONUS";
+    public static String OPP_CANNOT_MOVE_BONUS_FOR_SET_UP_MOVES = "OPP_CANNOT_MOVE_BONUS_FOR_SET_UP_MOVES";
     public static String PT_PUNISHMENT_FOR_INACCURACY = "PT_PUNISHMENT_FOR_INACCURACY";
     public static String PT_PUNISHMENT_FOR_WAIT = "PT_PUNISHMENT_FOR_WAIT";
     public static String PT_PUNISHMENT_FOR_RECOIL = "PT_PUNISHMENT_FOR_RECOIL";
@@ -61,7 +62,7 @@ public class EnginePackage {
 //        }
 //        newParams.put(MAXIMUM_DAMAGE_RATIO_TO_CONSIDER, rand.nextInt(100, 300));
 //        newParams.put(LIKELY_KO_BONUS, rand.nextInt(100, 300));
-        newParams.put(SLEEP_BONUS, rand.nextInt(75,200));
+        newParams.put(OPP_CANNOT_MOVE_BONUS_FOR_SET_UP_MOVES, rand.nextInt(250,300));
 
 
         return new EnginePackage(newParams);
@@ -90,7 +91,9 @@ public class EnginePackage {
         put(EnginePackage.TRICK_ROOM_BONUS, 200);
         put(EnginePackage.BASE_SWITCH_MOVE_BONUS, 50);
         put(EnginePackage.SWITCH_MOVE_BONUS_WHEN_OPP_HAS_A_KO_MOVE, 50);
-        put(EnginePackage.SLEEP_BONUS, 110);
+        put(EnginePackage.SLEEP_BONUS, 65);
+        put(EnginePackage.OPP_CANNOT_MOVE_BONUS_FOR_SET_UP_MOVES, 100);
+
         put(EnginePackage.PT_PUNISHMENT_FOR_INACCURACY, 30);
         put(EnginePackage.PT_PUNISHMENT_FOR_WAIT, 125);
         put(EnginePackage.PT_PUNISHMENT_FOR_RECOIL, 10);

@@ -23,11 +23,15 @@ public class Engine {
     public int BASE_SWITCH_MOVE_BONUS;
     public int SWITCH_MOVE_BONUS_WHEN_OPP_HAS_A_KO_MOVE;
     public int SLEEP_BONUS;
+    public int OPP_CANNOT_MOVE_BONUS_FOR_SET_UP_MOVES;
+
     public int PT_PUNISHMENT_FOR_INACCURACY;
     public int PT_PUNISHMENT_FOR_WAIT;
     public int PT_PUNISHMENT_FOR_RECOIL;
+
     public int SWITCH_THRESHOLD_PERCENT;
     public int NON_ACTIVE_MATCH_UP_WEIGHT_PERCENT;
+
     public int OWN_WAIT_PENALTY;
     public int OPP_WAIT_PENALTY;
     public int OPP_HAS_GUARANTEED_KO_PENALTY;
@@ -53,11 +57,15 @@ public class Engine {
         BASE_SWITCH_MOVE_BONUS = enginePackage.get(EnginePackage.BASE_SWITCH_MOVE_BONUS);
         SWITCH_MOVE_BONUS_WHEN_OPP_HAS_A_KO_MOVE = enginePackage.get(EnginePackage.SWITCH_MOVE_BONUS_WHEN_OPP_HAS_A_KO_MOVE);
         SLEEP_BONUS = enginePackage.get(EnginePackage.SLEEP_BONUS);
+        OPP_CANNOT_MOVE_BONUS_FOR_SET_UP_MOVES = enginePackage.get(EnginePackage.OPP_CANNOT_MOVE_BONUS_FOR_SET_UP_MOVES);
+
         PT_PUNISHMENT_FOR_INACCURACY = enginePackage.get(EnginePackage.PT_PUNISHMENT_FOR_INACCURACY);
         PT_PUNISHMENT_FOR_WAIT = enginePackage.get(EnginePackage.PT_PUNISHMENT_FOR_WAIT);
         PT_PUNISHMENT_FOR_RECOIL = enginePackage.get(EnginePackage.PT_PUNISHMENT_FOR_RECOIL);
+
         SWITCH_THRESHOLD_PERCENT = enginePackage.get(EnginePackage.SWITCH_THRESHOLD_PERCENT);
         NON_ACTIVE_MATCH_UP_WEIGHT_PERCENT = enginePackage.get(EnginePackage.NON_ACTIVE_MATCH_UP_WEIGHT_PERCENT);
+
         OWN_WAIT_PENALTY = enginePackage.get(EnginePackage.OWN_WAIT_PENALTY);
         OPP_WAIT_PENALTY = enginePackage.get(EnginePackage.OPP_WAIT_PENALTY);
         OPP_HAS_GUARANTEED_KO_PENALTY = enginePackage.get(EnginePackage.OPP_HAS_GUARANTEED_KO_PENALTY);
@@ -70,7 +78,7 @@ public class Engine {
     }
 
     public static void main(String[] args) throws InterruptedException, ExecutionException {
-        simulateAllMatchUpsMultithreaded(2500);
+        simulateAllMatchUpsMultithreaded(200);
     }
 
     //singleThreaded

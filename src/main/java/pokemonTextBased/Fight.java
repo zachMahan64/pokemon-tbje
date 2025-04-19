@@ -846,6 +846,9 @@ public class Fight {
                 && !checkIfPokemonHasAGuranteedKOMove(arena, recipient, dealer)
                 && !checkIfMoveShouldFail(arena, move, dealer, recipient)) {
             points += engine.PT_GOOD_SET_UP_MOVE;
+            if(recipient.getStatusCondition().equals("Sleep") || recipient.isSkipNextTurn()) {
+                points += engine.OPP_CANNOT_MOVE_BONUS_FOR_SET_UP_MOVES;
+            }
         }
 
         // Move priority bonuses
@@ -979,7 +982,9 @@ public class Fight {
         return move.getName().equals("Nasty Plot") || move.getName().equals("Dragon Dance") || move.getName().equals("Swords Dance")
                 || move.getName().equals("Bulk Up") || move.getName().equals("Calm Mind") || move.getName().equals("Iron Defense")
                 || move.getOtherEffect().equals("Opponent Burn") || move.getOtherEffect().equals("Opponent Poison")
-                || move.getOtherEffect().equals("Opponent Paralysis") || move.getOtherEffect().equals("Opponent Sleep");
+                || move.getOtherEffect().equals("Opponent Paralysis") || move.getOtherEffect().equals("Opponent Sleep")
+                || move.getOtherEffect().equals("Snowy") || move.getOtherEffect().equals("Rainy")
+                || move.getOtherEffect().equals("Sunny");
     }
     // Switch decision-making
     public static boolean switchSimplyAI(Arena arena, boolean alliesAreFoes) throws InterruptedException {
