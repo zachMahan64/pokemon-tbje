@@ -565,7 +565,7 @@ public class Bag {
     }
     public static int getCatchOdds(Arena arena) {
         Random rand = new Random();
-        return rand.nextInt(0, 100) + (int) (50.0 * arena.fp[0].getCurrentHp()/arena.fp[0].getCurrentMaxHp() * (arena.fp[0].checkBaseStatTotal()/250.0));
+        return rand.nextInt(0, 100) + (int) (50.0 * arena.fp[0].getCurrentHp()/arena.fp[0].getCurrentMaxHp() * (arena.fp[0].getBST()/250.0));
     } //rework to be more inuitive
     //trainer encounter/regular usage
     public static boolean openBattlePocketInMenu(Scanner sc1) throws InterruptedException {
@@ -607,7 +607,7 @@ public class Bag {
             Game.pressEnterToContinue(sc1);
             return false;
         }
-        openBattlePocketTrainerEncounter(sc1);
+        openBattlePocketInMenu(sc1);
         return true;
     }
     public static boolean useItemTrainerEncounter(String item, Scanner sc1) throws InterruptedException {

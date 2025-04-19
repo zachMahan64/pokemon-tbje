@@ -416,6 +416,7 @@ public class Game {
             //User.unlockEverything();
             //Encounter.enterWildPkmBattle(new Pokemon("Incineroar", 20), sc1);
             //Encounter.enterTrainerBattle(templateTrainer, sc1);
+            Encounter.enterTrainerBattle(Trainer.buildBattleLeagueTrainer(), sc1);
             enterMainMenu(sc1);
         }
     }

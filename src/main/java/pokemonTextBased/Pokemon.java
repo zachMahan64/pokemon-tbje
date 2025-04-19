@@ -157,7 +157,7 @@ public class Pokemon {
     public int getBaseSpeed() {
         return baseSpeed;
     }
-    public int checkBaseStatTotal() {
+    public int getBST() {
         return (baseHp + baseAttack + baseDefense + baseSpAtk + baseSpDef + baseSpeed);
     }
     // Getters for current stats

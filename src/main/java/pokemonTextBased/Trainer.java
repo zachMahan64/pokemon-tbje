@@ -2,6 +2,7 @@ package pokemonTextBased;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 
 public class Trainer {
@@ -63,6 +64,7 @@ public class Trainer {
         GRUNT_M_F("Rocket Grunt", "f", 60),
         GRUNT_H("Rocket Grunt", "m", 70),
         GRUNT_H_F("Rocket Grunt", "f", 70),
+        UNDERGROUND_BATTLER("Underground Battler", "m", 50),
         //COMPETITIVE TRAINERS
         C_TRAINER_1("Battle Expert", "m", 50),
         C_TRAINER_2("Battle Expert", "m", 50),
@@ -767,5 +769,28 @@ public class Trainer {
         Random rand = new Random();
         int index = rand.nextInt(femaleNames.length);
         return femaleNames[index];
+    }
+    private static final Random rand = new Random();
+    public static Trainer buildBattleLeagueTrainer() {
+        Pokemon[] trainerParty = new Pokemon[Party.p.length];
+        int thisBST = 0;
+        for (int i = 0; i < Party.p.length; i++) {
+            thisBST = Party.p[i].getBST();
+            trainerParty[i] = new Pokemon(getRandomSpeciesNearBST(thisBST), User.checkLevelCap());
+        }
+        return new Trainer(Title.UNDERGROUND_BATTLER, trainerParty);
+    }
+    public static Species getRandomSpeciesNearBST(int targetBST) {
+        int lowerBound = targetBST - 40;
+        int upperBound = targetBST + 40;
+        int thisBST = 0;
+        ArrayList<String> viableSpeciesChoices = new ArrayList<>();
+        for (Map.Entry<String, Integer> entry : Species.baseStatTotals.entrySet()) {
+            thisBST = entry.getValue();
+            if(thisBST >= lowerBound && thisBST <= upperBound) {
+                viableSpeciesChoices.add(entry.getKey());
+            }
+        }
+        return Species.getSpecies(viableSpeciesChoices.get(rand.nextInt(0, viableSpeciesChoices.size())));
     }
 }

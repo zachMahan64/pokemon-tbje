@@ -165,6 +165,9 @@ public class Species {
     public int getEvolutionLevel() {
         return evolutionLevel;
     }
+    public int getBST( ){
+        return baseHp + baseAttack + baseDefense + baseSpAtk + baseSpDef + baseSpeed;
+    }
     public static final List<String> speciesListedInPokedexOrder;
     static {
         speciesListedInPokedexOrder = Arrays.asList(
@@ -213,7 +216,7 @@ public class Species {
         speciesMap.put("ivysaur", new Species("Ivysaur", "Grass", "Poison", 32, 60, 62, 63, 80, 80, 60,
                 Arrays.asList(Move.getMove("Tackle"), Move.getMove("Razor Leaf"), Move.getMove("Growl"), Move.getMove("Acid"))));
         speciesMap.put("venusaur", new Species("Venusaur", "Grass", "Poison", 0, 80, 82, 83, 100, 100, 80,
-                Arrays.asList(Move.getMove("Sleep Powder"), Move.getMove("Solar Beam"), Move.getMove("Sunny Day"), Move.getMove("Sludge Bomb"))));
+                Arrays.asList(Move.getMove("Sleep Powder"), Move.getMove("Energy Ball"), Move.getMove("Sunny Day"), Move.getMove("Sludge Bomb"))));
         speciesMap.put("charmander", new Species("Charmander", "Fire", "None", 16, 39, 52, 43, 60, 50, 65,
                 Arrays.asList(Move.getMove("Scratch"), Move.getMove("Ember"), Move.getMove("Growl"), Move.getMove("Quick Attack"))));
         speciesMap.put("charmeleon", new Species("Charmeleon", "Fire", "None", 36, 58, 64, 58, 80, 65, 80,
@@ -723,7 +726,13 @@ public class Species {
         speciesMap.put("dragapult", new Species("Dragapult", "Dragon", "Ghost", 0, 88, 120, 75, 100, 75, 142,
                 Arrays.asList(Move.getMove("Dragon Darts"), Move.getMove("Shadow Claw"), Move.getMove("Draco Meteor"), Move.getMove("Dragon Dance"))));
     }
-        public static Species getSpecies(String speciesName) {
+    public static final HashMap<String, Integer> baseStatTotals = new HashMap<>();
+    static {
+        for (String pkmStr : speciesListedInPokedexOrder) {
+            baseStatTotals.put(pkmStr, getSpecies(pkmStr).getBST());
+        }
+    }
+    public static Species getSpecies(String speciesName) {
             return speciesMap.getOrDefault(speciesName.toLowerCase(), speciesMap.get("default"));
         }
     @Override
