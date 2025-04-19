@@ -727,6 +727,9 @@ public class Location {
             if(choice.equals("G")){
                 goToRocketopolisGym(sc1);
             }
+            if(choice.equals("T")){
+                goToTheColosseum(sc1);
+            }
         } while (!choice.equals("L"));
         Sound.stopAllSounds();
     }
@@ -1135,6 +1138,64 @@ public class Location {
             System.out.println("Oh, you changed your mind?");
             Game.pressEnterToContinue(sc1);
         }
+    }
+    public static void goToTheColosseum(Scanner sc1) throws InterruptedException, ExecutionException {
+        Sound.stopAllSounds();
+        String choice= "";
+        do{
+            Sound.playMusicOnLoop("src/main/music/indigoPlateauTheme.mp3");
+            Graphics.printTheColosseum();
+            choice = sc1.nextLine().trim().toUpperCase();
+            if(choice.equals("E")){
+                enterTheColosseum(sc1);
+            }
+            if(choice.equals("O")){
+                openOptionsMenu(sc1);
+            }
+        } while (!choice.equals("L"));
+        Sound.stopAllSounds();
+    }
+    public static void enterTheColosseum(Scanner sc1) throws InterruptedException, ExecutionException {
+        String choice= "";
+        int numTrainersBeaten = 0;
+        int startingHighScore = User.recordColosseumTrainersBeaten;
+        do{
+            Sound.playMusicOnLoop("src/main/music/indigoPlateauTheme.mp3");
+            Graphics.printInsideOfTheColosseum(numTrainersBeaten);
+            choice = sc1.nextLine().trim().toUpperCase();
+            if(choice.equals("F")){
+                if(Encounter.enterTrainerBattle(Trainer.buildBattleLeagueTrainer(), sc1)) {
+                    numTrainersBeaten++;
+                    if (numTrainersBeaten > User.recordColosseumTrainersBeaten) {
+                        User.recordColosseumTrainersBeaten = numTrainersBeaten;
+                    }
+                }
+            }
+            if(choice.equals("H")){
+                goToHelpDeskInColosseum(sc1);
+            }
+            if(choice.equals("O")){
+                openOptionsMenu(sc1);
+            }
+        } while (!Party.checkIfEveryPkmHasFainted() && !choice.equals("L"));
+        if (numTrainersBeaten > startingHighScore) {
+            System.out.println("New high score! You beat: " + numTrainersBeaten + " trainers!");
+            Game.pressEnterToContinue(sc1);
+        }
+        rushToNearestPokemonCenterIfFainted();
+    }
+    public static void goToHelpDeskInColosseum(Scanner sc1) throws InterruptedException {
+        String choice = "";
+        do {
+            Graphics.printHelpDesk();
+            choice = sc1.nextLine().trim().toUpperCase();
+            if(choice.equals("T")){
+                NPC.talkTo(NPC.Character.RICHIE, sc1);
+            }
+            if(choice.equals("G")){
+                Bag.addNote("COLOSSEUM TIPS", sc1);
+            }
+        } while(!Party.checkIfEveryPkmHasFainted() && !choice.equals("L"));
     }
     //Vaughan District
     public static void goToVaughanDistrict(Scanner sc1) throws InterruptedException, ExecutionException{
@@ -1891,6 +1952,7 @@ public class Location {
                 Thread.sleep(User.textSpeed);
             }
         } while (!choice.isEmpty());
+        Sound.click();
     }
     //helpers
     public static int getValidInt(Scanner sc1) {

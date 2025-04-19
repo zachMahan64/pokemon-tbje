@@ -409,14 +409,14 @@ public class Game {
 //            Party.addToParty(new Pokemon(Species.getSpecies("Scizor"), 20, Pokemon.getShinyOdds()), sc1);
             //User.askUserToSetHints(sc1);
             //User.askUserToSetDifficulty(sc1);
-            Trainer templateTrainer = new Trainer(Trainer.Title.C_TRAINER_1);
+            Trainer templateTrainer = new Trainer(Trainer.Title.VAUGHAN_DISTRICT_GYM_LEADER);
             Party.p = Engine.cloneParty(templateTrainer.getParty(), false);
             User.decreaseReputation(0);
             //Bag.addSpecialItem("Rare Candy", 200);
             //User.unlockEverything();
             //Encounter.enterWildPkmBattle(new Pokemon("Incineroar", 20), sc1);
             //Encounter.enterTrainerBattle(templateTrainer, sc1);
-            Encounter.enterTrainerBattle(Trainer.buildBattleLeagueTrainer(), sc1);
+            //Encounter.enterTrainerBattle(Trainer.buildBattleLeagueTrainer(), sc1);
             enterMainMenu(sc1);
         }
     }

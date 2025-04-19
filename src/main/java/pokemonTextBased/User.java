@@ -46,6 +46,7 @@ public class User {
     public static Hints hintMode = Hints.SHOW_ENGINE_CHOICES;
     //progression
     public static int reputation = 0;
+    public static int recordColosseumTrainersBeaten = 0;
     //logs
     public static ArrayList<String> tradeHistory = new ArrayList<>();
     //trainers

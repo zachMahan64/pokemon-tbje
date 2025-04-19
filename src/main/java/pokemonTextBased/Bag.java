@@ -60,6 +60,20 @@ public class Bag {
                 "Use Potions in battle when needed.",
                 "Status conditions can be cured with Full Heal."
         });
+
+        referenceNotes.put("COLOSSEUM TIPS", new String[] {
+                "~~~~~~~~~~~~~~~~~~~ COLOSSEUM TIPS ~~~~~~~~~~~~~~~~~~~",
+                "~~~~~~~~~~~~~~ A ROOKIE TRAINER'S GUIDE ~~~~~~~~~~~~~~",
+                "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~",
+                "1) Opponents will always have parties around that",
+                " are evenly matched with yours!",
+                "2) Try to win as many battles in a row as you can!",
+                "3) Come visit the Help Desk to claim prizes for high",
+                " scores!",
+                "                                     -RICHARD SAKAKI",
+                "              Printed by LAUNCH Enterprises Co. 1998",
+                "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~",
+        });
     }
     private static Map<String, String[]> notes = new HashMap<>();
     public static boolean addNote(String noteKey, Scanner sc1) {

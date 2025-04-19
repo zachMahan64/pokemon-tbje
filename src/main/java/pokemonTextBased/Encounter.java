@@ -1153,7 +1153,9 @@ public class Encounter {
         Engine engine = new Engine(new EnginePackage(EnginePackage.defaultEngineParameterMap),true);
         Arena arena = new Arena(Party.p, trainer, engine, engine);
 
-        if (arena.isFacingGymLeader()) {
+        if (trainer.title == Trainer.Title.VAUGHAN_DISTRICT_GYM_LEADER) {
+            Sound.playMusicOnLoop("src/main/music/vaughanBattleTheme.mp3");
+        } else if (arena.isFacingGymLeader()) {
             Sound.playMusicOnLoop("src/main/music/gymLeaderBattleTheme.mp3");
         } else {
             Sound.playMusicOnLoop("src/main/music/trainerBattleTheme.mp3");
