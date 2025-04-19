@@ -61,6 +61,11 @@ public class Sound {
         if (disableSound) return;
 
         if (filePath.endsWith(".mp3")) {
+            MediaPlayer existing = mediaPlayers.get(filePath);
+            if (existing != null && existing.getStatus() == MediaPlayer.Status.PLAYING) {
+                // don't restart if already playing
+                return;
+            }
             playMP3(filePath, true);
             return;
         }
@@ -152,6 +157,6 @@ public class Sound {
     // specific
     public static void click() {
         if (disableSound) return;
-        playSoundOnce("src/main/music/click.mp3");
+        playSoundOnce("src/main/music/click.wav");
     }
 }

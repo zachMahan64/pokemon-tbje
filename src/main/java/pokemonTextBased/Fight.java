@@ -730,7 +730,7 @@ public class Fight {
         Random rand = new Random();
         int moveChoice = rand.nextInt(availableMoves.size()) + 1;  // Random number between 1 and size of moveset
 
-        if (moveChoice >= 1 && moveChoice <= availableMoves.size()) {
+        if (moveChoice <= availableMoves.size()) {
             moveToUse = availableMoves.get(moveChoice - 1);
             if (moveToUse.canUseMove()) {
                 return moveToUse;
@@ -878,7 +878,7 @@ public class Fight {
                 points += engine.SWITCH_MOVE_BONUS_WHEN_OPP_HAS_A_KO_MOVE;
             }
         }
-        if ((move.getOtherEffect().equals("Opponent Sleep"))) {
+        if ((move.getOtherEffect().equals("Opponent Sleep")) && !dealer.getStatusCondition().equals("Sleep")) {
             int SLEEP_BONUS_IN_EFF = (int) (engine.SLEEP_BONUS * (double) move.getAccuracy()/100);
             points += SLEEP_BONUS_IN_EFF;
             if(checkIfPokemonHasAKOMove(arena, recipient, dealer) && dealerIsFaster){

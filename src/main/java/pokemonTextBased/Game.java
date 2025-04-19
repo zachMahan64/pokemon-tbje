@@ -1,10 +1,9 @@
 package pokemonTextBased;// Zach Mahan, started 20250228, for fun Pokemon Game
 
-//BUGS: fix flinching ghosts (doesn't fail)
+//BUGS: fix flinching ghosts (doesn't fail), engine choosing fake-out when it fails,
 
 //general ideas:
 // -Add savability when game is farther along (JSON?)
-// -Convert wavs to mp3s?
 
 //STORY & Progression
 // -Add Silph Portable TV (in Bag), new news reels after each gym?
@@ -12,7 +11,6 @@ package pokemonTextBased;// Zach Mahan, started 20250228, for fun Pokemon Game
 // -Finish Gym Leader NPC dialogue
 
 //LOCATIONS
-// -Add Rocketopolis Gym
 // -Add more battle/encounter zones (e.g. mt moon)
 // -Add Battle Frontier w/ hard trainers
 // -Add Rocket Safari Zone w/ special mons
@@ -21,9 +19,7 @@ package pokemonTextBased;// Zach Mahan, started 20250228, for fun Pokemon Game
 // -Add better Trick Room judgement
 // -Add full-fxning Tailwind, Light Screen, Reflect
 
-
 //CLASSES
-// -Finish Trainer (better AI, add Vaughanists, balance parties)
 // -Add Move sounds (one per move type?)
 
 //OTHER FEATURES
@@ -242,7 +238,7 @@ public class Game {
             String choice = sc1.nextLine().trim().toUpperCase();
 
             if (choice.isBlank()) {
-                Sound.playSoundOnce("src/main/music/click.mp3");
+                Sound.click();
                 Sound.stopAllSounds();
                 enterPlayMenu(sc1);
                 break;
@@ -270,7 +266,7 @@ public class Game {
             String choice = sc1.nextLine().trim().toUpperCase();
 
             if (choice.isBlank()) {
-                Sound.playSoundOnce("src/main/music/click.mp3");
+                Sound.click();
                 break;
             } else if (choice.equals("E")) {
                 askToConfirmExit(sc1);
