@@ -72,7 +72,7 @@ public class Bag {
                 " scores!",
                 "4) Once you achieve a record of 25 trainers beaten,",
                 " you may procure one Pokemon from each trainer that ",
-                " you defeat THE COLOSSEUM.",
+                " you defeat in THE COLOSSEUM.",
                 "                                     -G. SAKAKI",
                 "              Printed by LAUNCH Enterprises Co. 1998",
                 "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~",
@@ -624,8 +624,7 @@ public class Bag {
             Game.pressEnterToContinue(sc1);
             return false;
         }
-        openBattlePocketInMenu(sc1);
-        return true;
+        return openBattlePocketInMenu(sc1);
     }
     public static boolean useItemTrainerEncounter(String item, Scanner sc1) throws InterruptedException {
         while (true) {
