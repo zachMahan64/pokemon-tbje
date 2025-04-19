@@ -64,7 +64,9 @@ public class Trainer {
         GRUNT_M_F("Rocket Grunt", "f", 60),
         GRUNT_H("Rocket Grunt", "m", 70),
         GRUNT_H_F("Rocket Grunt", "f", 70),
-        UNDERGROUND_BATTLER("Underground Battler", "m", 50),
+        //COLOSSEUM
+        COLOSSEUM_BATTLER("Colosseum Battler", "m", 50),
+        COLOSSEUM_BATTLER_F("Colosseum Battler", "f", 50),
         //COMPETITIVE TRAINERS
         C_TRAINER_1("Battle Expert", "m", 50),
         C_TRAINER_2("Battle Expert", "m", 50),
@@ -778,9 +780,10 @@ public class Trainer {
             thisBST = Party.p[i].getBST();
             trainerParty[i] = new Pokemon(getRandomSpeciesNearBST(thisBST), User.checkLevelCap());
         }
-        return new Trainer(Title.UNDERGROUND_BATTLER, trainerParty);
+        Title thisTitle = (rand.nextInt(0,2) == 0) ? Title.COLOSSEUM_BATTLER : Title.COLOSSEUM_BATTLER_F;
+         return new Trainer(thisTitle, trainerParty);
     }
-    public static Species getRandomSpeciesNearBST(int targetBST) {
+    private static Species getRandomSpeciesNearBST(int targetBST) {
         int lowerBound = targetBST - 40;
         int upperBound = targetBST + 40;
         int thisBST = 0;

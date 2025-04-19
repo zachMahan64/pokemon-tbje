@@ -1164,12 +1164,19 @@ public class Location {
             Graphics.printInsideOfTheColosseum(numTrainersBeaten);
             choice = sc1.nextLine().trim().toUpperCase();
             if(choice.equals("F")){
-                if(Encounter.enterTrainerBattle(Trainer.buildBattleLeagueTrainer(), sc1)) {
+                Trainer thisTrainerToBattle = Trainer.buildBattleLeagueTrainer();
+                if(Encounter.enterTrainerBattle(thisTrainerToBattle, sc1)) {
                     numTrainersBeaten++;
                     if (numTrainersBeaten > User.recordColosseumTrainersBeaten) {
                         User.recordColosseumTrainersBeaten = numTrainersBeaten;
                     }
+                    if (User.recordColosseumTrainersBeaten >= 25) {
+                        letUserProcureAPkmOfTheirChoice(thisTrainerToBattle.party, sc1);
+                    }
                 }
+            }
+            if(choice.equals("S")){
+                seeNurseJoyToHealPokemon(sc1);
             }
             if(choice.equals("H")){
                 goToHelpDeskInColosseum(sc1);
@@ -1184,10 +1191,12 @@ public class Location {
         }
         rushToNearestPokemonCenterIfFainted();
     }
+    private static void letUserProcureAPkmOfTheirChoice(Pokemon[] party, Scanner sc1) throws InterruptedException {
+    }
     public static void goToHelpDeskInColosseum(Scanner sc1) throws InterruptedException {
         String choice = "";
         do {
-            Graphics.printHelpDesk();
+            Graphics.printHelpDeskInTheColosseum();
             choice = sc1.nextLine().trim().toUpperCase();
             if(choice.equals("T")){
                 NPC.talkTo(NPC.Character.RICHIE, sc1);
@@ -1195,7 +1204,45 @@ public class Location {
             if(choice.equals("G")){
                 Bag.addNote("COLOSSEUM TIPS", sc1);
             }
+            if(choice.equals("R")){
+                redeemPrizeInColosseum(sc1);
+            }
         } while(!Party.checkIfEveryPkmHasFainted() && !choice.equals("L"));
+    }
+    public static void redeemPrizeInColosseum(Scanner sc1) throws InterruptedException {
+        String pokemonChoice = "";
+        do {
+            System.out.println("     PRIZES      |  Required # WINS");
+            System.out.println("=========================================");
+            System.out.println("[1] Treecko      |  30000 Pokedollars");
+            System.out.println("[2] Torchic      |  30000 Pokedollars");
+            System.out.println("[3] Mudkip       |  30000 Pokedollars");
+            System.out.println("[C] Cancel");
+            System.out.println("=========================================");
+            System.out.println("You have: " + Bag.getPokedollars() + " Pokedollars");
+            System.out.println("-----------------------------------------");
+            System.out.println("Make a selection: ");
+
+            pokemonChoice = sc1.nextLine().toUpperCase().trim();
+            switch (pokemonChoice) {
+                case "1":
+                    buyPokemon("Treecko", 30000, sc1);
+                    break;
+                case "2":
+                    buyPokemon("Torchic", 30000, sc1);
+                    break;
+                case "3":
+                    buyPokemon("Mudkip", 30000, sc1);
+                    break;
+                case "C":
+                    System.out.println("Changed your mind?");
+                    Game.pressEnterToContinue(sc1);
+                    break;
+                default:
+                    System.out.println("Invalid selection. Please try again.");
+                    Game.pressEnterToContinue(sc1);
+            }
+        } while (!pokemonChoice.equals("C"));
     }
     //Vaughan District
     public static void goToVaughanDistrict(Scanner sc1) throws InterruptedException, ExecutionException{
