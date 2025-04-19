@@ -721,7 +721,7 @@ public class Encounter {
         boolean wildPkmIsCaught = arena.isCaught;
         boolean playerHasRunAway = false;
         boolean playerSwitched = false;
-        Move moveChosenByPlayer = null;
+        Move playerMove = null;
         Move foeMove = null;
         do {
             displayBattleStatus(arena, false);
@@ -734,13 +734,14 @@ public class Encounter {
                 String choice = getPlayerChoice(arena, sc1);
                 switch (choice) {
                     case "F":
-                        moveChosenByPlayer = Fight.askUserToChooseAMove(arena, sc1);
-                        if (moveChosenByPlayer == null) continue; // meaning player canceled move selection
+                        Move engineBestMove = Fight.findBestMove(arena, arena.p[0], arena.fp[0]);
+                        playerMove = Fight.askUserToChooseAMove(arena, arena.p[0], arena.fp[0], engineBestMove, sc1);
+                        if (playerMove == null) continue; // meaning player canceled move selection
                         break;
 
                     case "B":
                         if (Bag.openBattlePocketWildEncounter(arena, sc1)) {
-                            moveChosenByPlayer = null;
+                            playerMove = null;
                             wildPkmIsCaught = (arena.isCaught);
                             break; //meaning player used an item from the bag
                         }
@@ -770,7 +771,7 @@ public class Encounter {
 
                 // Handles turns (normal switches & move order based on speed)
             if (!playerHasRunAway && !wildPkmIsCaught) {
-                processMoveOrder(arena, moveChosenByPlayer, foeMove, playerSwitched);
+                processMoveOrder(arena, playerMove, foeMove, playerSwitched);
             }
 
                 // Handle forced switch or defeat
@@ -789,7 +790,7 @@ public class Encounter {
             }
 
             if (!playerHasRunAway && arena.fp[0].getCurrentHp() > 0 && arena.p[0].getCurrentHp() > 0 && !wildPkmIsCaught) {
-                moveChosenByPlayer = null;
+                playerMove = null;
                 Thread.sleep((long) (User.textSpeed * 0.5));
             }
             if (arena.p[0].isSkipNextTurn() && (arena.p[0].getRechargeTurn() == arena.turnNum)){

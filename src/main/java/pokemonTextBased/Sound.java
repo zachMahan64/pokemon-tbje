@@ -13,6 +13,9 @@ public class Sound {
 
     private static final HashMap<String, Clip> clips = new HashMap<>();
     private static final HashMap<String, MediaPlayer> mediaPlayers = new HashMap<>();
+    private static final HashMap<String, Boolean> loopingClips = new HashMap<>();
+    private static final HashMap<String, Boolean> loopingMedia = new HashMap<>();
+
     public static void loadSound(String filePath) {
         if (filePath.endsWith(".mp3")) return; // MP3s are streamed, not loaded
         try {
@@ -52,6 +55,13 @@ public class Sound {
             Clip clip = AudioSystem.getClip();
             clip.open(audioStream);
             clip.start();
+
+            // Clean up once playback is done
+            clip.addLineListener(event -> {
+                if (event.getType() == LineEvent.Type.STOP) {
+                    clip.close();
+                }
+            });
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("Error playing WAV sound: " + filePath);
@@ -78,6 +88,7 @@ public class Sound {
 
         if (clip != null && !clip.isRunning()) {
             clip.loop(Clip.LOOP_CONTINUOUSLY);
+            loopingClips.put(filePath, true);
             clip.start();
         }
     }
@@ -88,11 +99,23 @@ public class Sound {
                 existing.stop();
                 existing.dispose();
                 mediaPlayers.remove(filePath);
+                loopingMedia.remove(filePath);
             }
 
             Media media = new Media(new File(filePath).toURI().toURL().toString());
             MediaPlayer mediaPlayer = new MediaPlayer(media);
-            if (loop) mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+            loopingMedia.put(filePath, loop);
+            if (loop) {
+                mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+            } else {
+                // Dispose after playing once
+                mediaPlayer.setOnEndOfMedia(() -> {
+                    mediaPlayer.dispose();
+                    mediaPlayers.remove(filePath);
+                    loopingMedia.remove(filePath);
+                });
+            }
+
             mediaPlayer.play();
             mediaPlayers.put(filePath, mediaPlayer);
         } catch (MalformedURLException e) {
@@ -111,6 +134,7 @@ public class Sound {
             if (player != null) {
                 player.stop();
                 player.dispose();
+                loopingMedia.remove(filePath);
             }
             return;
         }
@@ -119,6 +143,7 @@ public class Sound {
         if (clip != null) {
             clip.stop();
             clip.close();
+            loopingClips.remove(filePath);
         }
     }
     public static void setVolume(Clip clip, float volume) {
@@ -142,17 +167,29 @@ public class Sound {
     public static void stopAllSounds() {
         if (disableSound) return;
 
-        for (Clip clip : clips.values()) {
-            if (clip.isRunning()) clip.stop();
-            clip.close();
-        }
-        clips.clear();
+        for (String filePath : new HashMap<>(clips).keySet()) {
+            Clip clip = clips.get(filePath);
+            Boolean isLooping = loopingClips.getOrDefault(filePath, false);
 
-        for (MediaPlayer player : mediaPlayers.values()) {
-            player.stop();
-            player.dispose();
+            if (clip != null && isLooping) {
+                clip.stop();
+                clip.close();
+                clips.remove(filePath);
+                loopingClips.remove(filePath);
+            }
         }
-        mediaPlayers.clear();
+
+        for (String filePath : new HashMap<>(mediaPlayers).keySet()) {
+            MediaPlayer player = mediaPlayers.get(filePath);
+            Boolean isLooping = loopingMedia.getOrDefault(filePath, false);
+
+            if (player != null && isLooping) {
+                player.stop();
+                player.dispose();
+                mediaPlayers.remove(filePath);
+                loopingMedia.remove(filePath);
+            }
+        }
     }
     // specific
     public static void click() {

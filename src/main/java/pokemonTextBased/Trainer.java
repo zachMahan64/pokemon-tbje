@@ -139,6 +139,19 @@ public class Trainer {
         this.party = getParty();
         this.prize = title.getPrize();
     }
+    public Trainer(Title title, Pokemon[] party) {
+        this.title = title;
+        this.titleString = title.getTitleString();
+        if(title.getName().equalsIgnoreCase("m")){
+            this.name = getRandMaleName();
+        }
+        else if(title.getName().equalsIgnoreCase("f")){
+            this.name = getRandFemaleName();
+        }
+        else this.name = title.getName();
+        this.party = party;
+        this.prize = title.getPrize();
+    }
     public static int checkEffectOfRep() {
         if(User.reputation < 0) {
             return (Math.min(-User.reputation / 50, 15));

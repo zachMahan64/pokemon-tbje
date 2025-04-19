@@ -35,39 +35,6 @@ public class Fight {
 
         return choiceToGoBack ? null : moveToUse;
     }
-    public static Move askUserToChooseAMove(Arena arena, Scanner sc1) {
-        Move moveToUse = null;
-        boolean choiceToGoBack = false;
-        do {
-            printMoves(arena);
-
-            String input = sc1.nextLine().trim().toUpperCase();
-
-            if (input.equals("B")) {
-                choiceToGoBack = true;
-            } else {
-                try {
-                    int moveChoice = Integer.parseInt(input);
-                    List<Move> availableMoves = arena.p[0].getMoves();
-
-                    if (moveChoice >= 1 && moveChoice <= availableMoves.size()) {
-                        moveToUse = availableMoves.get(moveChoice - 1);
-                        if (!moveToUse.canUseMove()) {
-                            System.out.println("Cannot use " + moveToUse.getName() + " — no PP remaining!");
-                            moveToUse = null;
-                        }
-                    } else {
-                        System.out.println("Invalid choice! Please enter a number between 1 and " + availableMoves.size() + ".\n");
-                    }
-                } catch (NumberFormatException e) {
-                    System.out.println("Invalid input! Please enter a number (1-4) or [B] to go back.\n");
-                    Game.pressEnterToContinue(sc1);
-                }
-            }
-        } while (moveToUse == null && !choiceToGoBack);
-
-        return choiceToGoBack ? null : moveToUse;
-    }
     public static void printMoves(Arena arena, Pokemon dealer, Pokemon recipient, Move engineMove) {
         final String GREEN = "\u001B[92m";
         final String RED = "\u001B[31m";
@@ -116,55 +83,6 @@ public class Fight {
         }
         System.out.println("[B] Back");
     } //used in trainer battles
-    public static void printMoves(Arena arena) {
-        Pokemon pokemon = arena.p[0];
-        final String GREEN = "\u001B[92m";
-        final String RESET = "\u001B[0m";
-        final String RED = "\u001B[31m";
-
-        // Calculate dynamic column widths
-        int maxMoveNameLength = pokemon.getMoves().stream()
-                .mapToInt(m -> m.getName().length())
-                .max()
-                .orElse(12); // Default minimum width
-
-        maxMoveNameLength = Math.max(maxMoveNameLength, 12);
-        int damageColumnWidth = 3; // Fixed width for damage
-
-        String moveFormat = String.format(
-                "[%%d] %%-%ds | Dmg: %%-%ds | %%-8s | PP: %%2d/%%-2d %%s%%n",
-                maxMoveNameLength,
-                damageColumnWidth
-        );
-
-        System.out.println("What will " + arena.p[0].getName() + " do?");
-
-        for (int i = 0; i < pokemon.getMoves().size(); i++) {
-            Move move = pokemon.getMoves().get(i);
-            String damage = String.valueOf(move.getDamage());
-            String effectiveness = "";
-            if ((User.hintMode == User.Hints.SHOW_ENGINE_CHOICES || User.hintMode == User.Hints.SHOW_EFFECTIVENESS)
-                    && checkIfMoveIsSuperEffective(move, arena.p[0], arena.fp[0])) {
-                effectiveness = " - " + GREEN + " Super Effective!" + RESET;
-            }
-            else if ((User.hintMode == User.Hints.SHOW_ENGINE_CHOICES || User.hintMode == User.Hints.SHOW_EFFECTIVENESS)
-                    && checkIfMoveIsNotVeryEffective(move, arena.p[0], arena.fp[0])) {
-                effectiveness = " - " + RED + "Not Very Effective..." + RESET;
-            }
-
-            System.out.printf(
-                    moveFormat,
-                    i + 1,
-                    move.getName(),
-                    damage,
-                    move.getType(),
-                    move.getCurrentPp(),
-                    move.getTotalPp(),
-                    effectiveness
-            );
-        }
-        System.out.println("[B] Back");
-    } //used in wild battles (for now)
     public static void useMove(Arena arena, Move move, Pokemon dealer, Pokemon recipient) throws InterruptedException {
         if (move == null) return;
         Move moveToUse = null;
