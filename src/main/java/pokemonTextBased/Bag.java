@@ -236,8 +236,17 @@ public class Bag {
                 System.out.println("Can't use that item right now.");
         }
     }
-
     private static void useMysteryEgg(Scanner sc1) throws InterruptedException{
+        String choice = "";
+        do {
+            choice = sc1.nextLine().trim().toUpperCase();
+            Graphics.printMysteryEgg();
+            System.out.println("Hatch Mystery Egg? (Y/N)");
+            if (choice.equals("Y")) {
+                Sound.playSoundOnce("src/main/music/openEgg.mp3");
+                Thread.sleep(4500);
+            }
+        } while (!choice.equals("Y"));
     }
 
     private static void useEvoStone(String item, Scanner sc1) throws InterruptedException {
