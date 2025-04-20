@@ -224,6 +224,9 @@ public class Bag {
             case "Rare Candy":
                 useRareCandy(sc1);
                 break;
+            case "Mystery Egg":
+                useMysteryEgg(sc1);
+                break;
             case "Fire Stone":
             case "Thunder Stone":
             case "Water Stone":
@@ -233,6 +236,10 @@ public class Bag {
                 System.out.println("Can't use that item right now.");
         }
     }
+
+    private static void useMysteryEgg(Scanner sc1) throws InterruptedException{
+    }
+
     private static void useEvoStone(String item, Scanner sc1) throws InterruptedException {
         Pokemon selectedPkm = null;
         while (true) {

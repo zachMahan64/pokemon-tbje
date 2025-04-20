@@ -1253,7 +1253,7 @@ public class Location {
                     Bag.spendBP(3);
                     break;
                 case "4":
-                    Bag.addItem("Mystery Egg", 1);
+                    Bag.addSpecialItem("Mystery Egg", 1);
                     Bag.spendBP(10);
                     break;
                 case "C":
