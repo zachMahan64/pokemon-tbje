@@ -1203,7 +1203,7 @@ public class Encounter {
 
             // foe decisions
             foeMove = Fight.chooseAMove(arena, arena.fp[0], arena.p[0]);
-            foeSwitchSlot = Fight.findBestPokemonSlotToHaveOut(arena, true);
+            foeSwitchSlot = Fight.findBestPokemonSlotToHaveOutBasedOnSwitchThreshold(arena, true);
 
             //skip player turn
             if (arena.p[0].isSkipNextTurn()) {
@@ -1238,7 +1238,7 @@ public class Encounter {
                             System.out.println();
                         }
                         //Game Engine choice
-                        engineBestSlot = Fight.findBestPokemonSlotToHaveOut(arena, false);
+                        engineBestSlot = Fight.findBestPokemonSlotToHaveOutBasedOnSwitchThreshold(arena, false);
                         break;
 
                     case "I":

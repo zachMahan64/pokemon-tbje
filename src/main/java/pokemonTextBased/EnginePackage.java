@@ -62,7 +62,7 @@ public class EnginePackage {
 //        }
 //        newParams.put(MAXIMUM_DAMAGE_RATIO_TO_CONSIDER, rand.nextInt(100, 300));
 //        newParams.put(LIKELY_KO_BONUS, rand.nextInt(100, 300));
-        newParams.put(OPP_CANNOT_MOVE_BONUS_FOR_SET_UP_MOVES, rand.nextInt(250,300));
+        newParams.put(OPP_HAS_GUARANTEED_KO_PENALTY, rand.nextInt(250,300));
 
 
         return new EnginePackage(newParams);
@@ -102,7 +102,7 @@ public class EnginePackage {
         put(EnginePackage.NON_ACTIVE_MATCH_UP_WEIGHT_PERCENT, -8);
 
         put(EnginePackage.OWN_WAIT_PENALTY, 147);
-        put(EnginePackage.OPP_HAS_GUARANTEED_KO_PENALTY, 100);
+        put(EnginePackage.OPP_HAS_GUARANTEED_KO_PENALTY, 200);
     }};
 
     @Override

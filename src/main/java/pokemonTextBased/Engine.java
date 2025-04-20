@@ -78,7 +78,7 @@ public class Engine {
     }
 
     public static void main(String[] args) throws InterruptedException, ExecutionException {
-        simulateAllMatchUpsMultithreaded(200);
+        simulateAllMatchUpsMultithreaded(10);
     }
 
     //singleThreaded
@@ -158,10 +158,10 @@ public class Engine {
 
             // foe decisions
             foeMove = Fight.findBestMove(arena, arena.fp[0], arena.p[0]);
-            foeSwitchSlot = Fight.findBestPokemonSlotToHaveOut(arena, true);
+            foeSwitchSlot = Fight.findBestPokemonSlotToHaveOutBasedOnSwitchThreshold(arena, true);
 
             //plauer decisions
-            playerSlot = Fight.findBestPokemonSlotToHaveOut(arena, false);
+            playerSlot = Fight.findBestPokemonSlotToHaveOutBasedOnSwitchThreshold(arena, false);
             playerSwitched = Fight.decideToSwitchPokemonAndDoItIfWanted(arena, false, playerSlot);
             playerMove = Fight.findBestMove(arena, arena.p[0], arena.fp[0]);
             if(playerSwitched) playerMove = null;
@@ -265,7 +265,7 @@ public class Engine {
             nullHypEngine.version = thisVersion;
             nullHypEngine.iteration = thisIteration;
 
-            int totalMatchUps = Trainer.testParties.size() * Trainer.testParties.size();
+            int totalMatchUps = Trainer.competitiveParties.size() * Trainer.competitiveParties.size();
             int totalBattles = numSimsPerMatchUp * totalMatchUps;
             int battlesCompleted = 0;
             int LOADING_BAR_LENGTH = 30;
@@ -283,8 +283,8 @@ public class Engine {
             long startTime = System.currentTimeMillis();
             int playerWins = 0;
 
-            for (Trainer.Title thisPlayerPartyOwner : Trainer.testParties) {
-                for (Trainer.Title thisFoePartyOwner : Trainer.testParties) {
+            for (Trainer.Title thisPlayerPartyOwner : Trainer.competitiveParties) {
+                for (Trainer.Title thisFoePartyOwner : Trainer.competitiveParties) {
                     playerWins += simulateMatchUpMultithreaded(
                             numSimsPerMatchUp,
                             Trainer.parties.get(thisPlayerPartyOwner),

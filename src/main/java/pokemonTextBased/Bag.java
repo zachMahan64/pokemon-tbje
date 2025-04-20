@@ -238,15 +238,38 @@ public class Bag {
     }
     private static void useMysteryEgg(Scanner sc1) throws InterruptedException{
         String choice = "";
-        do {
-            choice = sc1.nextLine().trim().toUpperCase();
+        while (true) {
             Graphics.printMysteryEgg();
-            System.out.println("Hatch Mystery Egg? (Y/N)");
+            choice = sc1.nextLine().trim().toUpperCase();
+
+            ArrayList<String> possibleSpecies = new ArrayList<>();
+
+            System.out.println("Hatch Mystery Egg? (Y/N) | You have: " + Bag.specialItems.get("Mystery Egg"));
             if (choice.equals("Y")) {
                 Sound.playSoundOnce("src/main/music/openEgg.mp3");
-                Thread.sleep(4500);
+                for (String pkm : Species.speciesListedInPokedexOrder) {
+                    Species spc = Species.getSpecies(pkm);
+                    int evoLvl = spc.getEvolutionLevel();
+                    if (evoLvl > 0 && evoLvl < 32) {
+                        possibleSpecies.add(pkm);
+                    }
+                }
+                Thread.sleep(2500);
+                Random rand = new Random();
+                String randomSpeciesStr = possibleSpecies.get(rand.nextInt(possibleSpecies.size()));
+                Pokemon randomPkm = new Pokemon(randomSpeciesStr, User.checkLevelCap() / 2);
+                Graphics.printPokemon(randomPkm);
+                System.out.println("Wow! You hatched a " + randomSpeciesStr + "!");
+                Party.addToParty(randomPkm, sc1);
+                Bag.specialItems.put("Mystery Egg", Bag.specialItems.get("Mystery Egg") - 1);
             }
-        } while (!choice.equals("Y"));
+            else if (choice.equals("N")) {
+                break;
+            }
+            else {
+                System.out.println("Invalid input.");
+            }
+        }
     }
 
     private static void useEvoStone(String item, Scanner sc1) throws InterruptedException {
@@ -323,6 +346,12 @@ public class Bag {
                 System.out.println("Please enter a valid number.");
                 Game.pressEnterToContinue(sc1);
             }
+        }
+
+        if(selectedPkm == null) {
+            System.out.println("No pokemon in that slot.");
+            Game.pressEnterToContinue(sc1);
+            return;
         }
 
         // Check level cap

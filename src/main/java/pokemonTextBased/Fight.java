@@ -960,14 +960,14 @@ public class Fight {
         return false;
     }
     public static boolean decideToSwitchPokemonAndDoItIfWanted(Arena arena, boolean alliesAreFoes) throws InterruptedException {
-        int bestSlot = Fight.findBestPokemonSlotToHaveOut(arena, alliesAreFoes);
+        int bestSlot = Fight.findBestPokemonSlotToHaveOutBasedOnSwitchThreshold(arena, alliesAreFoes);
         if (bestSlot != 0) {
             switchCalculatedAI(arena, alliesAreFoes, bestSlot);
             return true;
         }
         return false;
     }
-    public static int findBestPokemonSlotToHaveOut(Arena arena, boolean alliesAreFoes) {
+    public static int findBestPokemonSlotToHaveOutBasedOnSwitchThreshold(Arena arena, boolean alliesAreFoes) {
         Engine engine = alliesAreFoes ? arena.foeEngine : arena.playerEngine;
         int SWITCH_THRESHOLD = engine.SWITCH_THRESHOLD_PERCENT;
         double SWITCH_RATIO = (double) SWITCH_THRESHOLD/100;
@@ -1254,7 +1254,7 @@ public class Fight {
         String pkmToSwitchTo = "";
         String arrow = "";
         if (displayArrow) arrow = "-->";
-        int bestSlot = findBestPokemonSlotToHaveOut(arena, false);
+        int bestSlot = findBestPokemonSlotToHaveOutBasedOnSwitchThreshold(arena, false);
         int bestSlotTrue = findBestPokemonSlotToHaveOut(arena, false, 1.0);
 
         if (bestSlot != 0) pkmToSwitchTo = arrow + " Engine Switch-In Choice  - " + GREEN + "Switch to " + arena.p[bestSlot].getName() + "✔" + RESET;
