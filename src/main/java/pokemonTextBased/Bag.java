@@ -854,18 +854,18 @@ public class Bag {
     public static int getStockCount(String stockName) {
         return stockPortfolio.getOrDefault(stockName, 0);
     }
-
+    //BP
     public static long getBP() {
         return BP;
     }
     public static void earnBP(int BPGain) {
         BP += BPGain;
-        System.out.println("Earned " + BPGain + " BP! (You have: " + BP + " total BP)");
+        System.out.println("You earned " + BPGain + " BP! (You have: " + BP + " total BP)");
         Game.pressEnterToContinue();
     }
-    public static void spendBP(int BPGain) {
-        BP -= BPGain;
-        System.out.println("Spent " + BPGain + " BP! (You have: " + BP + " total BP)");
+    public static void spendBP(int BPLoss) {
+        BP -= BPLoss;
+        System.out.println("You spent " + BPLoss + " BP! (You have: " + BP + " total BP)");
         Game.pressEnterToContinue();
     }
     public static void setBP(long BP) {

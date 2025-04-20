@@ -1167,6 +1167,7 @@ public class Location {
                 Trainer thisTrainerToBattle = Trainer.buildBattleLeagueTrainer();
                 if(Encounter.enterTrainerBattle(thisTrainerToBattle, sc1)) {
                     numTrainersBeaten++;
+                    Bag.earnBP(numTrainersBeaten);
                     if (numTrainersBeaten > User.recordColosseumTrainersBeaten) {
                         User.recordColosseumTrainersBeaten = numTrainersBeaten;
                     }
@@ -1210,29 +1211,31 @@ public class Location {
         } while(!Party.checkIfEveryPkmHasFainted() && !choice.equals("L"));
     }
     public static void redeemPrizeInColosseum(Scanner sc1) throws InterruptedException {
-        String pokemonChoice = "";
+        String choice = "";
         do {
-            System.out.println("     PRIZES          |  COST IN BP");
+            System.out.println("        PRIZES         |  COST IN BP");
             System.out.println("=========================================");
-            System.out.println("[1] Rare Candy x10   |    1 BP");
-            System.out.println("[2] Pokeball x10     |    5 BP");
-            System.out.println("[3] Pokedollars x500 |   10 BP");
-            System.out.println("[4] Mystery Egg      |   20 BP");
-            System.out.println("[C] Cancel");
+            System.out.println(" [1] Rare Candy x10    |    3 BP");
+            System.out.println(" [2] Pokeball x10      |    5 BP");
+            System.out.println(" [3] Pokedollars x5000 |   20 BP");
+            System.out.println(" [4] Mystery Egg       |   20 BP");
+            System.out.println(" [C] Cancel");
             System.out.println("-----------------------------------------");
-            System.out.println("Make a selection: ");
+            System.out.println(" Make a selection: ");
 
-            pokemonChoice = sc1.nextLine().toUpperCase().trim();
-            switch (pokemonChoice) {
+            choice = sc1.nextLine().toUpperCase().trim();
+            switch (choice) {
                 case "1":
                     Bag.addItem("Rare Candy", 10);
-                    Bag.
+                    Bag.spendBP(1);
                     break;
                 case "2":
-                    buyPokemon("Torchic", 30000, sc1);
+                    Bag.addItem("Pokeball", 10);
+                    Bag.spendBP(2);
                     break;
                 case "3":
-                    buyPokemon("Mudkip", 30000, sc1);
+                    Bag.adjustPokedollarBalance(5000);
+                    Bag.spendBP(3);
                     break;
                 case "C":
                     System.out.println("Changed your mind?");
@@ -1242,7 +1245,7 @@ public class Location {
                     System.out.println("Invalid selection. Please try again.");
                     Game.pressEnterToContinue(sc1);
             }
-        } while (!pokemonChoice.equals("C"));
+        } while (!choice.equals("C"));
     }
     //Vaughan District
     public static void goToVaughanDistrict(Scanner sc1) throws InterruptedException, ExecutionException{

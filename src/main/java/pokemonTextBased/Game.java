@@ -1,9 +1,10 @@
 package pokemonTextBased;// Zach Mahan, started 20250228, for fun Pokemon Game
 
-//BUGS: fix flinching ghosts (doesn't fail), engine choosing fake-out when it fails,
+//BUGS: fix flinching ghosts (doesn't fail), engine choosing fake-out when it fails
 
 //general ideas:
 // -Add savability when game is farther along (JSON?)
+// -program mystery eggs, make an "are you sure you want to leave the colosseum--this win end your run" button
 
 //STORY & Progression
 // -Add Silph Portable TV (in Bag), new news reels after each gym?
@@ -12,7 +13,6 @@ package pokemonTextBased;// Zach Mahan, started 20250228, for fun Pokemon Game
 
 //LOCATIONS
 // -Add more battle/encounter zones (e.g. mt moon)
-// -Add Battle Frontier w/ hard trainers
 // -Add Rocket Safari Zone w/ special mons
 
 //BATTLES
@@ -412,6 +412,7 @@ public class Game {
             Trainer templateTrainer = new Trainer(Trainer.Title.VAUGHAN_DISTRICT_GYM_LEADER);
             Party.p = Engine.cloneParty(templateTrainer.getParty(), false);
             User.decreaseReputation(0);
+            Bag.earnBP(500);
             //Bag.addSpecialItem("Rare Candy", 200);
             //User.unlockEverything();
             //Encounter.enterWildPkmBattle(new Pokemon("Incineroar", 20), sc1);
