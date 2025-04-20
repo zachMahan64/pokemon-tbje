@@ -927,6 +927,12 @@ public class Encounter {
             arena.fp[0].setStatusCondition("None");
             arena.fp[0].setWakeUpTurnToTurnNum(arena);
         }
+    }
+    public static void handleTurnChangeInteractions(Arena arena) throws InterruptedException{
+        arena.p[0].setFlinched(false);
+        arena.fp[0].setFlinched(false);
+        String originalWeather = arena.weather;
+        boolean wasOriginallyTrickRoom = arena.trickRoomIsUp;
         if(arena.p[0].getStatusCondition().equals("Burn") || arena.p[0].getStatusCondition().equals("Poison")) {
             arena.p[0].setCurrentHp(Math.max(arena.p[0].getCurrentHp() - (int) (arena.p[0].getCurrentMaxHp()*.125), 0));
             if(arena.playerEngine.battleDialogsAreEnabled) System.out.println(arena.p[0].getName() + " took damage due to its " + arena.p[0].getStatusCondition().toLowerCase() + "!\n");
@@ -939,12 +945,6 @@ public class Encounter {
             Sound.playSoundOnce("src/main/music/cut.mp3");
             Thread.sleep(User.textSpeed);
         }
-    }
-    public static void handleTurnChangeInteractions(Arena arena) throws InterruptedException{
-        arena.p[0].setFlinched(false);
-        arena.fp[0].setFlinched(false);
-        String originalWeather = arena.weather;
-        boolean wasOriginallyTrickRoom = arena.trickRoomIsUp;
         if(arena.turnWeatherEnds == arena.turnNum){
             arena.setWeather("None");
             if(arena.playerEngine.battleDialogsAreEnabled) System.out.println("It stopped being " + originalWeather + ".\n");

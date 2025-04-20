@@ -1185,6 +1185,21 @@ public class Location {
             if(choice.equals("O")){
                 openOptionsMenu(sc1);
             }
+            if (choice.equals("L")) {
+                String choiceConfirmLeave = "";
+                while(true) {
+                    System.out.println("Are you sure you want to leave? This will end your current run. (Y/N)");
+                    choiceConfirmLeave = sc1.nextLine().trim().toUpperCase();
+                    if (choiceConfirmLeave.equals("N")) {
+                        choice = "";
+                        Sound.click();
+                        break;
+                    } else if (choiceConfirmLeave.equals("Y")) {
+                        Sound.click();
+                        break;
+                    }
+                }
+            }
         } while (!Party.checkIfEveryPkmHasFainted() && !choice.equals("L"));
         if (numTrainersBeaten > startingHighScore) {
             System.out.println("New high score! You beat: " + numTrainersBeaten + " trainers!");
@@ -1218,7 +1233,7 @@ public class Location {
             System.out.println(" [1] Rare Candy x10    |    3 BP");
             System.out.println(" [2] Pokeball x10      |    5 BP");
             System.out.println(" [3] Pokedollars x5000 |   20 BP");
-            System.out.println(" [4] Mystery Egg       |   20 BP");
+            System.out.println(" [4] Mystery Egg       |   10 BP");
             System.out.println(" [C] Cancel");
             System.out.println("-----------------------------------------");
             System.out.println(" Make a selection: ");
@@ -1236,6 +1251,10 @@ public class Location {
                 case "3":
                     Bag.adjustPokedollarBalance(5000);
                     Bag.spendBP(3);
+                    break;
+                case "4":
+                    Bag.addItem("Mystery Egg", 1);
+                    Bag.spendBP(10);
                     break;
                 case "C":
                     System.out.println("Changed your mind?");

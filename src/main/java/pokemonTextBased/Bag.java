@@ -861,6 +861,7 @@ public class Bag {
     public static void earnBP(int BPGain) {
         BP += BPGain;
         System.out.println("You earned " + BPGain + " BP! (You have: " + BP + " total BP)");
+        Sound.playSoundOnce("src/main/music/glitter.mp3");
         Game.pressEnterToContinue();
     }
     public static void spendBP(int BPLoss) {
