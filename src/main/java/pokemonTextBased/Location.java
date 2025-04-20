@@ -1212,21 +1212,21 @@ public class Location {
     public static void redeemPrizeInColosseum(Scanner sc1) throws InterruptedException {
         String pokemonChoice = "";
         do {
-            System.out.println("     PRIZES      |  Required # WINS");
+            System.out.println("     PRIZES          |  COST IN BP");
             System.out.println("=========================================");
-            System.out.println("[1] Treecko      |  30000 Pokedollars");
-            System.out.println("[2] Torchic      |  30000 Pokedollars");
-            System.out.println("[3] Mudkip       |  30000 Pokedollars");
+            System.out.println("[1] Rare Candy x10   |    1 BP");
+            System.out.println("[2] Pokeball x10     |    5 BP");
+            System.out.println("[3] Pokedollars x500 |   10 BP");
+            System.out.println("[4] Mystery Egg      |   20 BP");
             System.out.println("[C] Cancel");
-            System.out.println("=========================================");
-            System.out.println("You have: " + Bag.getPokedollars() + " Pokedollars");
             System.out.println("-----------------------------------------");
             System.out.println("Make a selection: ");
 
             pokemonChoice = sc1.nextLine().toUpperCase().trim();
             switch (pokemonChoice) {
                 case "1":
-                    buyPokemon("Treecko", 30000, sc1);
+                    Bag.addItem("Rare Candy", 10);
+                    Bag.
                     break;
                 case "2":
                     buyPokemon("Torchic", 30000, sc1);

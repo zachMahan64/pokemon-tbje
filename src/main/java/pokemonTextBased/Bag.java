@@ -5,6 +5,7 @@ import java.util.*;
 public class Bag {
     //money
     private static long pokedollars = 500;
+    private static long BP = 0;
     private static long debt = 0;
     private static int goldBars = 0;
     public static HashMap<String, Integer> stockPortfolio = new HashMap<>();
@@ -68,9 +69,12 @@ public class Bag {
                 "1) Opponents will always have parties that are about",
                 " evenly matched with yours!",
                 "2) Try to win as many battles in a row as you can!",
-                "3) Come visit the Help Desk to claim prizes for high",
-                " scores!",
-                "4) Once you achieve a record of 25 trainers beaten,",
+                "3) You will earn Battle Points (BP) with every trainer",
+                " that you beat. The longer your win streak, the more",
+                " BP you earn per win!",
+                "4) Come visit the Help Desk to claim prizes with your",
+                " BP!",
+                "5) Once you achieve a record of 25 trainers beaten,",
                 " you may procure one Pokemon from each trainer that ",
                 " you defeat in THE COLOSSEUM.",
                 "                                     -G. SAKAKI",
@@ -849,6 +853,23 @@ public class Bag {
     }
     public static int getStockCount(String stockName) {
         return stockPortfolio.getOrDefault(stockName, 0);
+    }
+
+    public static long getBP() {
+        return BP;
+    }
+    public static void earnBP(int BPGain) {
+        BP += BPGain;
+        System.out.println("Earned " + BPGain + " BP! (You have: " + BP + " total BP)");
+        Game.pressEnterToContinue();
+    }
+    public static void spendBP(int BPGain) {
+        BP -= BPGain;
+        System.out.println("Spent " + BPGain + " BP! (You have: " + BP + " total BP)");
+        Game.pressEnterToContinue();
+    }
+    public static void setBP(long BP) {
+        Bag.BP = BP;
     }
 }
 
