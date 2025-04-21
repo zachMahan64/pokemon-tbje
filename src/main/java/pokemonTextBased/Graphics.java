@@ -7,7 +7,7 @@ public class Graphics {
     //some gen 2/3 mons and eeveelutions are too big
 
     //colors
-    public static final String R = "\u001B[0m";
+    public static final String R = "\u001B[0m"; //reset
     public static final String RED = "\u001B[31m";
     public static final String G = "\u001B[32m"; //green
     public static final String M = "\u001B[33m"; //mustard

@@ -113,6 +113,9 @@ public class User {
         areasReached.put(Location.Area.INDIGO_PLATEAU, false);
         areasReached.put(Location.Area.CERULEAN_CAVE, false);
     }
+    //POKEDEX PROGRESS
+    public static ArrayList<String> pokemonRegisteredInPokedex = new ArrayList<>();
+
     //general methods
     public static String getUsername() {
         return username;

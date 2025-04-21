@@ -31,6 +31,7 @@ public class Species {
         this.moves = moves;
     }
 
+    //pokedex
     public static void enterPokedexMenu(Scanner sc1){
         System.out.println("You flipped open the Pokedex.");
         while(true){
@@ -90,14 +91,23 @@ public class Species {
             }
         }
     }
-
     public static void printPokedexList() {
+        final String RED = "\u001B[31m";
+        final String GREEN = "\u001B[32m";
+        final String RESET = "\u001B[0m";
+
         Graphics.printTopOfPokedexList();
         System.out.print("⣿   ");
 
         for (int i = 0; i < speciesListedInPokedexOrder.size(); i++) {
-            String entry = String.format("%d. %s", i + 1, speciesListedInPokedexOrder.get(i));
-            System.out.printf("%-20s", entry);
+            String name = speciesListedInPokedexOrder.get(i);
+            String COLOR = (User.pokemonRegisteredInPokedex.contains(name)) ? GREEN : RED;
+
+            String rawEntry = String.format("%d. %s", i + 1, name);
+
+            String paddedEntry = String.format("%-20s", rawEntry);
+
+            System.out.print(COLOR + paddedEntry + RESET);
 
             if ((i + 1) % 6 == 3) {
                 System.out.print("⡇ ⢸ ");
@@ -108,6 +118,7 @@ public class Species {
                 System.out.print("⣿   ");
             }
         }
+
 
         System.out.println();
         Graphics.printBottomOfPokedexList();

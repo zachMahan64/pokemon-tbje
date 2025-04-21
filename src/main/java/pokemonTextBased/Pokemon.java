@@ -441,6 +441,7 @@ public class Pokemon {
             System.out.println("Congratulations! Your " + originalName + " evolved into " + newSpecies.getName() + "!\n");
             Sound.playSoundOnce("main/music/levelUp.wav");
             Game.pressEnterToContinue();
+            Party.checkIfPlayerHasPokemonRegistered(pokemon);
         }
     }
     public static void evolveEevee(Pokemon pokemon, String stone) throws InterruptedException {

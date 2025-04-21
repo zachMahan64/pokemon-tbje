@@ -1,5 +1,6 @@
 package pokemonTextBased;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -8,28 +9,44 @@ public class Party {
 
     public static void addToParty(Pokemon pokemon, Scanner sc1) throws InterruptedException{
         pokemon.setIsFoe(false);
+        boolean partyIsFull = true;
         for (int i = 0; i < p.length; i++) {
             if (p[i] == null) {
                 p[i] = pokemon;
                 Graphics.printPokemon(pokemon);
                 System.out.println(pokemon.getName() + " was added to your party.\n");
                 Game.pressEnterToContinue(sc1);
-                return;
+                checkIfPlayerHasPokemonRegistered(pokemon);
+                partyIsFull = false;
+                break;
             }
         }
-
-        System.out.println("Your party is full! Cannot add " + pokemon.getName() + ".");
-        System.out.println("Would you like to add " + pokemon.getName() + " to the party and send another Pokemon to your Box? (Y/N)");
-        String choice = sc1.nextLine().trim().toUpperCase();
-        if (choice.equals("Y")) {
-            sendToBox(sc1);
-            addToParty(pokemon, sc1);
-        } else {
-            System.out.println(pokemon.getName() + " was not added to the party.");
-            Box.addToBox(pokemon);
-            Game.pressEnterToContinue(sc1);
+        if (partyIsFull) {
+            System.out.println("Your party is full! Cannot add " + pokemon.getName() + ".");
+            System.out.println("Would you like to add " + pokemon.getName() + " to the party and send another Pokemon to your Box? (Y/N)");
+            String choice = sc1.nextLine().trim().toUpperCase();
+            if (choice.equals("Y")) {
+                sendToBox(sc1);
+                addToParty(pokemon, sc1);
+            } else {
+                System.out.println(pokemon.getName() + " was not added to the party.");
+                Box.addToBox(pokemon);
+                Game.pressEnterToContinue(sc1);
+                checkIfPlayerHasPokemonRegistered(pokemon);
+            }
         }
     }
+    public static void checkIfPlayerHasPokemonRegistered(Pokemon pokemon) throws InterruptedException{
+       String pkmNameStr = pokemon.getName();
+        if(User.pokemonRegisteredInPokedex.contains(pkmNameStr)) {
+            return;
+        }
+        User.pokemonRegisteredInPokedex.add(pkmNameStr);
+        Sound.playSoundOnce("src/main/music/pokedexNotification.mp3");
+        System.out.println(pkmNameStr + "'s data has been added to your Pokedex!");
+        Game.pressEnterToContinue();
+    }
+
     public static void enterPartyMenu(Scanner sc1) throws InterruptedException{
         while (true) {
             printParty();

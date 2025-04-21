@@ -22,7 +22,7 @@ package pokemonTextBased;// Zach Mahan, started 20250228, for fun Pokemon Game
 // -Add Move sounds (one per move type?)
 // -Add full pokedex functionality (track catches)
 // -Add different pokeballs (enums, adjust images and catch rates accordingly, add to pokemarts)
-// -Make the box not dogwater (pages, like 30 pkm per page)
+// -Make the Box not dogwater (pages, like 30 pkm per page)
 
 //OTHER FEATURES
 
@@ -394,12 +394,12 @@ public class Game {
     //tools
     public static void bootIntoVer(boolean testStatus, Scanner sc1) throws InterruptedException, ExecutionException {
         Sound.playMusicOnLoop("src/main/music/titleMusic.mp3");
-        System.out.println("VER. ALPHA 4/2025");
+        System.out.println("ALPHA 4/2025");
         if(!testStatus) {
             System.out.println("BOOTED IN VER. REG");
         }
         if (testStatus) {
-            System.out.println("testStatus = true. Entering Test Mode.");
+            System.out.println("BOOTED IN VER. TEST");
             Sound.playMusicOnLoop("src/main/music/titleMusic.mp3");
             Graphics.printThreeStarterPokeballs();
             Party.addToParty(new Pokemon(Species.getSpecies("scizor"), 20, true), sc1);
@@ -416,7 +416,7 @@ public class Game {
             Bag.earnBP(500);
             //Bag.addSpecialItem("Rare Candy", 200);
             //User.unlockEverything();
-            Encounter.enterWildPkmBattle(new Pokemon("Incineroar", 20, true), sc1);
+            //Encounter.enterWildPkmBattle(new Pokemon("Incineroar", 20, true), sc1);
             //Encounter.enterTrainerBattle(templateTrainer, sc1);
             //Encounter.enterTrainerBattle(Trainer.buildBattleLeagueTrainer(), sc1);
             enterMainMenu(sc1);
