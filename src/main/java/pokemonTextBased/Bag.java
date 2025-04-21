@@ -67,13 +67,14 @@ public class Bag {
                 "~~~~~~~~~~~~~~ A ROOKIE TRAINER'S GUIDE ~~~~~~~~~~~~~~",
                 "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~",
                 "1) Opponents will always have parties that are about",
-                " evenly matched with yours!",
+                " evenly matched with yours. Tailor your experience by",
+                " changing which and how many pokemon are in your party!",
                 "2) Try to win as many battles in a row as you can!",
                 "3) You will earn Battle Points (BP) with every trainer",
                 " that you beat. The longer your win streak, the more",
-                " BP you earn per win!",
+                " BP you earn per win.",
                 "4) Come visit the Help Desk to claim prizes with your",
-                " BP!",
+                " BP.",
                 "5) Once you achieve a record of 25 trainers beaten,",
                 " you may procure one Pokemon from each trainer that ",
                 " you defeat in THE COLOSSEUM.",
@@ -240,11 +241,10 @@ public class Bag {
         String choice = "";
         while (true) {
             Graphics.printMysteryEgg();
+            System.out.println("Hatch Mystery Egg? (Y/N) | You have: " + Bag.specialItems.get("Mystery Egg"));
             choice = sc1.nextLine().trim().toUpperCase();
 
             ArrayList<String> possibleSpecies = new ArrayList<>();
-
-            System.out.println("Hatch Mystery Egg? (Y/N) | You have: " + Bag.specialItems.get("Mystery Egg"));
             if (choice.equals("Y")) {
                 Sound.playSoundOnce("src/main/music/openEgg.mp3");
                 for (String pkm : Species.speciesListedInPokedexOrder) {
@@ -271,7 +271,6 @@ public class Bag {
             }
         }
     }
-
     private static void useEvoStone(String item, Scanner sc1) throws InterruptedException {
         Pokemon selectedPkm = null;
         while (true) {

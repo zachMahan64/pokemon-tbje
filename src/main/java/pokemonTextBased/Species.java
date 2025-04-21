@@ -710,7 +710,7 @@ public class Species {
         speciesMap.put("torracat", new Species("Torracat", "Fire", "None", 34, 65, 85, 50, 80, 50, 90,
                 Arrays.asList(Move.getMove("Fire Fang"), Move.getMove("Bite"), Move.getMove("Double"), Move.getMove("Flame Charge"))));
         speciesMap.put("incineroar", new Species("Incineroar", "Fire", "Dark", 0, 95, 115, 90, 80, 90, 60,
-                Arrays.asList(Move.getMove("Throat Chop"), Move.getMove("Flare Blitz"), Move.getMove("Parting Shot"), Move.getMove("Will-O-Wisp"))));
+                Arrays.asList(Move.getMove("Fake Out"), Move.getMove("Flare Blitz"), Move.getMove("Parting Shot"), Move.getMove("Will-O-Wisp"))));
         // Galar Pokémon
         speciesMap.put("rookidee", new Species("Rookidee", "Flying", "None", 18, 38, 47, 35, 33, 35, 57,
                 Arrays.asList(Move.getMove("Peck"), Move.getMove("Leer"), Move.getMove("Quick Attack"), Move.getMove("Agility"))));

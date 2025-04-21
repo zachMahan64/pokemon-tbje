@@ -244,7 +244,9 @@ public class Fight {
         Random rand = new Random();
         Scanner sc1 = new Scanner(System.in);
         boolean checkAccuracy = (rand.nextInt(0, 100) <= moveToUse.getAccuracyOfEffect());
-        boolean targetIsImmune = (getTypeEffectivenessOfMove(moveToUse, recipient) == 0 && checkIfStatusMoveAffectsOpponent(moveToUse)) || (checkIfStatusMoveAffectsOpponent(moveToUse) && recipient.getCurrentHp() == 0);
+        boolean targetIsImmune = (getTypeEffectivenessOfMove(moveToUse, recipient) == 0 && checkIfStatusMoveAffectsOpponent(moveToUse))
+                || (checkIfStatusMoveAffectsOpponent(moveToUse) && recipient.getCurrentHp() == 0)
+                || (getTypeEffectivenessOfMove(moveToUse, recipient) == 0 && moveToUse.getDamage() > 0);
         if (!moveToUse.getOtherEffect().equalsIgnoreCase("None")) {
             if (checkAccuracy && !targetIsImmune) {
                 switch (moveToUse.getOtherEffect()) {
@@ -516,7 +518,7 @@ public class Fight {
         if(move.getName().length() >= 8) {
             String firstTad = move.getName().substring(0, 8);
             return firstTad.equalsIgnoreCase("Opponent");
-        }
+        } else if (move.getOtherEffect().equals("Flinch")) return true;
         else return false;
     }
 

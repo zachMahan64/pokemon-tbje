@@ -1257,8 +1257,6 @@ public class Location {
                     Bag.spendBP(10);
                     break;
                 case "C":
-                    System.out.println("Changed your mind?");
-                    Game.pressEnterToContinue(sc1);
                     break;
                 default:
                     System.out.println("Invalid selection. Please try again.");
