@@ -402,12 +402,12 @@ public class Game {
             System.out.println("testStatus = true. Entering Test Mode.");
             Sound.playMusicOnLoop("src/main/music/titleMusic.mp3");
             Graphics.printThreeStarterPokeballs();
-            Party.addToParty(new Pokemon(Species.getSpecies("mew"), 20, true), sc1);
-            Party.addToParty(new Pokemon(Species.getSpecies("Scizor"), 20, Pokemon.getShinyOdds()), sc1);
+            Party.addToParty(new Pokemon(Species.getSpecies("scizor"), 20, true), sc1);
+            Party.addToParty(new Pokemon(Species.getSpecies("Tyranitar"), 20, Pokemon.getShinyOdds()), sc1);
+            Party.addToParty(new Pokemon(Species.getSpecies("mew"), 20, Pokemon.getShinyOdds()), sc1);
             Party.addToParty(new Pokemon(Species.getSpecies("excadrill"), 20, Pokemon.getShinyOdds()), sc1);
 //            Party.addToParty(new Pokemon(Species.getSpecies("Togekiss"), 20, Pokemon.getShinyOdds()), sc1);
 //            Party.addToParty(new Pokemon(Species.getSpecies("dragapult"), 20, Pokemon.getShinyOdds()), sc1);
-//            Party.addToParty(new Pokemon(Species.getSpecies("Tyranitar"), 20, Pokemon.getShinyOdds()), sc1);
             //User.askUserToSetHints(sc1);
             //User.askUserToSetDifficulty(sc1);
             Trainer templateTrainer = new Trainer(Trainer.Title.VAUGHAN_DISTRICT_GYM_LEADER);
