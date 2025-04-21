@@ -1,6 +1,6 @@
 package pokemonTextBased;// Zach Mahan, started 20250228, for fun Pokemon Game
 
-//BUGS: fix flinching ghosts (doesn't fail), engine choosing fake-out when it fails, BAG rare candy glitch when only 3 pkm and non-consecutive
+//BUGS: fix flinching ghosts (doesn't fail), engine choosing fake-out when it fails,
 
 //general ideas:
 // -Add savability when game is farther along (JSON?)
