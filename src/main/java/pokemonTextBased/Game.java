@@ -1,10 +1,9 @@
 package pokemonTextBased;// Zach Mahan, started 20250228, for fun Pokemon Game
 
-//BUGS: fix flinching ghosts (doesn't fail), engine choosing fake-out when it fails,
+//BUGS: fix flinching ghosts (doesn't fail) (resolved?), engine choosing fake-out when it fails?
 
 //general ideas:
-// -Add savability when game is farther along (JSON?)
-// -program mystery eggs, make an "are you sure you want to leave the colosseum--this win end your run" button
+// -Add savability when game is farther along (JSON)!
 
 //STORY & Progression
 // -Add Silph Portable TV (in Bag), new news reels after each gym?
@@ -13,14 +12,15 @@ package pokemonTextBased;// Zach Mahan, started 20250228, for fun Pokemon Game
 
 //LOCATIONS
 // -Add more battle/encounter zones (e.g. mt moon)
-// -Add Rocket Safari Zone w/ special mons
+// -Add Rocket Safari Zone w/ special mons --> rock/bait mechanic
 
 //BATTLES
 // -Add better Trick Room judgement
 // -Add full-fxning Tailwind, Light Screen, Reflect
 
-//CLASSES
+//SPECIFIC
 // -Add Move sounds (one per move type?)
+// -Add full pokedex functionality (track catches)
 
 //OTHER FEATURES
 

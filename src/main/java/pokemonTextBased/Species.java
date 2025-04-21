@@ -207,6 +207,15 @@ public class Species {
 
         );
     }
+    public static final List<String> restrictedSpecies;
+    static {
+        restrictedSpecies = Arrays.asList(
+                "Articuno", "Zapdos", "Moltres", "Mewtwo", "Mew", "Raikou", "Entei", "Suicune",
+                "Lugia", "Ho-Oh", "Celebi", "Latias", "Latios", "Kyogre", "Groudon", "Rayquaza",
+                "Jirachi", "Deoxys", "Dialga", "Palkia", "Giratina", "Darkrai", "Arceus", "Victini",
+                "Reshiram", "Zekrom"
+        );
+    }
     public static final Map<String, Species> speciesMap = new HashMap<>();
     static {
         speciesMap.put("default", new Species("MissingNo", "Normal", "None", 0, 10, 10, 10, 10, 10, 10,
