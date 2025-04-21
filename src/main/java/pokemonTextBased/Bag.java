@@ -600,8 +600,7 @@ public class Bag {
     }
     public static void throwPokeball(Arena arena, Scanner sc1) throws InterruptedException {
         Random rand = new Random();
-        int chance = getCatchOdds(arena);
-        boolean success = chance < 90;
+        boolean success = getCatchSuccess(arena);
         Graphics.printFlyingPokeball();
         Sound.playSoundOnce("src/main/music/throwBall.mp3");
         System.out.println("You threw a Pokeball.");
@@ -628,9 +627,54 @@ public class Bag {
         }
         catchWildPkm(arena, sc1, success);
     }
-    public static int getCatchOdds(Arena arena) {
+    public static boolean getCatchSuccess(Arena arena) {
         Random rand = new Random();
-        return rand.nextInt(0, 100) + (int) (50.0 * arena.fp[0].getCurrentHp()/arena.fp[0].getCurrentMaxHp() * (arena.fp[0].getBST()/250.0));
+
+        int percentChance = 0;
+
+        //speed consideration
+        Pokemon dealer = arena.p[0];
+        Pokemon recipient = arena.fp[0];
+        double dealerParalysisMult = 1.0;
+        double recipientParalysisMult = 1.0;
+        double dealerSpeed = dealer.getCurrentSpeed() * dealer.getStatMultiplier("Speed") * dealerParalysisMult;
+        double recipientSpeed = recipient.getCurrentSpeed() * recipient.getStatMultiplier("Speed") * recipientParalysisMult;
+        if(dealer.getStatusCondition().equals("Paralysis")){
+            dealerParalysisMult = .25;
+        }
+        if(recipient.getStatusCondition().equals("Paralysis")){
+            recipientParalysisMult = .25;
+        }
+        dealerSpeed = dealerSpeed * dealerParalysisMult;
+        recipientSpeed = recipientSpeed * recipientParalysisMult;
+
+        if (dealerSpeed > recipientSpeed) {
+            percentChance += 10;
+        }
+        //BST consideration
+        int effectOfBST = 0;
+        int BST = recipient.getBST();
+        if(BST < 300) effectOfBST = 50;
+        else if(BST < 400) effectOfBST = 40;
+        else if(BST < 500) effectOfBST = 25;
+        else if(BST < 600) effectOfBST = 15;
+        else effectOfBST = 5;
+
+        percentChance += effectOfBST;
+
+        //HP consideration
+        int effectOfHP = 0;
+        double healthRatio = (double) recipient.getCurrentHp() / recipient.getCurrentMaxHp();
+        if (healthRatio < .75) effectOfHP = 5;
+        if (healthRatio < .5) effectOfHP = 10;
+        if (healthRatio < .25) effectOfHP = 15;
+        if (healthRatio < .15) effectOfHP = 18;
+        if (healthRatio < .10) effectOfHP = 20;
+        if (healthRatio < .05) effectOfHP = 25;
+
+        percentChance += effectOfBST;
+
+        return rand.nextInt(100) < percentChance;
     } //rework to be more inuitive
     //trainer encounter/regular usage
     public static boolean openBattlePocketInMenu(Scanner sc1) throws InterruptedException {
@@ -872,7 +916,7 @@ public class Bag {
             System.out.println("\nThe Pokémon broke free!\n");
             Thread.sleep((long) (User.textSpeed * .75));
         }
-    } // 50/50 pokeball rng currently
+    }
 
     //banking and stocks
     public static int getNumGoldBars() {
