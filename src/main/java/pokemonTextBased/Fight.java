@@ -82,7 +82,7 @@ public class Fight {
             );
         }
         System.out.println("[B] Back");
-    } //used in trainer battles
+    }
     public static void useMove(Arena arena, Move move, Pokemon dealer, Pokemon recipient) throws InterruptedException {
         if (move == null) return;
         Move moveToUse = null;

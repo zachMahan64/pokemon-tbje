@@ -21,6 +21,8 @@ package pokemonTextBased;// Zach Mahan, started 20250228, for fun Pokemon Game
 //SPECIFIC
 // -Add Move sounds (one per move type?)
 // -Add full pokedex functionality (track catches)
+// -Add different pokeballs (enums, adjust images and catch rates accordingly, add to pokemarts)
+// -Make the box not dogwater (pages, like 30 pkm per page)
 
 //OTHER FEATURES
 
@@ -399,8 +401,8 @@ public class Game {
         if (testStatus) {
             System.out.println("testStatus = true. Entering Test Mode.");
             Sound.playMusicOnLoop("src/main/music/titleMusic.mp3");
-            //Graphics.printMap();
-            Party.addToParty(new Pokemon(Species.getSpecies("incineroar"), 20, Pokemon.getShinyOdds()), sc1);
+            Graphics.printThreeStarterPokeballs();
+            Party.addToParty(new Pokemon(Species.getSpecies("mew"), 20, true), sc1);
             Party.addToParty(new Pokemon(Species.getSpecies("Scizor"), 20, Pokemon.getShinyOdds()), sc1);
             Party.addToParty(new Pokemon(Species.getSpecies("excadrill"), 20, Pokemon.getShinyOdds()), sc1);
 //            Party.addToParty(new Pokemon(Species.getSpecies("Togekiss"), 20, Pokemon.getShinyOdds()), sc1);
