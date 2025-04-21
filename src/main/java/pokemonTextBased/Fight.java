@@ -921,7 +921,7 @@ public class Fight {
                 parArr[0].setTurnSentOut(arena.turnNum);
                 if(arena.playerEngine.battleDialogsAreEnabled) Graphics.printPokemon(parArr[0]);
                 if(arena.playerEngine.battleDialogsAreEnabled) System.out.println(arena.trainer.name + " sent out " + parArr[0].getName() + "!\n");
-                Sound.playSoundOnce("src/main/music/catchFail.mp3");
+                Sound.exitBall(parArr[0]);
                 Thread.sleep(User.textSpeed);
                 trainerHasMorePokemon = true;
                 break;
@@ -947,7 +947,7 @@ public class Fight {
             String name = "Player";
             if (alliesAreFoes) name = arena.trainer.name;
             if(arena.playerEngine.battleDialogsAreEnabled) System.out.println(name + " sent out " + parArr[0].getName() + "!\n");
-            Sound.playSoundOnce("src/main/music/catchFail.mp3");
+            Sound.exitBall(parArr[0]);
             Thread.sleep(User.textSpeed);
             trainerHasMorePokemon = true;
             parArr[0].incTimesSwitchedInBattle();

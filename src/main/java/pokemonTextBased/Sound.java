@@ -196,4 +196,8 @@ public class Sound {
         if (disableSound) return;
         playSoundOnce("src/main/music/click.wav");
     }
+    public static void exitBall(Pokemon pkm) {
+        playSoundOnce("src/main/music/catchFail.mp3");
+        if(pkm.isShiny()) playSoundOnce("src/main/music/shinySparkles.mp3");
+    }
 }

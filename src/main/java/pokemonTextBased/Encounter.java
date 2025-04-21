@@ -706,10 +706,11 @@ public class Encounter {
         Sound.playMusicOnLoop("src/main/music/wildBattleTheme.mp3");
         Graphics.printPokemon(wildPokemon.getName(), false, wildPokemon.isShiny());
         System.out.println("A wild " + arena.fp[0].getName() + " appeared!");
+        if(arena.fp[0].isShiny()) Sound.playSoundOnce("src/main/music/shinySparkles.mp3");
         Thread.sleep(User.textSpeed);
         Graphics.printPokemon(arena.p[0].getName(), false, arena.p[0].isShiny());
         System.out.println("You sent out " + arena.p[0].getName() + "!");
-        Sound.playSoundOnce("src/main/music/catchFail.mp3");
+        Sound.exitBall(arena.p[0]);
         Thread.sleep(User.textSpeed);
         arena.fp[0] = wildPokemon;
         playWildPkmBattle(arena, sc1);
@@ -1182,12 +1183,12 @@ public class Encounter {
     public static boolean playTrainerBattle(Arena arena, Scanner sc1) throws InterruptedException, ExecutionException {
         Graphics.printPokemon(arena.fp[0].getName(), false, arena.fp[0].isShiny());
         System.out.println(arena.trainer.name + " sent out " + arena.fp[0].getName() + "!");
-        Sound.playSoundOnce("src/main/music/catchFail.mp3");
+        Sound.exitBall(arena.fp[0]);
         Thread.sleep(User.textSpeed);
 
         Graphics.printPokemon(arena.p[0].getName(), false, arena.p[0].isShiny());
         System.out.println("You sent out " + arena.p[0].getName() + "!");
-        Sound.playSoundOnce("src/main/music/catchFail.mp3");
+        Sound.exitBall(arena.p[0]);
         Thread.sleep(User.textSpeed);
 
         boolean playerHasWon = false;
