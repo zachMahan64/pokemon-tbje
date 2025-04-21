@@ -321,8 +321,9 @@ public class Bag {
         // Pokémon selection loop
         while (true) {
             System.out.println("\nSelect a Pokémon to use Rare Candies on:");
-            for (int i = 0; i < Party.getPartySize(); i++) {
+            for (int i = 0; i < Party.p.length; i++) {
                 Pokemon pkm = Party.getPokemon(i);
+                if(pkm == null) continue;
                 System.out.printf("[%d] %s (Lv. %d)%n",
                         i + 1,
                         pkm.getName(),
@@ -337,7 +338,7 @@ public class Bag {
 
             try {
                 int index = Integer.parseInt(input) - 1;
-                if (index >= 0 && index < Party.getPartySize()) {
+                if (index >= 0 && index < Party.p.length) {
                     selectedPkm = Party.getPokemon(index);
                     break;
                 }
@@ -590,7 +591,7 @@ public class Bag {
                 }
             } else if (item.equals("Pokeball")) {
                 battleItems.put(item, battleItems.get(item) - 1);
-                throwPokeball(arena, sc1);
+                throwBall(arena, sc1);
                 return true;
             }
         } else {
@@ -598,7 +599,7 @@ public class Bag {
         }
         return false;
     }
-    public static void throwPokeball(Arena arena, Scanner sc1) throws InterruptedException {
+    public static void throwBall(Arena arena, Scanner sc1) throws InterruptedException {
         Random rand = new Random();
         boolean success = getCatchSuccess(arena);
         Graphics.printFlyingPokeball();
@@ -613,12 +614,12 @@ public class Bag {
         Sound.playSoundOnce("src/main/music/ballShakeAgain.mp3");
         System.out.println("It shook once!");
         Thread.sleep((long) (.75 * User.textSpeed));
-        if(rand.nextInt(0,2) == 1) {
+        if(rand.nextInt(2) == 1) {
             Graphics.printLandedPokeball();
             Sound.playSoundOnce("src/main/music/ballShakeAgain.mp3");
             System.out.println("It shook twice!");
             Thread.sleep((long) (.75 * User.textSpeed));
-            if(rand.nextInt(0,2) == 1) {
+            if(rand.nextInt(2) == 1) {
                 Graphics.printAltLandedPokeball();
                 Sound.playSoundOnce("src/main/music/ballShakeAgain.mp3");
                 System.out.println("It shook for a third time!");
@@ -628,13 +629,19 @@ public class Bag {
         catchWildPkm(arena, sc1, success);
     }
     public static boolean getCatchSuccess(Arena arena) {
-        Random rand = new Random();
-
-        int percentChance = 0;
-
-        //speed consideration
         Pokemon dealer = arena.p[0];
         Pokemon recipient = arena.fp[0];
+
+        double chance = 0;
+        //base chance
+        int BST = recipient.getBST();
+        if(BST < 300) chance = .50;
+        else if(BST < 400) chance = .40;
+        else if(BST < 500) chance = .25;
+        else if(BST < 600) chance = .15;
+        else chance = .5;
+
+        //speed consideration
         double dealerParalysisMult = 1.0;
         double recipientParalysisMult = 1.0;
         double dealerSpeed = dealer.getCurrentSpeed() * dealer.getStatMultiplier("Speed") * dealerParalysisMult;
@@ -649,33 +656,42 @@ public class Bag {
         recipientSpeed = recipientSpeed * recipientParalysisMult;
 
         if (dealerSpeed > recipientSpeed) {
-            percentChance += 10;
+            chance *= 1.2;
         }
-        //BST consideration
-        int effectOfBST = 0;
-        int BST = recipient.getBST();
-        if(BST < 300) effectOfBST = 50;
-        else if(BST < 400) effectOfBST = 40;
-        else if(BST < 500) effectOfBST = 25;
-        else if(BST < 600) effectOfBST = 15;
-        else effectOfBST = 5;
-
-        percentChance += effectOfBST;
+        //status consideration
+        if (!recipient.getStatusCondition().equals("None")) {
+            chance *= 2;
+        }
 
         //HP consideration
-        int effectOfHP = 0;
         double healthRatio = (double) recipient.getCurrentHp() / recipient.getCurrentMaxHp();
-        if (healthRatio < .75) effectOfHP = 5;
-        if (healthRatio < .5) effectOfHP = 10;
-        if (healthRatio < .25) effectOfHP = 15;
-        if (healthRatio < .15) effectOfHP = 18;
-        if (healthRatio < .10) effectOfHP = 20;
-        if (healthRatio < .05) effectOfHP = 25;
+        if (healthRatio < .05) chance *= 3;
+        else if (healthRatio < .10) chance *= 2.5;
+        else if (healthRatio < .15) chance *= 2;
+        else if (healthRatio < .25) chance *= 1.85;
+        else if (healthRatio < .5) chance *= 1.75;
+        else if (healthRatio < .75) chance *= 1.1;
 
-        percentChance += effectOfBST;
-
-        return rand.nextInt(100) < percentChance;
-    } //rework to be more inuitive
+        return Math.random() < chance;
+    } //include diff types of balls
+    public static void catchWildPkm(Arena arena, Scanner sc1, boolean success) throws InterruptedException {
+        if (success) {
+            Sound.stopAllSounds();
+            Graphics.printStarPokeball();
+            System.out.println("You caught the wild " + arena.fp[0].getName() + "!");
+            Sound.playSoundOnce("src/main/music/caughtJingle.mp3");
+            Thread.sleep(2L *User.textSpeed);
+            Sound.playMusicOnLoop("src/main/music/victoryVsWildPkmTheme.mp3");
+            Graphics.printHeldPokeball();
+            Party.addToParty(arena.fp[0], sc1);
+            arena.isCaught = true;
+        } else {
+            Graphics.printOpenedPokeball();
+            Sound.playSoundOnce("src/main/music/catchFail.mp3");
+            System.out.println("\nThe Pokémon broke free!\n");
+            Thread.sleep(User.textSpeed);
+        }
+    }
     //trainer encounter/regular usage
     public static boolean openBattlePocketInMenu(Scanner sc1) throws InterruptedException {
         while (true) {
@@ -895,26 +911,6 @@ public class Bag {
             Game.pressEnterToContinue();
         } else {
             System.out.println("Invalid amount for " + item + ".\n");
-        }
-    }
-
-    //catch logic
-    public static void catchWildPkm(Arena arena, Scanner sc1, boolean success) throws InterruptedException {
-        if (success) {
-            Sound.stopAllSounds();
-            Graphics.printStarPokeball();
-            System.out.println("You caught the wild " + arena.fp[0].getName() + "!");
-            Sound.playSoundOnce("src/main/music/caughtJingle.mp3");
-            Thread.sleep(2L *User.textSpeed);
-            Sound.playMusicOnLoop("src/main/music/victoryVsWildPkmTheme.mp3");
-            Graphics.printHeldPokeball();
-            Party.addToParty(arena.fp[0], sc1);
-            arena.isCaught = true;
-        } else {
-            Graphics.printOpenedPokeball();
-            Sound.playSoundOnce("src/main/music/catchFail.mp3");
-            System.out.println("\nThe Pokémon broke free!\n");
-            Thread.sleep((long) (User.textSpeed * .75));
         }
     }
 
