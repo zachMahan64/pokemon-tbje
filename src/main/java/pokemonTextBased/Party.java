@@ -67,9 +67,11 @@ public class Party {
                     break;
                 case "2":
                     sendToBox(sc1);
+                    smushParty();
                     break;
                 case "3":
                     retrieveFromBox(sc1);
+                    smushParty();
                     break;
                 case "4":
                     enterPartyMemberDetailsMenu(sc1);
@@ -80,6 +82,15 @@ public class Party {
                 default:
                     System.out.println("Invalid option! Please choose a valid action.");
                     Game.pressEnterToContinue(sc1);
+            }
+        }
+    }
+    public static void smushParty() {
+        for(int i = 0; i < p.length; i++) {
+            if (p[i] == null && i != 5) {
+                Pokemon temp = p[i + 1];
+                p[i] = temp;
+                p[i+1] = null;
             }
         }
     }
@@ -331,14 +342,14 @@ public class Party {
     //box interactions
     private static void sendToBox(Scanner sc1) throws InterruptedException {
         boolean hasBoxablePokemon = false;
-        for (int i = 1; i < 6; i++) {
-            if (p[i] != null) {
+        int numPkmInParty = 0;
+        for (Pokemon pokemon : p) {
+            if (pokemon != null) {
                 hasBoxablePokemon = true;
-                break;
+                numPkmInParty++;
             }
         }
-
-        if (!hasBoxablePokemon) {
+        if (!hasBoxablePokemon || numPkmInParty == 1) {
             System.out.println("\nNo Pokémon available to send to the box!\n");
             Game.pressEnterToContinue(sc1);
             return;
@@ -347,7 +358,7 @@ public class Party {
         while (true) {
             try {
                 printParty();
-                System.out.println("\nChoose a Pokémon to send to the box (2-6) or [0] to cancel:");
+                System.out.println("\nChoose a Pokémon to send to the box [#] or [0] to cancel:");
 
                 if (!sc1.hasNextInt()) {
                     System.out.println("Please enter a number.");
@@ -369,13 +380,6 @@ public class Party {
                 // Validate input range
                 if (choice < 1 || choice > 6) {
                     System.out.println("Please enter a number between 1-6.");
-                    Thread.sleep(User.textSpeed);
-                    continue;
-                }
-
-                // Handle active Pokémon
-                if (choice == 1) {
-                    System.out.println("\nYou cannot send your active Pokémon to the box!\n");
                     Thread.sleep(User.textSpeed);
                     continue;
                 }

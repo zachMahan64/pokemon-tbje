@@ -484,6 +484,7 @@ public class Bag {
                 while (true) {
                     System.out.println("Select a Pokémon to use the " + item + " on:");
                     for (int i = 0; i < Party.getPartySize(); i++) {
+                        if(Party.getPokemon(i) == null) continue;
                         System.out.println("[" + (i + 1) + "] " + Party.getPokemon(i).getName() +
                                 " (HP: " + Party.getPokemon(i).getCurrentHp() + "/" + Party.getPokemon(i).getCurrentMaxHp() + ")");
                     }
@@ -740,6 +741,7 @@ public class Bag {
                 if (item.equals("Potion") || item.equals("Super Potion") || item.equals("Hyper Potion")) {
                     System.out.println("Select a Pokémon to use the " + item + " on:");
                     for (int i = 0; i < Party.getPartySize(); i++) {
+                        if (Party.getPokemon(i) == null) continue;
                         System.out.println("[" + (i + 1) + "] " + Party.getPokemon(i).getName() +
                                 " (HP: " + Party.getPokemon(i).getCurrentHp() + "/" + Party.getPokemon(i).getCurrentMaxHp() + ")");
                     }
