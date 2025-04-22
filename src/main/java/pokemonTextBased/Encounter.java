@@ -1081,7 +1081,9 @@ public class Encounter {
             executeFoeMove(arena, foeMove);
             return; // --> turn always ends after switching
         }
-        if(isSpeedTie && foeMove.getPriority() == playerMove.getPriority()) {
+        int foePriority = (foeMove == null) ? 0 : foeMove.getPriority();
+        int playerPriority = (playerMove == null) ? 0 : playerMove.getPriority();
+        if(isSpeedTie && foePriority == playerPriority) {
             foeHasSpeedOrPriorityAdvantage = Math.random() < .5;
         }
         if (foeHasSpeedOrPriorityAdvantage) {
