@@ -1242,7 +1242,7 @@ public class Location {
             choice = sc1.nextLine().toUpperCase().trim();
             switch (choice) {
                 case "1":
-                    Bag.addItem("Rare Candy", 10);
+                    Bag.addSpecialItem("Rare Candy", 10);
                     Bag.spendBP(1);
                     break;
                 case "2":

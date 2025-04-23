@@ -140,7 +140,7 @@ public class Trainer {
             this.name = getRandFemaleName();
         }
         else this.name = title.getName();
-        this.party = getParty();
+        this.party = getPartyOfTrainer();
         this.prize = title.getPrize();
     }
     public Trainer(Title title, Pokemon[] party) {
@@ -163,516 +163,513 @@ public class Trainer {
 
         return 0;
     }
-    public static int getMajorTrainerLevel(){
+    public static int getTrainerLevel() {
         return Math.min(User.checkLevelCap() + checkEffectOfRep(), 100);
-    }
-    public static int getMinorTrainerLevel() {
-        return Math.min(Party.getAvgPLvl() + checkEffectOfRep(), 100);
     }
     public static HashMap<Title, Pokemon[]> parties = new HashMap<>();
     static {
         // Gym Leaders
         parties.put(Title.PEWTER_GYM_LEADER, new Pokemon[]{
-                new Pokemon(Species.getSpecies("Geodude"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Onix"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Graveler"), getMajorTrainerLevel(), Pokemon.getShinyOdds())
+                new Pokemon(Species.getSpecies("Geodude"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Onix"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Graveler"), 20, Pokemon.getShinyOdds())
         });
 
         parties.put(Title.CERULEAN_GYM_LEADER, new Pokemon[]{
-                new Pokemon(Species.getSpecies("Staryu"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Seel"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Goldeen"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Starmie"), getMajorTrainerLevel(), Pokemon.getShinyOdds())
+                new Pokemon(Species.getSpecies("Staryu"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Seel"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Goldeen"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Starmie"), 20, Pokemon.getShinyOdds())
         });
 
         parties.put(Title.VERMILLION_GYM_LEADER, new Pokemon[]{
-                new Pokemon(Species.getSpecies("Voltorb"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Electrode"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Electabuzz"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Pikachu"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Raichu"), getMajorTrainerLevel(), Pokemon.getShinyOdds())
+                new Pokemon(Species.getSpecies("Voltorb"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Electrode"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Electabuzz"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Pikachu"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Raichu"), 20, Pokemon.getShinyOdds())
         });
 
         parties.put(Title.CELADON_GYM_LEADER, new Pokemon[]{
-                new Pokemon(Species.getSpecies("Tangela"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Weepinbell"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Victreebel"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Gloom"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Vileplume"), getMajorTrainerLevel(), Pokemon.getShinyOdds())
+                new Pokemon(Species.getSpecies("Tangela"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Weepinbell"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Victreebel"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Gloom"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Vileplume"), 20, Pokemon.getShinyOdds())
         });
 
         parties.put(Title.FUCHSIA_GYM_LEADER, new Pokemon[]{
-                new Pokemon(Species.getSpecies("Koffing"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Muk"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Weezing"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Koffing"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Muk"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Venusaur"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Koffing"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Muk"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Weezing"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Koffing"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Muk"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Venusaur"), 20, Pokemon.getShinyOdds()),
         });
 
         parties.put(Title.SAFFRON_GYM_LEADER, new Pokemon[]{
-                new Pokemon(Species.getSpecies("Abra"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Venomoth"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Hypno"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Kadabra"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Drowzee"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Alakazam"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Abra"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Venomoth"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Hypno"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Kadabra"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Drowzee"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Alakazam"), 20, Pokemon.getShinyOdds()),
         });
 
         parties.put(Title.CINNABAR_GYM_LEADER, new Pokemon[]{
-                new Pokemon(Species.getSpecies("Growlithe"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Ponyta"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Rapidash"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Arcanine"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Growlithe"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Ponyta"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Rapidash"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Arcanine"), 20, Pokemon.getShinyOdds()),
         });
 
         parties.put(Title.VIRIDIAN_GYM_LEADER, new Pokemon[]{
-                new Pokemon(Species.getSpecies("Pidgeot"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Alakazam"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Rhydon"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Raticate"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Exeggutor"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Gyarados"), getMajorTrainerLevel(), Pokemon.getShinyOdds())
+                new Pokemon(Species.getSpecies("Pidgeot"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Alakazam"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Rhydon"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Raticate"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Exeggutor"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Gyarados"), 20, Pokemon.getShinyOdds())
         });
 
         parties.put(Title.ROCKETOPOLIS_GYM_LEADER, new Pokemon[]{
-                new Pokemon(Species.getSpecies("Persian"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Dragonite"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Moltres"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Zapdos"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Snorlax"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Mewtwo"), getMajorTrainerLevel(), Pokemon.getShinyOdds())
+                new Pokemon(Species.getSpecies("Persian"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Dragonite"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Moltres"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Zapdos"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Snorlax"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Mewtwo"), 20, Pokemon.getShinyOdds())
         });
 
         parties.put(Title.VAUGHAN_DISTRICT_GYM_LEADER, new Pokemon[]{
-                new Pokemon(Species.getSpecies("Garchomp"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Dragapult"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Tyranitar"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Togekiss"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Umbreon"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Dragonite"), getMajorTrainerLevel(), Pokemon.getShinyOdds())
+                new Pokemon(Species.getSpecies("Garchomp"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Dragapult"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Tyranitar"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Togekiss"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Umbreon"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Dragonite"), 20, Pokemon.getShinyOdds())
         }); //incomplete
         // Elite Four Parties
         parties.put(Title.ELITE_FOUR_LORELEI, new Pokemon[]{
-                new Pokemon(Species.getSpecies("Dewgong"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Cloyster"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Slowbro"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Mamoswine"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Lapras"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Articuno"), getMajorTrainerLevel(), Pokemon.getShinyOdds())
+                new Pokemon(Species.getSpecies("Dewgong"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Cloyster"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Slowbro"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Mamoswine"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Lapras"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Articuno"), 20, Pokemon.getShinyOdds())
         });
 
         parties.put(Title.ELITE_FOUR_BRUNO, new Pokemon[]{
-                new Pokemon(Species.getSpecies("Rhyperior"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Hitmonchan"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Hitmonlee"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Hitmontop"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Golem"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Machamp"), getMajorTrainerLevel(), Pokemon.getShinyOdds())
+                new Pokemon(Species.getSpecies("Rhyperior"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Hitmonchan"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Hitmonlee"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Hitmontop"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Golem"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Machamp"), 20, Pokemon.getShinyOdds())
 
         });
 
         parties.put(Title.ELITE_FOUR_AGATHA, new Pokemon[]{
-                new Pokemon(Species.getSpecies("Gengar"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Golbat"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Haunter"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Dragapult"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Arbok"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Zoroark"), getMajorTrainerLevel(), Pokemon.getShinyOdds())
+                new Pokemon(Species.getSpecies("Gengar"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Golbat"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Haunter"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Dragapult"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Arbok"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Zoroark"), 20, Pokemon.getShinyOdds())
         });
 
         parties.put(Title.ELITE_FOUR_LANCE, new Pokemon[]{
-                new Pokemon(Species.getSpecies("Gyarados"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Dragonair"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Salamence"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Charizard"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Aerodactyl"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Dragonite"), getMajorTrainerLevel(), Pokemon.getShinyOdds())
+                new Pokemon(Species.getSpecies("Gyarados"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Dragonair"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Salamence"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Charizard"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Aerodactyl"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Dragonite"), 20, Pokemon.getShinyOdds())
         });
 
         parties.put(Title.CHAMPION, new Pokemon[]{
-                new Pokemon(Species.getSpecies("Excadrill"), getMajorTrainerLevel(), true),
-                new Pokemon(Species.getSpecies("Dragonite"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Incineroar"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Togekiss"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Tyranitar"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Charizard"), getMajorTrainerLevel(), Pokemon.getShinyOdds())
+                new Pokemon(Species.getSpecies("Excadrill"), 20, true),
+                new Pokemon(Species.getSpecies("Dragonite"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Incineroar"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Togekiss"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Tyranitar"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Charizard"), 20, Pokemon.getShinyOdds())
         });
 // Regular Trainers
         parties.put(Title.BUG_CATCHER, new Pokemon[]{
-                new Pokemon(Species.getSpecies("Caterpie"), getMinorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Weedle"), getMinorTrainerLevel(), Pokemon.getShinyOdds())
+                new Pokemon(Species.getSpecies("Caterpie"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Weedle"), 20, Pokemon.getShinyOdds())
         });
 
         parties.put(Title.LASS, new Pokemon[]{
-                new Pokemon(Species.getSpecies("Pidgey"), getMinorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("NidoranF"), getMinorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Growlithe"), getMinorTrainerLevel(), Pokemon.getShinyOdds())
+                new Pokemon(Species.getSpecies("Pidgey"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("NidoranF"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Growlithe"), 20, Pokemon.getShinyOdds())
         });
 
         parties.put(Title.YOUNGSTER, new Pokemon[]{
-                new Pokemon(Species.getSpecies("Rattata"), getMinorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Ekans"), getMinorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("NidoranM"), getMinorTrainerLevel(), Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Rattata"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Ekans"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("NidoranM"), 20, Pokemon.getShinyOdds()),
         });
 
         parties.put(Title.HIKER, new Pokemon[]{
-                new Pokemon(Species.getSpecies("Geodude"), getMinorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Machop"), getMinorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Graveler"), getMinorTrainerLevel(), Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Geodude"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Machop"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Graveler"), 20, Pokemon.getShinyOdds()),
         });
 
         parties.put(Title.SAILOR, new Pokemon[]{
-                new Pokemon(Species.getSpecies("Poliwhirl"), getMinorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Tentacool"), getMinorTrainerLevel(), Pokemon.getShinyOdds())
+                new Pokemon(Species.getSpecies("Poliwhirl"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Tentacool"), 20, Pokemon.getShinyOdds())
         });
 
         parties.put(Title.POKEMANIAC, new Pokemon[]{
-                new Pokemon(Species.getSpecies("Slowpoke"), getMinorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Lickitung"), getMinorTrainerLevel(), Pokemon.getShinyOdds())
+                new Pokemon(Species.getSpecies("Slowpoke"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Lickitung"), 20, Pokemon.getShinyOdds())
         });
 
         parties.put(Title.SUPER_NERD, new Pokemon[]{
-                new Pokemon(Species.getSpecies("Voltorb"), getMinorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Magnemite"), getMinorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Magneton"), getMinorTrainerLevel(), Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Voltorb"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Magnemite"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Magneton"), 20, Pokemon.getShinyOdds()),
         });
 
         parties.put(Title.ENGINEER, new Pokemon[]{
-                new Pokemon(Species.getSpecies("Magneton"), getMinorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Electrode"), getMinorTrainerLevel(), Pokemon.getShinyOdds())
+                new Pokemon(Species.getSpecies("Magneton"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Electrode"), 20, Pokemon.getShinyOdds())
         });
 
         parties.put(Title.FISHERMAN, new Pokemon[]{
-                new Pokemon(Species.getSpecies("Gyarados"), getMinorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Magikarp"), getMinorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Seel"), getMinorTrainerLevel(), Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Gyarados"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Magikarp"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Seel"), 20, Pokemon.getShinyOdds()),
         });
 
         parties.put(Title.SWIMMER, new Pokemon[]{
-                new Pokemon(Species.getSpecies("Seadra"), getMinorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Starmie"), getMinorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Magikarp"), getMinorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Jynx"), getMinorTrainerLevel(), Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Seadra"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Starmie"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Magikarp"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Jynx"), 20, Pokemon.getShinyOdds()),
         });
 
         parties.put(Title.SWIMMER_F, new Pokemon[]{
-                new Pokemon(Species.getSpecies("Goldeen"), getMinorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Seaking"), getMinorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Starmie"), getMinorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Lapras"), getMinorTrainerLevel(), Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Goldeen"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Seaking"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Starmie"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Lapras"), 20, Pokemon.getShinyOdds()),
         });
 
         parties.put(Title.CUE_BALL, new Pokemon[]{
-                new Pokemon(Species.getSpecies("Machoke"), getMinorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Machamp"), getMinorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Machop"), getMinorTrainerLevel(), Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Machoke"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Machamp"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Machop"), 20, Pokemon.getShinyOdds()),
         });
 
         parties.put(Title.GAMBLER, new Pokemon[]{
-                new Pokemon(Species.getSpecies("Growlithe"), getMinorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Vulpix"), getMinorTrainerLevel(), Pokemon.getShinyOdds())
+                new Pokemon(Species.getSpecies("Growlithe"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Vulpix"), 20, Pokemon.getShinyOdds())
         });
 
         parties.put(Title.BEAUTY, new Pokemon[]{
-                new Pokemon(Species.getSpecies("Arcanine"), getMinorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Vileplume"), getMinorTrainerLevel(), Pokemon.getShinyOdds())
+                new Pokemon(Species.getSpecies("Arcanine"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Vileplume"), 20, Pokemon.getShinyOdds())
         });
 
         parties.put(Title.PSYCHIC, new Pokemon[]{
-                new Pokemon(Species.getSpecies("Abra"), getMinorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Drowzee"), getMinorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Hypno"), getMinorTrainerLevel(), Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Abra"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Drowzee"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Hypno"), 20, Pokemon.getShinyOdds()),
         });
 
         parties.put(Title.ROCKER, new Pokemon[]{
-                new Pokemon(Species.getSpecies("Voltorb"), getMinorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Electrode"), getMinorTrainerLevel(), Pokemon.getShinyOdds())
+                new Pokemon(Species.getSpecies("Voltorb"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Electrode"), 20, Pokemon.getShinyOdds())
         });
 
         parties.put(Title.JUGGLER, new Pokemon[]{
-                new Pokemon(Species.getSpecies("Voltorb"), getMinorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Koffing"), getMinorTrainerLevel(), Pokemon.getShinyOdds())
+                new Pokemon(Species.getSpecies("Voltorb"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Koffing"), 20, Pokemon.getShinyOdds())
         });
 
         parties.put(Title.TAMER, new Pokemon[]{
-                new Pokemon(Species.getSpecies("Arbok"), getMinorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Sandslash"), getMinorTrainerLevel(), Pokemon.getShinyOdds())
+                new Pokemon(Species.getSpecies("Arbok"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Sandslash"), 20, Pokemon.getShinyOdds())
         });
 
         parties.put(Title.BIRD_KEEPER, new Pokemon[]{
-                new Pokemon(Species.getSpecies("Pidgey"), getMinorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Spearow"), getMinorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Fearow"), getMinorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Pidgeotto"), getMinorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Pidgeot"), getMinorTrainerLevel(), Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Pidgey"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Spearow"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Fearow"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Pidgeotto"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Pidgeot"), 20, Pokemon.getShinyOdds()),
         });
 
         parties.put(Title.BLACKBELT, new Pokemon[]{
-                new Pokemon(Species.getSpecies("Machamp"), getMinorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Machoke"), getMinorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Primeape"), getMinorTrainerLevel(), Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Machamp"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Machoke"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Primeape"), 20, Pokemon.getShinyOdds()),
         });
 
         parties.put(Title.SCIENTIST, new Pokemon[]{
-                new Pokemon(Species.getSpecies("Magnemite"), getMinorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Voltorb"), getMinorTrainerLevel(), Pokemon.getShinyOdds())
+                new Pokemon(Species.getSpecies("Magnemite"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Voltorb"), 20, Pokemon.getShinyOdds())
         });
 
         parties.put(Title.CHANNELER, new Pokemon[]{
-                new Pokemon(Species.getSpecies("Gastly"), getMinorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Haunter"), getMinorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Haunter"), getMinorTrainerLevel(), Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Gastly"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Haunter"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Haunter"), 20, Pokemon.getShinyOdds()),
         });
 
         parties.put(Title.COOLTRAINER, new Pokemon[]{
-                new Pokemon(Species.getSpecies("Pidgeot"), getMinorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Rhydon"), getMinorTrainerLevel(), Pokemon.getShinyOdds())
+                new Pokemon(Species.getSpecies("Pidgeot"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Rhydon"), 20, Pokemon.getShinyOdds())
         });
 
         parties.put(Title.GENTLEMAN, new Pokemon[]{
-                new Pokemon(Species.getSpecies("Growlithe"), getMinorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Ponyta"), getMinorTrainerLevel(), Pokemon.getShinyOdds())
+                new Pokemon(Species.getSpecies("Growlithe"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Ponyta"), 20, Pokemon.getShinyOdds())
         });
 
         parties.put(Title.SIGHTSEER, new Pokemon[]{
-                new Pokemon(Species.getSpecies("Pidgeotto"), getMinorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Raticate"), getMinorTrainerLevel(), Pokemon.getShinyOdds())
+                new Pokemon(Species.getSpecies("Pidgeotto"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Raticate"), 20, Pokemon.getShinyOdds())
         });
 
         parties.put(Title.BIKER, new Pokemon[]{
-                new Pokemon(Species.getSpecies("Koffing"), getMinorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Grimer"), getMinorTrainerLevel(), Pokemon.getShinyOdds())
+                new Pokemon(Species.getSpecies("Koffing"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Grimer"), 20, Pokemon.getShinyOdds())
         });
 
         parties.put(Title.BURGLAR, new Pokemon[]{
-                new Pokemon(Species.getSpecies("Growlithe"), getMinorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Vulpix"), getMinorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Meowth"), getMinorTrainerLevel(), Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Growlithe"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Vulpix"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Meowth"), 20, Pokemon.getShinyOdds()),
         });
 
         parties.put(Title.FIREFIGHTER, new Pokemon[]{
-                new Pokemon(Species.getSpecies("Growlithe"), getMinorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Ponyta"), getMinorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Rapidash"), getMinorTrainerLevel(), Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Growlithe"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Ponyta"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Rapidash"), 20, Pokemon.getShinyOdds()),
         });
 
         parties.put(Title.SOLDIER, new Pokemon[]{
-                new Pokemon(Species.getSpecies("Machoke"), getMinorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Electabuzz"), getMinorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Magmar"), getMinorTrainerLevel(), Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Machoke"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Electabuzz"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Magmar"), 20, Pokemon.getShinyOdds()),
         });
 
         parties.put(Title.COOLTRAINER_F, new Pokemon[]{
-                new Pokemon(Species.getSpecies("Nidoqueen"), getMinorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Persian"), getMinorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Arcanine"), getMinorTrainerLevel(), Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Nidoqueen"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Persian"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Arcanine"), 20, Pokemon.getShinyOdds()),
         });
 
         parties.put(Title.SIGHTSEER_F, new Pokemon[]{
-                new Pokemon(Species.getSpecies("Pidgeot"), getMinorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Nidorina"), getMinorTrainerLevel(), Pokemon.getShinyOdds())
+                new Pokemon(Species.getSpecies("Pidgeot"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Nidorina"), 20, Pokemon.getShinyOdds())
         });
 
         parties.put(Title.GRUNT_L, new Pokemon[]{
-                new Pokemon(Species.getSpecies("Ekans"), getMinorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Grimer"), getMinorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Dratini"), getMinorTrainerLevel(), Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Ekans"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Grimer"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Dratini"), 20, Pokemon.getShinyOdds()),
         });
 
         parties.put(Title.GRUNT_L_F, new Pokemon[]{
-                new Pokemon(Species.getSpecies("Raticate"), getMinorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Grimer"), getMinorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Koffing"), getMinorTrainerLevel(), Pokemon.getShinyOdds())
+                new Pokemon(Species.getSpecies("Raticate"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Grimer"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Koffing"), 20, Pokemon.getShinyOdds())
         });
 
         parties.put(Title.GRUNT_M, new Pokemon[]{
-                new Pokemon(Species.getSpecies("Muk"), getMinorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Weezing"), getMinorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Fearow"), getMinorTrainerLevel(), Pokemon.getShinyOdds())
+                new Pokemon(Species.getSpecies("Muk"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Weezing"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Fearow"), 20, Pokemon.getShinyOdds())
         });
 
         parties.put(Title.GRUNT_M_F, new Pokemon[]{
-                new Pokemon(Species.getSpecies("Raticate"), getMinorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Muk"), getMinorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Arbok"), getMinorTrainerLevel(), Pokemon.getShinyOdds())
+                new Pokemon(Species.getSpecies("Raticate"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Muk"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Arbok"), 20, Pokemon.getShinyOdds())
         });
 
         parties.put(Title.GRUNT_H, new Pokemon[]{
-                new Pokemon(Species.getSpecies("Muk"), getMinorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Meowth"), getMinorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Dragonair"), getMinorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Raticate"), getMinorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Arbok"), getMinorTrainerLevel(), Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Muk"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Meowth"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Dragonair"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Raticate"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Arbok"), 20, Pokemon.getShinyOdds()),
         });
 
         parties.put(Title.GRUNT_H_F, new Pokemon[]{
-                new Pokemon(Species.getSpecies("Meowth"), getMinorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Dragonair"), getMinorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Arbok"), getMinorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Weezing"), getMinorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Raticate"), getMinorTrainerLevel(), Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Meowth"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Dragonair"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Arbok"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Weezing"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Raticate"), 20, Pokemon.getShinyOdds()),
         });
         //COMPETITIVE TRAINERS
         parties.put(Title.C_TRAINER_1, new Pokemon[]{
-                new Pokemon(Species.getSpecies("Dragonite"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Corviknight"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Sylveon"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Charizard"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Amoonguss"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Venusaur"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Dragonite"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Corviknight"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Sylveon"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Charizard"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Amoonguss"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Venusaur"), 20, Pokemon.getShinyOdds()),
         });
         parties.put(Title.C_TRAINER_2, new Pokemon[]{
-                new Pokemon(Species.getSpecies("Garchomp"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Metagross"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Zoroark"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Incineroar"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Moltres"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Tyranitar"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Garchomp"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Metagross"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Zoroark"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Incineroar"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Moltres"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Tyranitar"), 20, Pokemon.getShinyOdds()),
         });
         parties.put(Title.C_TRAINER_3, new Pokemon[]{
-                new Pokemon(Species.getSpecies("Arcanine"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Charizard"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Excadrill"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Incineroar"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Blaziken"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Sceptile"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Arcanine"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Charizard"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Excadrill"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Incineroar"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Blaziken"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Sceptile"), 20, Pokemon.getShinyOdds()),
         });
         parties.put(Title.C_TRAINER_4, new Pokemon[]{
-                new Pokemon(Species.getSpecies("Gengar"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Togekiss"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Mamoswine"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Incineroar"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Lucario"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Swampert"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Gengar"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Togekiss"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Mamoswine"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Incineroar"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Lucario"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Swampert"), 20, Pokemon.getShinyOdds()),
         });
         parties.put(Title.C_TRAINER_5, new Pokemon[]{
-                new Pokemon(Species.getSpecies("Togekiss"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Aerodactyl"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Houndoom"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Dragapult"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Feraligatr"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Salamence"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Togekiss"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Aerodactyl"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Houndoom"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Dragapult"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Feraligatr"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Salamence"), 20, Pokemon.getShinyOdds()),
         });
         parties.put(Title.C_TRAINER_6, new Pokemon[]{
-                new Pokemon(Species.getSpecies("Metagross"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Salamence"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Gardevoir"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Machamp"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Snorlax"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Scizor"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Metagross"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Salamence"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Gardevoir"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Machamp"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Snorlax"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Scizor"), 20, Pokemon.getShinyOdds()),
         });
         parties.put(Title.C_TRAINER_7, new Pokemon[]{
-                new Pokemon(Species.getSpecies("Persian"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Metagross"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Snorlax"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Zoroark"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Tyranitar"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Pidgeot"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Persian"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Metagross"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Snorlax"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Zoroark"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Tyranitar"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Pidgeot"), 20, Pokemon.getShinyOdds()),
         });
         parties.put(Title.C_TRAINER_8, new Pokemon[]{
-                new Pokemon(Species.getSpecies("Corvinight"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Dragapult"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Salamence"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Dragonite"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Metagross"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Tyranitar"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Corvinight"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Dragapult"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Salamence"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Dragonite"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Metagross"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Tyranitar"), 20, Pokemon.getShinyOdds()),
         });
         parties.put(Title.C_TRAINER_9, new Pokemon[]{
-                new Pokemon(Species.getSpecies("Lugia"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Togekiss"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Gardevoir"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Arcanine"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Pidgeot"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Scyther"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Lugia"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Togekiss"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Gardevoir"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Arcanine"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Pidgeot"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Scyther"), 20, Pokemon.getShinyOdds()),
         });
         parties.put(Title.C_TRAINER_10, new Pokemon[]{
-                new Pokemon(Species.getSpecies("Kyogre"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Gyarados"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Swampert"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Charizard"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Blastoise"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Vaporeon"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Kyogre"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Gyarados"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Swampert"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Charizard"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Blastoise"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Vaporeon"), 20, Pokemon.getShinyOdds()),
         });
         parties.put(Title.C_TRAINER_11, new Pokemon[]{
-                new Pokemon(Species.getSpecies("Groudon"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Amoonguss"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Incineroar"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Lucario"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Tyranitar"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Flareon"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Groudon"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Amoonguss"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Incineroar"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Lucario"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Tyranitar"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Flareon"), 20, Pokemon.getShinyOdds()),
         });
         parties.put(Title.C_TRAINER_12, new Pokemon[]{
-                new Pokemon(Species.getSpecies("Butterfree"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Raichu"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Incineroar"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Lucario"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Tyranitar"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Flareon"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Butterfree"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Raichu"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Incineroar"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Lucario"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Tyranitar"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Flareon"), 20, Pokemon.getShinyOdds()),
         });
         parties.put(Title.C_TRAINER_13, new Pokemon[]{
-                new Pokemon(Species.getSpecies("Mew"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Jirachi"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Hitmontop"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Lucario"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Metagross"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Gardevoir"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Mew"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Jirachi"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Hitmontop"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Lucario"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Metagross"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Gardevoir"), 20, Pokemon.getShinyOdds()),
         });
         parties.put(Title.C_TRAINER_14, new Pokemon[]{
-                new Pokemon(Species.getSpecies("Zekrom"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Raichu"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Pikachu"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Jolteon"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Umbreon"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Mamoswine"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Zekrom"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Raichu"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Pikachu"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Jolteon"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Umbreon"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Mamoswine"), 20, Pokemon.getShinyOdds()),
         });
         parties.put(Title.C_TRAINER_15, new Pokemon[]{
-                new Pokemon(Species.getSpecies("Palkia"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Hypno"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Gengar"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Espeon"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Umbreon"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Sylveon"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Palkia"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Hypno"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Gengar"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Espeon"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Umbreon"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Sylveon"), 20, Pokemon.getShinyOdds()),
         });
         parties.put(Title.C_TRAINER_16, new Pokemon[]{
-                new Pokemon(Species.getSpecies("Glaceon"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Mamoswine"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Reshiram"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Victini"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Leafon"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Charizard"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Glaceon"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Mamoswine"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Reshiram"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Victini"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Leafon"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Charizard"), 20, Pokemon.getShinyOdds()),
         });
         parties.put(Title.C_TRAINER_17, new Pokemon[]{
-                new Pokemon(Species.getSpecies("Swampert"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Blaziken"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Sceptile"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Rayquaza"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Kyogre"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Groudon"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Swampert"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Blaziken"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Sceptile"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Rayquaza"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Kyogre"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Groudon"), 20, Pokemon.getShinyOdds()),
         });
         parties.put(Title.C_TRAINER_18, new Pokemon[]{
-                new Pokemon(Species.getSpecies("Blastoise"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Gyarados"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Swampert"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Raichu"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Amoonguss"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Incineroar"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Blastoise"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Gyarados"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Swampert"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Raichu"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Amoonguss"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Incineroar"), 20, Pokemon.getShinyOdds()),
         });
         parties.put(Title.C_TRAINER_19, new Pokemon[]{
-                new Pokemon(Species.getSpecies("Meganium"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Typhlosion"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Hitmontop"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Raichu"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Amoonguss"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Arcanine"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Meganium"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Typhlosion"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Hitmontop"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Raichu"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Amoonguss"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Arcanine"), 20, Pokemon.getShinyOdds()),
         });
         parties.put(Title.C_TRAINER_20, new Pokemon[]{
-                new Pokemon(Species.getSpecies("Entei"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Suicune"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Raikou"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Ho-Oh"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Alakazam"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
-                new Pokemon(Species.getSpecies("Primeape"), getMajorTrainerLevel(), Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Entei"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Suicune"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Raikou"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Ho-Oh"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Alakazam"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Primeape"), 20, Pokemon.getShinyOdds()),
         });
 
     } //parties
@@ -708,9 +705,9 @@ public class Trainer {
         testParties.add(Title.C_TRAINER_1);
         testParties.add(Title.C_TRAINER_3);
     }
-    public Pokemon[] getParty() {
+    public Pokemon[] getPartyOfTrainer() {
         Pokemon[] party = parties.getOrDefault(this.title, new Pokemon[]{
-                new Pokemon(Species.getSpecies("Pidgey"), getMajorTrainerLevel(), Pokemon.getShinyOdds())
+                new Pokemon(Species.getSpecies("Pidgey"), 20, Pokemon.getShinyOdds())
         });
 
         // Create a copy of the array to shuffle (to avoid modifying the original)
@@ -718,6 +715,7 @@ public class Trainer {
 
         for (int i = 0; i < party.length; i++) {
             shuffledParty[i] = party[i].clone();
+            shuffledParty[i].setLevel(getTrainerLevel());
         }
 
         // Shuffle the party order
