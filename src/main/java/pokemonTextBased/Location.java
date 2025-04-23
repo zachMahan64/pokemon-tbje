@@ -1174,6 +1174,7 @@ public class Location {
                     if (User.recordColosseumTrainersBeaten >= 25) {
                         letUserProcureAPkmOfTheirChoice(thisTrainerToBattle.party, sc1);
                     }
+                    healPartyWithDialogueAndSound();
                 }
             }
             if(choice.equals("S")){
@@ -2055,5 +2056,13 @@ public class Location {
                 System.out.println("Invalid input. Please enter a whole number.");
             }
         }
+    }
+    public static void healPartyWithDialogueAndSound() throws InterruptedException{
+        Party.healParty();
+        Sound.playSoundOnce("src/main/music/heal.mp3");
+        System.out.println("Healing your party...");
+        Thread.sleep(User.textSpeed);
+        System.out.println("\nYour party has been restored back to full health!\n");
+        Game.pressEnterToContinue();
     }
 }
