@@ -626,7 +626,7 @@ public class Fight {
         }
         if(User.difficultyMode == User.Difficulty.CHALLENGE) {
             double chanceToBeDumb = .001;
-            double chanceToChooseGoodMove = .1;
+            double chanceToChooseGoodMove = .05;
             if(Math.random() < chanceToBeDumb) {
                 return findRandomMove(dealer);
             }
@@ -636,7 +636,7 @@ public class Fight {
             return findBestMove(arena, dealer, recipient);
         }
         if(User.difficultyMode == User.Difficulty.PROFESSIONAL) {
-            double chanceToChooseGoodMove = .05;
+            double chanceToChooseGoodMove = .01;
             if(Math.random() < chanceToChooseGoodMove) {
                 return findGoodMove(arena, dealer, recipient);
             }

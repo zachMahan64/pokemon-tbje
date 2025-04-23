@@ -392,7 +392,7 @@ public class Encounter {
         return pokemonInAreas.getOrDefault(areaName, new HashMap<>());
     }
     //Generate trainers
-    public static final Map<String, List<Trainer>> areaTrainers = new HashMap<>();
+    public static final Map<String, List<Trainer>> areaTrainers = new HashMap<>(); //make this hold titles rather than trainer objects
     static {
         List<Trainer> route1Trainers = new ArrayList<>();
         route1Trainers.add(new Trainer(Trainer.Title.YOUNGSTER));

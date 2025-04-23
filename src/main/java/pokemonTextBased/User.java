@@ -30,7 +30,7 @@ public class User {
             return this.str;
         }
     }
-    public static Difficulty difficultyMode = Difficulty.PROFESSIONAL;
+    public static Difficulty difficultyMode = Difficulty.CHALLENGE;
     public enum Hints {
         NO_HINTS("NO HINTS"),
         SHOW_EFFECTIVENESS("SHOW EFFECTIVENESS"),
