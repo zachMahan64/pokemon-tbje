@@ -13,16 +13,16 @@ package pokemonTextBased;// Zach Mahan, started 20250228, for fun Pokemon Game
 //LOCATIONS
 // -Add more battle/encounter zones (e.g. mt moon)
 // -Add Rocket Safari Zone w/ special mons --> rock/bait mechanic
+// -procedural routes?
 
 //BATTLES
-// -Add better Trick Room judgement
 // -Add full-fxning Tailwind, Light Screen, Reflect
 
-//SPECIFIC
-// -Add Move sounds (one per move type?)
-// -Add full pokedex functionality (track catches)
-// -Add different pokeballs (enums, adjust images and catch rates accordingly, add to pokemarts)
-// -Make the Box not dogwater (pages, like 30 pkm per page)
+//CLASS SPECIFIC ADDITIONS
+// -FIGHT: Add Move sounds (one per move type?)
+// -BAG: Add different pokeballs (enums, adjust images and catch rates accordingly, add to pokemarts), make a dedicated eevee item instead of
+//       stones.
+// -BOX: Make the Box not dogwater (pages, like 30 pkm per page)
 
 //OTHER FEATURES
 
