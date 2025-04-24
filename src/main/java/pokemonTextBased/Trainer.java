@@ -770,6 +770,7 @@ public class Trainer {
         int index = rand.nextInt(femaleNames.length);
         return femaleNames[index];
     }
+    //procedurally generated trainers
     private static final Random rand = new Random();
     public static Trainer buildBattleLeagueTrainer() {
         Pokemon[] trainerParty = new Pokemon[Party.p.length];
