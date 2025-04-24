@@ -16,6 +16,41 @@ public class Species {
     private final int baseSpeed;
     private final List<Move> moves;
 
+    //Types (species & pokemon uses strings, not this enum)
+    public enum Type {
+        BUG("Bug"),
+        DARK("Dark"),
+        DRAGON("Dragon"),
+        ELECTRIC("Electric"),
+        FAIRY("Fairy"),
+        FIGHTING("Fighting"),
+        FIRE("Fire"),
+        FLYING("Flying"),
+        GHOST("Ghost"),
+        GRASS("Grass"),
+        GROUND("Ground"),
+        ICE("Ice"),
+        NORMAL("Normal"),
+        POISON("Poison"),
+        PSYCHIC("Psychic"),
+        ROCK("Rock"),
+        STEEL("Steel"),
+        WATER("Water");
+
+        final String typeStr;
+
+        Type(String typeStr) {
+            this.typeStr = typeStr;
+        }
+        public String getStr() {
+            return this.typeStr;
+        }
+        @Override
+        public String toString() {
+            return typeStr;
+        }
+    }
+
     //Constructor
     public Species(String name, String type1, String type2, int evolutionLevel, int baseHp, int baseAttack, int baseDefense, int baseSpAtk, int baseSpDef, int baseSpeed, List<Move> moves) {
         this.name = name;
@@ -133,7 +168,6 @@ public class Species {
             return "Pokedex Num Not Found.";
         }
     }
-
     public static int getDexNumFromName(String name) {
         for (int i = 0; i < speciesListedInPokedexOrder.size(); i++) {
             if (speciesListedInPokedexOrder.get(i).equalsIgnoreCase(name)) {
@@ -142,7 +176,7 @@ public class Species {
         }
         return 0;
     }
-
+    //getters and setters
     public String getName() {
         return name;
     }

@@ -2,7 +2,7 @@ package pokemonTextBased;// Zach Mahan, started 20250228, for fun Pokemon Game
 
 //BUGS: fix flinching ghosts (doesn't fail) (resolved?), engine choosing fake-out when it fails?
 
-//general ideas:
+//FILE SYS:
 // -Add savability when game is farther along (JSON)!
 
 //STORY & Progression
@@ -15,8 +15,9 @@ package pokemonTextBased;// Zach Mahan, started 20250228, for fun Pokemon Game
 // -Add Rocket Safari Zone w/ special mons --> rock/bait mechanic
 // -procedural routes?
 
-//BATTLES
+//BATTLES & ENCOUNTERS
 // -Add full-fxning Tailwind, Light Screen, Reflect
+// -Make gym leaders have procedural parties
 
 //CLASS SPECIFIC ADDITIONS
 // -FIGHT: Add Move sounds (one per move type?)
@@ -33,7 +34,7 @@ import java.util.concurrent.ExecutionException;
 public class Game {
 
     public static boolean playStatus = true;
-    public static boolean testStatus = true;
+    public static boolean testStatus = false;
 
     public static void main(String[] args) throws InterruptedException, ExecutionException {
         new javafx.embed.swing.JFXPanel();
@@ -346,23 +347,6 @@ public class Game {
         Thread.sleep((long) (User.textSpeed * .5));
     }
 
-    public static boolean askToPlay(Scanner sc1) {
-        while (true) {
-            System.out.println("Play? (Y/N)");
-            String input = sc1.nextLine();
-            if (input.equalsIgnoreCase("Y")) {
-                System.out.println("\nBooting up...\n");
-                Graphics.printSmallTitleImage();
-                return true;
-            } else if (input.equalsIgnoreCase("N")) {
-                Graphics.sayGoodBye();
-                System.out.println("Exiting game...");
-                System.exit(0);
-            } else {
-                System.out.println("Invalid input. Please try again.");
-            }
-        }
-    }
     public static void askToConfirmExit(Scanner sc1) {
         while (true) {
             System.out.println("Are you sure you want to exit? (Y/N)");

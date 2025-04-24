@@ -783,13 +783,38 @@ public class Trainer {
          return new Trainer(thisTitle, trainerParty);
     }
     private static Species getRandomSpeciesNearBST(int targetBST) {
-        int lowerBound = targetBST - 40;
-        int upperBound = targetBST + 40;
-        int thisBST = 0;
+        int lowerBound = targetBST - 50;
+        int upperBound = targetBST + 50;
         ArrayList<String> viableSpeciesChoices = new ArrayList<>();
         for (Map.Entry<String, Integer> entry : Species.baseStatTotals.entrySet()) {
-            thisBST = entry.getValue();
+            int thisBST = entry.getValue();
             if(thisBST >= lowerBound && thisBST <= upperBound) {
+                viableSpeciesChoices.add(entry.getKey());
+            }
+        }
+        return Species.getSpecies(viableSpeciesChoices.get(rand.nextInt(0, viableSpeciesChoices.size())));
+    }
+    public static Trainer buildATypeSpecialistTrainer(Species.Type type) {
+        Pokemon[] trainerParty = new Pokemon[Party.p.length];
+        for (int i = 0; i < Party.p.length; i++) {
+            if(Party.p[i] == null) continue;
+            int thisBST = Party.p[i].getBST();
+            trainerParty[i] = new Pokemon(getRandomSpeciesNearBST(thisBST, type), User.checkLevelCap());
+        }
+        Title thisTitle = (rand.nextInt(0,2) == 0) ? Title.COLOSSEUM_BATTLER : Title.COLOSSEUM_BATTLER_F;
+        return new Trainer(thisTitle, trainerParty);
+    }
+    private static Species getRandomSpeciesNearBST(int targetBST, Species.Type targetType) {
+        String targetTypeStr = targetType.getStr();
+        int lowerBound = targetBST - 50;
+        int upperBound = targetBST + 50;
+        ArrayList<String> viableSpeciesChoices = new ArrayList<>();
+        for (Map.Entry<String, Integer> entry : Species.baseStatTotals.entrySet()) {
+            Species thisSpecies = Species.getSpecies(entry.getKey());
+            int thisBST = entry.getValue();
+            if(thisBST >= lowerBound
+                    && thisBST <= upperBound
+                    && (thisSpecies.getType1().equals(targetTypeStr) || thisSpecies.getType2().equals(targetTypeStr))) {
                 viableSpeciesChoices.add(entry.getKey());
             }
         }
