@@ -291,7 +291,7 @@ public class Pokemon {
     public void setTurnSentOut(int turnSentOut) {
         this.turnSentOut = turnSentOut;
     }
-    //evolution stuff
+    //evolution and level up stuff
     public static boolean checkIfPokemonCanEvolve(Pokemon pokemon) {
         Species species = Species.getSpecies(pokemon.getName());
         int evolutionLevel = species.getEvolutionLevel();
@@ -439,7 +439,7 @@ public class Pokemon {
             evolvePokemon(pokemon, newSpecies);
             Graphics.printPokemon(pokemon);
             System.out.println("Congratulations! Your " + originalName + " evolved into " + newSpecies.getName() + "!\n");
-            Sound.playSoundOnce("main/music/levelUp.wav");
+            Sound.playSoundOnce("src/main/music/levelUp.mp3");
             Game.pressEnterToContinue();
             Party.checkIfPlayerHasPokemonRegistered(pokemon);
         }
@@ -470,15 +470,26 @@ public class Pokemon {
             evolvePokemon(pokemon, newSpecies);
             Graphics.printPokemon(pokemon);
             System.out.println("Congratulations! Your " + originalName + " evolved into " + newSpecies.getName() + "!\n");
-            Sound.playSoundOnce("main/music/levelUp.wav");
+            Sound.playSoundOnce("src/main/music/levelUp.mp3");
             Game.pressEnterToContinue();
         }
     }
     public void levelUpPokemon() throws InterruptedException{
         if(this.getCurrentHp() != 0 && this.getLevel() < User.checkLevelCap() && this.level < 100) {
             this.level++;
+            this.adjustPokemonStatsAfterLevelUp();
             tryEvolvePokemon(this);
         }
+    }
+    public void adjustPokemonStatsAfterLevelUp() {
+        int currentHpRatio = this.getCurrentHp()/ this.getCurrentMaxHp();
+        this.currentMaxHp = (int) (10 + this.baseHp * (this.getLevel() / 50.0));
+        this.currentHp = Math.min(this.getCurrentMaxHp()*currentHpRatio, this.currentMaxHp); // Keep current HP proportional
+        this.currentAttack = (int) (5 + this.baseAttack * (this.getLevel() / 50.0));
+        this.currentDefense = (int) (5 + this.baseDefense * (this.getLevel() / 50.0));
+        this.currentSpAtk = (int) (5 + this.baseSpAtk * (this.getLevel() / 50.0));
+        this.currentSpDef = (int) (5 + this.baseSpDef * (this.getLevel() / 50.0));
+        this.currentSpeed = (int) (5 + this.baseSpeed * (this.getLevel() / 50.0));
     }
     public void levelUpPokemonTwoThirdsChance() throws InterruptedException {
         if (Math.random() <= .67) {

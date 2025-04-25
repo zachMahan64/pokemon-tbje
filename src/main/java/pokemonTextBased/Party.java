@@ -312,8 +312,8 @@ public class Party {
                     return choiceSwitchPokemon; // Return valid choice
                 }
             } catch (NumberFormatException _) {
+                System.out.println("Invalid input! Please enter a number between 2-6 or [C] to cancel.");
             }
-            System.out.println("Invalid input! Please enter a number between 2-6 or [C] to cancel.");
             Game.pressEnterToContinue();
         }
     }
@@ -334,8 +334,8 @@ public class Party {
                     return choiceSwitchPokemon; // Return valid choice
                 }
             } catch (NumberFormatException _) {
+                System.out.println("Invalid input! Please enter a number between 2-6.");
             }
-            System.out.println("Invalid input! Please enter a number between 2-6.");
         }
         return -1;
     }

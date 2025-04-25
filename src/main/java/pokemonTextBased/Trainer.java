@@ -9,97 +9,99 @@ public class Trainer {
     private static final Random rand = new Random();
     public enum Title {
         //Leaders
-        PEWTER_GYM_LEADER("Pewter City Gym Leader", "Brock", 2000),
-        CERULEAN_GYM_LEADER("Cerulean City Gym Leader", "Misty", 2000),
-        VERMILLION_GYM_LEADER("Vermilion City Gym Leader", "Lt. Surge", 2000),
-        CELADON_GYM_LEADER("Celadon City Gym Leader", "Erika", 2000),
-        FUCHSIA_GYM_LEADER("Fuchsia City Gym Leader", "Koga", 2000),
-        SAFFRON_GYM_LEADER("Saffron City Gym Leader", "Sabrina", 2000),
-        CINNABAR_GYM_LEADER("Cinnabar Island Gym Leader", "Blaine", 2000),
-        VIRIDIAN_GYM_LEADER("Viridian City Gym Leader", "Blue", 2000),
-        ROCKETOPOLIS_GYM_LEADER("Rocketopolis Gym Leader", "Giovanni", 2000),
-        VAUGHAN_DISTRICT_GYM_LEADER("Mayor", "Vaughan", 2000),
+        PEWTER_GYM_LEADER("Pewter City Gym Leader", "Brock", 2000, true),
+        CERULEAN_GYM_LEADER("Cerulean City Gym Leader", "Misty", 2000, true),
+        VERMILLION_GYM_LEADER("Vermilion City Gym Leader", "Lt. Surge", 2000, true),
+        CELADON_GYM_LEADER("Celadon City Gym Leader", "Erika", 2000, true),
+        FUCHSIA_GYM_LEADER("Fuchsia City Gym Leader", "Koga", 2000, true),
+        SAFFRON_GYM_LEADER("Saffron City Gym Leader", "Sabrina", 2000, true),
+        CINNABAR_GYM_LEADER("Cinnabar Island Gym Leader", "Blaine", 2000, true),
+        VIRIDIAN_GYM_LEADER("Viridian City Gym Leader", "Blue", 2000, true),
+        ROCKETOPOLIS_GYM_LEADER("Rocketopolis Gym Leader", "Giovanni", 2000, true),
+        VAUGHAN_DISTRICT_GYM_LEADER("Mayor", "Vaughan", 2000, true),
         //E4
-        ELITE_FOUR_LORELEI("Elite Four", "Lorelei", 2000),
-        ELITE_FOUR_BRUNO("Elite Four", "Bruno", 2000),
-        ELITE_FOUR_AGATHA("Elite Four", "Agatha", 2000),
-        ELITE_FOUR_LANCE("Elite Four", "Lance", 2000),
-        CHAMPION("Champion", "Red", 5000),
+        ELITE_FOUR_LORELEI("Elite Four", "Lorelei", 2000, true),
+        ELITE_FOUR_BRUNO("Elite Four", "Bruno", 2000, true),
+        ELITE_FOUR_AGATHA("Elite Four", "Agatha", 2000, true),
+        ELITE_FOUR_LANCE("Elite Four", "Lance", 2000, true),
+        CHAMPION("Champion", "Red", 5000, true),
         //Reg trainers
-        BUG_CATCHER("Bug Catcher", "m", 50),
-        LASS("Lass", "f", 50),
-        YOUNGSTER("Youngster", "m", 50),
-        HIKER("Hiker", "m", 50),
-        SAILOR("Sailor", "m", 50),
-        POKEMANIAC("Pokemaniac", "m", 50),
-        SUPER_NERD("Super Nerd", "m", 50),
-        ENGINEER("Engineer", "m", 50),
-        FISHERMAN("Fisherman", "m", 50),
-        SWIMMER("Swimmer", "m", 50),
-        SWIMMER_F("Swimmer", "f", 50),
-        CUE_BALL("Cue Ball", "m", 50),
-        GAMBLER("Gambler", "m", 200),
-        BEAUTY("Beauty", "f", 50),
-        PSYCHIC("Psychic", "m", 50),
-        ROCKER("Rocker", "m", 50),
-        JUGGLER("Juggler", "m", 50),
-        TAMER("Tamer", "m", 50),
-        BIRD_KEEPER("Bird Keeper", "m", 50),
-        BLACKBELT("Blackbelt", "m", 50),
-        SCIENTIST("Scientist", "m", 100),
-        CHANNELER("Channeler", "m", 50),
-        COOLTRAINER("Cooltrainer", "m", 50),
-        GENTLEMAN("Gentleman", "m", 50),
-        SIGHTSEER("Sightseer", "m", 50),
-        BIKER("Biker", "m", 50),
-        BURGLAR("Burglar", "m", 100),
-        FIREFIGHTER("Firefighter", "m", 50),
-        SOLDIER("Soldier", "m", 50),
-        COOLTRAINER_F("Cooltrainer", "f", 50),
-        SIGHTSEER_F("Sightseer", "f", 50),
+        BUG_CATCHER("Bug Catcher", "m", 50, false),
+        LASS("Lass", "f", 50, false),
+        YOUNGSTER("Youngster", "m", 50, false),
+        HIKER("Hiker", "m", 50, false),
+        SAILOR("Sailor", "m", 50, false),
+        POKEMANIAC("Pokemaniac", "m", 50, false),
+        SUPER_NERD("Super Nerd", "m", 50, false),
+        ENGINEER("Engineer", "m", 50, false),
+        FISHERMAN("Fisherman", "m", 50, false),
+        SWIMMER("Swimmer", "m", 50, false),
+        SWIMMER_F("Swimmer", "f", 50, false),
+        CUE_BALL("Cue Ball", "m", 50, false),
+        GAMBLER("Gambler", "m", 200, false),
+        BEAUTY("Beauty", "f", 50, false),
+        PSYCHIC("Psychic", "m", 50, false),
+        ROCKER("Rocker", "m", 50, false),
+        JUGGLER("Juggler", "m", 50, false),
+        TAMER("Tamer", "m", 50, false),
+        BIRD_KEEPER("Bird Keeper", "m", 50, false),
+        BLACKBELT("Blackbelt", "m", 50, false),
+        SCIENTIST("Scientist", "m", 100, false),
+        CHANNELER("Channeler", "m", 50, false),
+        COOLTRAINER("Cooltrainer", "m", 50, false),
+        GENTLEMAN("Gentleman", "m", 50, false),
+        SIGHTSEER("Sightseer", "m", 50, false),
+        BIKER("Biker", "m", 50, false),
+        BURGLAR("Burglar", "m", 100, false),
+        FIREFIGHTER("Firefighter", "m", 50, false),
+        SOLDIER("Soldier", "m", 50, false),
+        COOLTRAINER_F("Cooltrainer", "f", 50, false),
+        SIGHTSEER_F("Sightseer", "f", 50, false),
         //Team Rocket
-        GRUNT_L("Rocket Grunt", "m", 50),
-        GRUNT_L_F("Rocket Grunt", "f", 50),
-        GRUNT_M("Rocket Grunt", "m", 60),
-        GRUNT_M_F("Rocket Grunt", "f", 60),
-        GRUNT_H("Rocket Grunt", "m", 70),
-        GRUNT_H_F("Rocket Grunt", "f", 70),
+        GRUNT_L("Rocket Grunt", "m", 50, false),
+        GRUNT_L_F("Rocket Grunt", "f", 50, false),
+        GRUNT_M("Rocket Grunt", "m", 60, false),
+        GRUNT_M_F("Rocket Grunt", "f", 60, false),
+        GRUNT_H("Rocket Grunt", "m", 70, false),
+        GRUNT_H_F("Rocket Grunt", "f", 70, false),
         //COLOSSEUM/SPECIAL TRAINERS
-        COLOSSEUM_BATTLER("Colosseum Trainer", "m", 50),
-        COLOSSEUM_BATTLER_F("Colosseum Trainer", "f", 50),
-        BATTLE_SPECIALIST("Battle Specialist", "m", 50),
-        BATTLE_SPECIALIST_F("Battle Specialist", "f", 50),
+        COLOSSEUM_BATTLER("Colosseum Trainer", "m", 50, true),
+        COLOSSEUM_BATTLER_F("Colosseum Trainer", "f", 50, true),
+        BATTLE_SPECIALIST("Battle Specialist", "m", 50, true),
+        BATTLE_SPECIALIST_F("Battle Specialist", "f", 50, true),
         //COMPETITIVE TRAINERS
-        C_TRAINER_1("Battle Expert", "m", 50),
-        C_TRAINER_2("Battle Expert", "m", 50),
-        C_TRAINER_3("Battle Expert", "m", 50),
-        C_TRAINER_4("Battle Expert", "m", 50),
-        C_TRAINER_5("Battle Expert", "m", 50),
-        C_TRAINER_6("Battle Expert", "m", 50),
-        C_TRAINER_7("Battle Expert", "m", 50),
-        C_TRAINER_8("Battle Expert", "m", 50),
-        C_TRAINER_9("Battle Expert", "m", 50),
-        C_TRAINER_10("Battle Expert", "m", 50),
-        C_TRAINER_11("Battle Expert", "m", 50),
-        C_TRAINER_12("Battle Expert", "m", 50),
-        C_TRAINER_13("Battle Expert", "m", 50),
-        C_TRAINER_14("Battle Expert", "m", 50),
-        C_TRAINER_15("Battle Expert", "m", 50),
-        C_TRAINER_16("Battle Expert", "m", 50),
-        C_TRAINER_17("Battle Expert", "m", 50),
-        C_TRAINER_18("Battle Expert", "m", 50),
-        C_TRAINER_19("Battle Expert", "m", 50),
-        C_TRAINER_20("Battle Expert", "m", 50);
+        C_TRAINER_1("Battle Expert", "m", 50, true),
+        C_TRAINER_2("Battle Expert", "m", 50, true),
+        C_TRAINER_3("Battle Expert", "m", 50, true),
+        C_TRAINER_4("Battle Expert", "m", 50, true),
+        C_TRAINER_5("Battle Expert", "m", 50, true),
+        C_TRAINER_6("Battle Expert", "m", 50, true),
+        C_TRAINER_7("Battle Expert", "m", 50, true),
+        C_TRAINER_8("Battle Expert", "m", 50, true),
+        C_TRAINER_9("Battle Expert", "m", 50, true),
+        C_TRAINER_10("Battle Expert", "m", 50, true),
+        C_TRAINER_11("Battle Expert", "m", 50, true),
+        C_TRAINER_12("Battle Expert", "m", 50, true),
+        C_TRAINER_13("Battle Expert", "m", 50, true),
+        C_TRAINER_14("Battle Expert", "m", 50, true),
+        C_TRAINER_15("Battle Expert", "m", 50, true),
+        C_TRAINER_16("Battle Expert", "m", 50, true),
+        C_TRAINER_17("Battle Expert", "m", 50, true),
+        C_TRAINER_18("Battle Expert", "m", 50, true),
+        C_TRAINER_19("Battle Expert", "m", 50, true),
+        C_TRAINER_20("Battle Expert", "m", 50, true);
 
 
         private final String titleString;
         private final String name;
         private final int prize;
+        private final boolean isMajorTrainer;
 
-        Title(String titleString, String name, int prize) {
+        Title(String titleString, String name, int prize, boolean isMajorTrainer) {
             this.titleString = titleString;
             this.name = name;
             this.prize = prize;
+            this.isMajorTrainer = isMajorTrainer;
         }
 
         public String getTitleString() {
@@ -162,11 +164,11 @@ public class Trainer {
         if(User.reputation < 0) {
             return (Math.min(-User.reputation / 50, 15));
         }
-
         return 0;
     }
-    public static int getTrainerLevel() {
-        return Math.min(User.checkLevelCap() + checkEffectOfRep(), 100);
+    public static int getTrainerLevel(Title title) {
+        if (title.isMajorTrainer) return Math.min(User.checkLevelCap() + checkEffectOfRep(), 100);
+        else return Math.min(Party.getAvgPLvl() + rand.nextInt(-5, 2) + checkEffectOfRep(), 100);
     }
     public static HashMap<Title, Pokemon[]> parties = new HashMap<>();
     static {
@@ -480,7 +482,7 @@ public class Trainer {
         });
 
         parties.put(Title.GRUNT_L_F, new Pokemon[]{
-                new Pokemon(Species.getSpecies("Raticate"), 20, Pokemon.getShinyOdds()),
+                new Pokemon(Species.getSpecies("Rattata"), 20, Pokemon.getShinyOdds()),
                 new Pokemon(Species.getSpecies("Grimer"), 20, Pokemon.getShinyOdds()),
                 new Pokemon(Species.getSpecies("Koffing"), 20, Pokemon.getShinyOdds())
         });
@@ -717,7 +719,7 @@ public class Trainer {
 
         for (int i = 0; i < party.length; i++) {
             shuffledParty[i] = party[i].clone();
-            shuffledParty[i].setLevel(getTrainerLevel());
+            shuffledParty[i].setLevel(getTrainerLevel(this.title));
         }
 
         // Shuffle the party order

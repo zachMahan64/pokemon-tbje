@@ -32,15 +32,20 @@ public class User {
     }
     public static Difficulty difficultyMode = Difficulty.CHALLENGE;
     public enum Hints {
-        NO_HINTS("NO HINTS"),
-        SHOW_EFFECTIVENESS("SHOW EFFECTIVENESS"),
-        SHOW_ENGINE_CHOICES("SHOW ENGINE ANALYSIS");
+        NO_HINTS("NO_HINTS", "NO HINTS"),
+        SHOW_EFFECTIVENESS("SHOW_EFFECTIVENESS", "SHOW EFFECTIVENESS"),
+        SHOW_ENGINE_CHOICES("SHOW_ENGINE_CHOICES", "SHOW ENGINE ANALYSIS");
         public final String str;
-        Hints (String str) {
+        public final String description;
+        Hints (String str, String description) {
             this.str = str;
+            this.description = description;
         }
         public String getStr(){
             return this.str;
+        }
+        public String getDescription(){
+            return this.description;
         }
     }
     public static Hints hintMode = Hints.SHOW_ENGINE_CHOICES;
@@ -410,7 +415,7 @@ public class User {
                 hintMode = Hints.SHOW_ENGINE_CHOICES;
             }
             if(choice.equals("1") || choice.equals("2") || choice.equals("3")) {
-                System.out.println("HINT MODE has been set to " + User.hintMode.getStr() + ".");
+                System.out.println("HINT MODE has been set to " + User.hintMode.getDescription() + ".");
                 Game.pressEnterToContinue();
                 break;
             } else {

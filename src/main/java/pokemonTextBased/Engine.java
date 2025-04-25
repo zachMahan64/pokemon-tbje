@@ -181,6 +181,7 @@ public class Engine {
 
             // Handle turns (normal switches and move order based on speed)
             Encounter.processMoveOrder(arena, playerMove, foeMove, playerSwitched);
+            Encounter.handleEndOfTurnInteractions(arena);
 
             // Check if the player's Pokémon has fainted
             if (arena.p[0].getCurrentHp() == 0) {

@@ -774,8 +774,10 @@ public class Encounter {
             if (!playerHasRunAway && !wildPkmIsCaught) {
                 processMoveOrder(arena, playerMove, foeMove, playerSwitched);
             }
+            //Handle things like burn and poison
+            handleEndOfTurnInteractions(arena);
 
-                // Handle forced switch or defeat
+            // Handle forced switch or defeat
             if (!playerHasRunAway && arena.p[0].getCurrentHp() == 0) {
                 System.out.println("Your " + arena.p[0].getName() + " fainted!");
                 Thread.sleep((long) (User.textSpeed * 0.5));
@@ -906,7 +908,13 @@ public class Encounter {
         for(String slot : graphicArr) {
             if (slot != null && slot.equals("x")) graphic.append(slot);
         }
-        int numEmptySlots = 6- partyArr.length;
+        int numEmptySlots = 0;
+        if (isFoe) numEmptySlots = 6 - partyArr.length;
+        else {
+            for (Pokemon pkm : partyArr) {
+                if (pkm == null) numEmptySlots++;
+            }
+        }
         graphic.append("-".repeat(Math.max(0, numEmptySlots)));
         return graphic.toString();
     }
@@ -934,18 +942,6 @@ public class Encounter {
         arena.fp[0].setFlinched(false);
         String originalWeather = arena.weather;
         boolean wasOriginallyTrickRoom = arena.trickRoomIsUp;
-        if(arena.p[0].getStatusCondition().equals("Burn") || arena.p[0].getStatusCondition().equals("Poison")) {
-            arena.p[0].setCurrentHp(Math.max(arena.p[0].getCurrentHp() - (int) (arena.p[0].getCurrentMaxHp()*.125), 0));
-            if(arena.playerEngine.battleDialogsAreEnabled) System.out.println(arena.p[0].getName() + " took damage due to its " + arena.p[0].getStatusCondition().toLowerCase() + "!\n");
-            Sound.playSoundOnce("src/main/music/cut.mp3");
-            Thread.sleep(User.textSpeed);
-        }
-        if(arena.fp[0].getStatusCondition().equals("Burn") || arena.fp[0].getStatusCondition().equals("Poison")) {
-            arena.fp[0].setCurrentHp(Math.max(arena.fp[0].getCurrentHp() - (int) (arena.fp[0].getCurrentMaxHp()*.125), 0));
-            if(arena.playerEngine.battleDialogsAreEnabled) System.out.println(arena.fp[0].getName() + " took damage due to its " + arena.fp[0].getStatusCondition().toLowerCase() + "!\n");
-            Sound.playSoundOnce("src/main/music/cut.mp3");
-            Thread.sleep(User.textSpeed);
-        }
         if(arena.turnWeatherEnds == arena.turnNum){
             arena.setWeather("None");
             if(arena.playerEngine.battleDialogsAreEnabled) System.out.println("It stopped being " + originalWeather + ".\n");
@@ -961,6 +957,20 @@ public class Encounter {
         }
         if(arena.p[0].isSkipNextTurn() && arena.p[0].getRechargeTurn() <= arena.turnNum){
             arena.p[0].setSkipNextTurn(false);
+        }
+    }
+    public static void handleEndOfTurnInteractions(Arena arena) throws InterruptedException {
+        if(arena.p[0].getStatusCondition().equals("Burn") || arena.p[0].getStatusCondition().equals("Poison")) {
+            arena.p[0].setCurrentHp(Math.max(arena.p[0].getCurrentHp() - (int) (arena.p[0].getCurrentMaxHp()*.125), 0));
+            if(arena.playerEngine.battleDialogsAreEnabled) System.out.println(arena.p[0].getName() + " took damage due to its " + arena.p[0].getStatusCondition().toLowerCase() + "!\n");
+            Sound.playSoundOnce("src/main/music/cut.mp3");
+            Thread.sleep(User.textSpeed);
+        }
+        if(arena.fp[0].getStatusCondition().equals("Burn") || arena.fp[0].getStatusCondition().equals("Poison")) {
+            arena.fp[0].setCurrentHp(Math.max(arena.fp[0].getCurrentHp() - (int) (arena.fp[0].getCurrentMaxHp()*.125), 0));
+            if(arena.playerEngine.battleDialogsAreEnabled) System.out.println(arena.fp[0].getName() + " took damage due to its " + arena.fp[0].getStatusCondition().toLowerCase() + "!\n");
+            Sound.playSoundOnce("src/main/music/cut.mp3");
+            Thread.sleep(User.textSpeed);
         }
     }
     public static void viewBattleInfo(Arena arena, Pokemon playerPokemon, Pokemon opponentPokemon, Scanner sc1) throws InterruptedException, ExecutionException {
@@ -1269,6 +1279,9 @@ public class Encounter {
             // Handle turns (normal switches & move order based on speed)
             processMoveOrder(arena, playerMove, foeMove, playerSwitched);
 
+            //Handle things like burn and poison
+            handleEndOfTurnInteractions(arena);
+
             // Handle forced switch or defeat
             if (arena.p[0].getCurrentHp() == 0) {
                 System.out.println("Your " + arena.p[0].getName() + " fainted!");
@@ -1302,7 +1315,7 @@ public class Encounter {
                 }
             }
 
-            // Handle end-of-turn interactions
+            // Handle turn-changing interactions
             handleTurnChangeInteractions(arena);
             playerSwitched = false;
             arena.incrementTurns();

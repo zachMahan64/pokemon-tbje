@@ -167,6 +167,9 @@ public class Location {
             if(choice.equals("T")){
                 NPC.talkTo(NPC.Character.MOM, sc1);
             }
+            if(choice.equals("R")){
+                healPartyWithDialogueAndSound();
+            }
             if(choice.equals("O")){
                 openOptionsMenu(sc1);
             }

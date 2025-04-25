@@ -8,7 +8,7 @@ public class SaveSys {
 
     private static final String SAVE_FILE_PREFIX = "save";
     private static final String SAVE_FILE_SUFFIX = ".json";
-    private static final int MAX_SLOTS = 5;
+    private static final int MAX_SLOTS = 6;
     private static int currentSlot = -1; // -1 = no game loaded
 
     // Call on boot to select and load a save file
@@ -18,9 +18,9 @@ public class SaveSys {
             System.out.println("==========================");
             for (int i = 0; i < MAX_SLOTS; i++) {
                 File f = new File(SAVE_FILE_PREFIX + i + SAVE_FILE_SUFFIX);
-                System.out.printf("[%d] Slot %d %s%n", i, i, f.exists() ? "(has data)" : "(empty)");
+                System.out.printf("[%d] Slot %d %s%n", i, i, f.exists() ? "(load save)" : "(start new save)");
             }
-            System.out.print("Enter a slot number (0–4): ");
+            System.out.print("Enter a slot number (0–" + (MAX_SLOTS - 1) + "): ");
             String input = sc1.nextLine();
             try {
                 int slot = Integer.parseInt(input);
@@ -30,16 +30,25 @@ public class SaveSys {
                 }
                 File f = new File(SAVE_FILE_PREFIX + slot + SAVE_FILE_SUFFIX);
                 if (!f.exists()) {
-                    System.out.println("No save file found in that slot. Start a new game here? (Y/N)");
+                    System.out.println("Start a new game in slot " + slot + "? (Y/N)");
                     String confirm = sc1.nextLine().trim().toUpperCase();
                     if (!confirm.equals("Y")) continue;
+                    else {
+                        System.out.println("Starting new game...");
+                        Sound.playSoundOnce("src/main/music/glitter.mp3");
+                        Game.pressEnterToContinue(sc1);
+                    }
                 } else {
                     loadAll(slot);
+                    System.out.println("Loaded save " + slot + "...");
+                    Sound.playSoundOnce("src/main/music/glitter.mp3");
+                    Game.pressEnterToContinue();
                 }
                 currentSlot = slot;
                 break;
             } catch (NumberFormatException e) {
                 System.out.println("Invalid input. Try again.");
+                Graphics.printClearLines(10);
             }
         }
     }
@@ -53,10 +62,13 @@ public class SaveSys {
 
         System.out.println("        SAVE GAME?");
         System.out.println("===========================");
-        System.out.println("Save to current slot [" + currentSlot + "]? (Y/N)");
+        System.out.println("Save to current slot (" + currentSlot + ")? (Y/N)");
         String input = sc1.nextLine().trim().toUpperCase();
         if (input.equalsIgnoreCase("Y")) {
             saveAll(currentSlot);
+            System.out.println("Saved to slot " + currentSlot + ".");
+            Sound.playSoundOnce("src/main/music/glitter.mp3");
+            Game.pressEnterToContinue(sc1);
         } else {
             System.out.println("Game not saved.");
             Game.pressEnterToContinue();
@@ -109,7 +121,6 @@ public class SaveSys {
         try (FileWriter writer = new FileWriter(fileName)) {
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
             gson.toJson(data, writer);
-            System.out.println("Game saved to slot " + slot + ".");
         } catch (IOException e) {
             System.err.println("Failed to save game to slot " + slot + ": " + e.getMessage());
         }
