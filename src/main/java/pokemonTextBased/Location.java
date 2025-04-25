@@ -1901,9 +1901,9 @@ public class Location {
         label:
         while (true) {
             System.out.println("                             Options");
-            System.out.println("==================================================================");
-            System.out.println("[V] Party | [B] Bag | [P] Pokedex | [M] More Options | [R] Return");
-            System.out.println("------------------------------------------------------------------");
+            System.out.println("============================================================================");
+            System.out.println("[V] Party | [B] Bag | [P] Pokedex | [S] Save | [M] More Options | [R] Return");
+            System.out.println("----------------------------------------------------------------------------");
             String choicePlayMenu = sc1.nextLine().trim().toUpperCase();
             switch (choicePlayMenu) {
                 case "V":
@@ -1914,6 +1914,9 @@ public class Location {
                     break;
                 case "P":
                     Species.enterPokedexMenu(sc1);
+                    break;
+                case "S":
+                    SaveSys.promptUserToSaveGame(sc1);
                     break;
                 case "M":
                     openMoreOptionsMenu(sc1);

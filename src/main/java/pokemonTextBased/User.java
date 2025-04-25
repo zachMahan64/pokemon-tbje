@@ -34,7 +34,7 @@ public class User {
     public enum Hints {
         NO_HINTS("NO HINTS"),
         SHOW_EFFECTIVENESS("SHOW EFFECTIVENESS"),
-        SHOW_ENGINE_CHOICES("SHOW GAME ENGINE RECOMMENDATIONS");
+        SHOW_ENGINE_CHOICES("SHOW ENGINE ANALYSIS");
         public final String str;
         Hints (String str) {
             this.str = str;
