@@ -34,7 +34,7 @@ import java.util.concurrent.ExecutionException;
 public class Game {
 
     public static boolean playStatus = true;
-    public static boolean testStatus = true;
+    public static boolean testStatus = false;
 
     public static void main(String[] args) throws InterruptedException, ExecutionException {
         new javafx.embed.swing.JFXPanel();
@@ -43,10 +43,11 @@ public class Game {
         Graphics.printClearLines(50);
         bootIntoVer(testStatus, sc1);
         enterDummyMainMenu(sc1);
+        SaveSys.promptUserToLoadGame(sc1);
         User.getTextSpeed(sc1);
         User.askUserToSetDifficulty(sc1);
         User.askUserToSetHints(sc1);
-        playOpening(sc1);
+        if(Party.p[0] == null) playOpening(sc1);
         while (playStatus) {
             enterMainMenu(sc1);
         }

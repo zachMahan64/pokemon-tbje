@@ -9,7 +9,61 @@ public class SaveSys {
     private static final String SAVE_FILE_PREFIX = "save";
     private static final String SAVE_FILE_SUFFIX = ".json";
     private static final int MAX_SLOTS = 5;
+    private static int currentSlot = -1; // -1 = no game loaded
 
+    // Call on boot to select and load a save file
+    public static void promptUserToLoadGame(Scanner sc1) {
+        while (true) {
+            System.out.println(" CHOOSE SAVE DATA TO LOAD");
+            System.out.println("==========================");
+            for (int i = 0; i < MAX_SLOTS; i++) {
+                File f = new File(SAVE_FILE_PREFIX + i + SAVE_FILE_SUFFIX);
+                System.out.printf("[%d] Slot %d %s%n", i, i, f.exists() ? "(has data)" : "(empty)");
+            }
+            System.out.print("Enter a slot number (0–4): ");
+            String input = sc1.nextLine();
+            try {
+                int slot = Integer.parseInt(input);
+                if (slot < 0 || slot >= MAX_SLOTS) {
+                    System.out.println("Invalid slot. Try again.");
+                    continue;
+                }
+                File f = new File(SAVE_FILE_PREFIX + slot + SAVE_FILE_SUFFIX);
+                if (!f.exists()) {
+                    System.out.println("No save file found in that slot. Start a new game here? (Y/N)");
+                    String confirm = sc1.nextLine().trim().toUpperCase();
+                    if (!confirm.equals("Y")) continue;
+                } else {
+                    loadAll(slot);
+                }
+                currentSlot = slot;
+                break;
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input. Try again.");
+            }
+        }
+    }
+
+    // Call later when saving
+    public static void promptUserToSaveGame(Scanner sc1) {
+        if (currentSlot == -1) {
+            System.out.println("No game loaded. Cannot save.");
+            return;
+        }
+
+        System.out.println("        SAVE GAME?");
+        System.out.println("===========================");
+        System.out.println("Save to current slot [" + currentSlot + "]? (Y/N)");
+        String input = sc1.nextLine().trim().toUpperCase();
+        if (input.equalsIgnoreCase("Y")) {
+            saveAll(currentSlot);
+        } else {
+            System.out.println("Game not saved.");
+            Game.pressEnterToContinue();
+        }
+    }
+
+    //behind the scenes
     public static void saveAll(int slot) {
         if (slot < 0 || slot >= MAX_SLOTS) {
             System.err.println("Invalid save slot. Must be 0 to 4.");
@@ -60,7 +114,6 @@ public class SaveSys {
             System.err.println("Failed to save game to slot " + slot + ": " + e.getMessage());
         }
     }
-
     public static void loadAll(int slot) {
         if (slot < 0 || slot >= MAX_SLOTS) {
             System.err.println("Invalid load slot. Must be 0 to 4.");
@@ -105,7 +158,6 @@ public class SaveSys {
             System.err.println("Failed to load game from slot " + slot + ": " + e.getMessage());
         }
     }
-
     private static <E extends Enum<E>> Map<String, Boolean> toStringMap(Map<E, Boolean> original) {
         Map<String, Boolean> result = new TreeMap<>();
         for (Map.Entry<E, Boolean> entry : original.entrySet()) {
@@ -113,7 +165,6 @@ public class SaveSys {
         }
         return result;
     }
-
     private static <E extends Enum<E>> Map<E, Boolean> fromStringMap(Map<String, Boolean> map, Class<E> enumClass) {
         Map<E, Boolean> result = new TreeMap<>();
         for (Map.Entry<String, Boolean> entry : map.entrySet()) {
