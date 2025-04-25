@@ -18,6 +18,7 @@ public class Species {
 
     //Types (species & pokemon uses strings, not this enum)
     public enum Type {
+        NONE("None"),
         BUG("Bug"),
         DARK("Dark"),
         DRAGON("Dragon"),

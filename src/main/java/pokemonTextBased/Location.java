@@ -1837,7 +1837,8 @@ public class Location {
             Sound.playMusicOnLoop("src/main/music/gymTheme.mp3");
             choice = sc1.nextLine().trim().toUpperCase();
             if(choice.equals("F")){
-                Encounter.enterTrainerBattle(new Trainer(gymLeadearTitle), sc1);
+                Trainer gymLeader = buildGymLeader(gymLeadearTitle);
+                Encounter.enterTrainerBattle(gymLeader, sc1);
             }
             if(choice.equals("T")){
                 talkToGymLeader(gymLeadearTitle, sc1);
@@ -1852,6 +1853,21 @@ public class Location {
         rushToNearestPokemonCenterIfFainted();
         Sound.stopAllSounds();
     } //WIP
+    public static Trainer buildGymLeader(Trainer.Title gymLeaderTitle) {
+        Species.Type typeSpeciality = Species.Type.NONE;
+        switch (gymLeaderTitle) {
+            case PEWTER_GYM_LEADER -> typeSpeciality = Species.Type.ROCK;
+            case CERULEAN_GYM_LEADER -> typeSpeciality = Species.Type.WATER;
+            case CELADON_GYM_LEADER -> typeSpeciality = Species.Type.GRASS;
+            case CINNABAR_GYM_LEADER -> typeSpeciality = Species.Type.FIRE;
+            case FUCHSIA_GYM_LEADER -> typeSpeciality = Species.Type.POISON;
+            case SAFFRON_GYM_LEADER -> typeSpeciality = Species.Type.PSYCHIC;
+        }
+        if (typeSpeciality == Species.Type.NONE) return new Trainer(gymLeaderTitle);
+        else {
+            return  new Trainer(gymLeaderTitle, Trainer.getProcedurallyMadeParty(60, typeSpeciality));
+        }
+    }
     public static void talkToGymLeader(Trainer.Title gymLeaderTitle, Scanner sc1) throws InterruptedException {
         NPC.Character whomToTalkTo = null;
         switch (gymLeaderTitle) {

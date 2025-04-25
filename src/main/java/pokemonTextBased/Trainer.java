@@ -747,7 +747,7 @@ public class Trainer {
                 "Billy", "Bruce", "Albert", "Willie", "Gabriel", "Logan", "Alan", "Juan", "Wayne", "Roy",
                 "Ralph", "Randy", "Eugene", "Vincent", "Russell", "Elijah", "Louis", "Bobby", "Philip", "Johnny",
                 "Mike", "John", "Steve", "Matt", "Eduardo", "Smithy", "Gene", "Eugene", "Todd", "Judas", "Joana", "Ricky",
-                "Bobby", "Bob"
+                "Bobby", "Bob", "Mike", "Mikey", "Billy", "Riccardo", "Eugene", "Plinkton"
         };
 
         Random rand = new Random();
@@ -765,7 +765,9 @@ public class Trainer {
                 "Eve", "Olivia", "Judith", "Megan", "Cheryl", "Martha", "Andrea", "Frances", "Hannah", "Jacqueline",
                 "Ann", "Gloria", "Jean", "Kathryn", "Alice", "Teresa", "Sara", "Janice", "Doris", "Madison", "Julia",
                 "Grace", "Judy", "Abigail", "Marie", "Denise", "Beverly", "Amber", "Theresa", "Marilyn", "Danielle",
-                "Diana", "Brittany", "Natalie", "Sophia", "Rose", "Isabella", "Alexis", "Kayla", "Charlotte", "Ava", "Liz"
+                "Diana", "Brittany", "Natalie", "Sophia", "Rose", "Isabella", "Alexis", "Kayla", "Charlotte", "Ava", "Liz",
+                "Sassy", "Carla", "Carly", "Millie", "Sophia", "Sophie", "Jasmine", "Jasper", "Amber", "Britney", "Adriana",
+                "Anna"
         };
 
         Random rand = new Random();
@@ -785,19 +787,19 @@ public class Trainer {
         return new Trainer(thisTitle, trainerParty);
     }
     //helpers for procedurally generated trainers
-    public static Pokemon[] getProcedurallyMadeParty(int BSTBound) {
+    public static Pokemon[] getProcedurallyMadeParty(int bSTBound) {
         Pokemon[] trainerParty = new Pokemon[Party.p.length];
         int thisBST = 0;
         for (int i = 0; i < Party.p.length; i++) {
             if(Party.p[i] == null) continue;
             thisBST = Party.p[i].getBST();
-            trainerParty[i] = new Pokemon(getRandomSpeciesNearBST(thisBST, BSTBound), User.checkLevelCap());
+            trainerParty[i] = new Pokemon(getRandomSpeciesNearBST(thisBST, bSTBound), User.checkLevelCap());
         }
         return trainerParty;
     }
-    private static Species getRandomSpeciesNearBST(int targetBST, int bound) {
-        int lowerBound = targetBST - bound;
-        int upperBound = targetBST + bound;
+    private static Species getRandomSpeciesNearBST(int targetBST, int bSTBound) {
+        int lowerBound = targetBST - bSTBound;
+        int upperBound = targetBST + bSTBound;
         ArrayList<String> viableSpeciesChoices = new ArrayList<>();
         for (Map.Entry<String, Integer> entry : Species.baseStatTotals.entrySet()) {
             int thisBST = entry.getValue();
@@ -807,19 +809,19 @@ public class Trainer {
         }
         return Species.getSpecies(viableSpeciesChoices.get(rand.nextInt(0, viableSpeciesChoices.size())));
     }
-    public static Pokemon[] getProcedurallyMadeParty(int BSTBound, Species.Type targetType) {
+    public static Pokemon[] getProcedurallyMadeParty(int bSTBound, Species.Type targetType) {
         Pokemon[] trainerParty = new Pokemon[Party.p.length];
         for (int i = 0; i < Party.p.length; i++) {
             if(Party.p[i] == null) continue;
             int thisBST = Party.p[i].getBST();
-            trainerParty[i] = new Pokemon(getRandomSpeciesNearBST(thisBST, BSTBound, targetType), User.checkLevelCap());
+            trainerParty[i] = new Pokemon(getRandomSpeciesNearBST(thisBST, bSTBound, targetType), User.checkLevelCap());
         }
         return trainerParty;
     }
-    private static Species getRandomSpeciesNearBST(int targetBST, int bound, Species.Type targetType) {
+    private static Species getRandomSpeciesNearBST(int targetBST, int bSTBound, Species.Type targetType) {
         String targetTypeStr = targetType.getStr();
-        int lowerBound = targetBST - bound;
-        int upperBound = targetBST + bound;
+        int lowerBound = targetBST - (bSTBound + 40);
+        int upperBound = targetBST + bSTBound;
         ArrayList<String> viableSpeciesChoices = new ArrayList<>();
         for (Map.Entry<String, Integer> entry : Species.baseStatTotals.entrySet()) {
             Species thisSpecies = Species.getSpecies(entry.getKey());
@@ -832,5 +834,5 @@ public class Trainer {
         }
         if (viableSpeciesChoices.isEmpty()) return getRandomSpeciesNearBST(targetBST, 50);
         else return Species.getSpecies(viableSpeciesChoices.get(rand.nextInt(0, viableSpeciesChoices.size())));
-    }
+    } //make it take lower bound too
 }
