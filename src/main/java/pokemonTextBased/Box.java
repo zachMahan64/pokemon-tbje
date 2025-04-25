@@ -1,5 +1,6 @@
 package pokemonTextBased;
 
+import java.util.List;
 import java.util.Scanner;
 import java.util.ArrayList;
 
@@ -16,6 +17,9 @@ public class Box {
             System.out.println("The box is full! Cannot store " + pokemon.getName() + ".");
             return false;
         }
+    }
+    public static ArrayList<Pokemon> getBox() {
+        return new ArrayList<>(box);
     }
     public static void listBox() {
         if (box.isEmpty()) {
@@ -58,5 +62,9 @@ public class Box {
             return chosenPokemon;
         }
         return null;
+    }
+
+    public static void setBox(List<Pokemon> loadedBox) {
+        box = new ArrayList<>(loadedBox);
     }
 }

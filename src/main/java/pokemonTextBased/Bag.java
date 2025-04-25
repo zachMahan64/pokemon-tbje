@@ -10,7 +10,7 @@ public class Bag {
     private static int goldBars = 0;
     public static HashMap<String, Integer> stockPortfolio = new HashMap<>();
     //items
-    private static final Map<String, Integer> battleItems = new HashMap<>();
+    private static Map<String, Integer> battleItems = new HashMap<>();
     static {
         battleItems.put("Pokeball", 5);
         battleItems.put("Potion", 5);
@@ -19,11 +19,12 @@ public class Bag {
         battleItems.put("Revive", 1);
         battleItems.put("Full Heal", 1); //non-working currently
     }
-    private static final Map<String, Integer> specialItems = new HashMap<>();
+    private static Map<String, Integer> specialItems = new HashMap<>();
     static {
         specialItems.put("Rare Candy", 1); // Start with 1 Rare Candy
     }
     //notes
+    private static Map<String, String[]> notes = new HashMap<>();
     private static final Map<String, String[]> referenceNotes = new HashMap<>();
     static {
         referenceNotes.put("GYM TIPS", new String[] {
@@ -83,7 +84,6 @@ public class Bag {
                 "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~",
         });
     }
-    private static Map<String, String[]> notes = new HashMap<>();
     public static boolean addNote(String noteKey, Scanner sc1) {
         if (referenceNotes.containsKey(noteKey) && !notes.containsKey(noteKey)) {
             String[] noteContent = referenceNotes.get(noteKey);
@@ -957,6 +957,55 @@ public class Bag {
     }
     public static void setBP(long BP) {
         Bag.BP = BP;
+    }
+
+    public static int getGoldBars() {
+        return goldBars;
+    }
+
+    public static Map<String, Integer> getStockPortfolio() {
+        return new HashMap<>(stockPortfolio);
+    }
+
+    public static Map<String, Integer> getBattleItems() {
+        return new HashMap<>(battleItems);
+    }
+
+    public static Map<String, Integer> getSpecialItems() {
+        return new HashMap<>(specialItems);
+    }
+
+    public static Map<String, String[]> getNotes() {
+        return new HashMap<>(notes);
+    }
+
+    public static void setPokedollars(long loadedPokedollars) {
+        pokedollars = loadedPokedollars;
+    }
+
+    public static void setDebt(long loadedDebt) {
+        debt = loadedDebt;
+    }
+
+    public static void setGoldBars(int loadedGoldBars) {
+        goldBars = loadedGoldBars;
+    }
+
+    public static void setStockPortfolio(Map<String, Integer> loadedStockPortfolio) {
+        stockPortfolio = new HashMap<>(loadedStockPortfolio);
+    }
+
+    public static void setBattleItems(Map<String, Integer> loadedBattleItems) {
+        battleItems = new HashMap<>(loadedBattleItems);
+    }
+
+    public static void setSpecialItems(Map<String, Integer> loadedSpecialItems) {
+        specialItems = new HashMap<>(loadedSpecialItems);
+    }
+
+
+    public static void setNotes(Map<String, String[]> loadedNotes) {
+        notes = new HashMap<>(loadedNotes);
     }
 }
 
