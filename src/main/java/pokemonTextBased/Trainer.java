@@ -6,7 +6,7 @@ import java.util.Map;
 import java.util.Random;
 
 public class Trainer {
-
+    private static final Random rand = new Random();
     public enum Title {
         //Leaders
         PEWTER_GYM_LEADER("Pewter City Gym Leader", "Brock", 2000),
@@ -64,9 +64,11 @@ public class Trainer {
         GRUNT_M_F("Rocket Grunt", "f", 60),
         GRUNT_H("Rocket Grunt", "m", 70),
         GRUNT_H_F("Rocket Grunt", "f", 70),
-        //COLOSSEUM
+        //COLOSSEUM/SPECIAL TRAINERS
         COLOSSEUM_BATTLER("Colosseum Trainer", "m", 50),
         COLOSSEUM_BATTLER_F("Colosseum Trainer", "f", 50),
+        BATTLE_SPECIALIST("Battle Specialist", "m", 50),
+        BATTLE_SPECIALIST_F("Battle Specialist", "f", 50),
         //COMPETITIVE TRAINERS
         C_TRAINER_1("Battle Expert", "m", 50),
         C_TRAINER_2("Battle Expert", "m", 50),
@@ -140,7 +142,7 @@ public class Trainer {
             this.name = getRandFemaleName();
         }
         else this.name = title.getName();
-        this.party = getPartyOfTrainer();
+        this.party = getPartyFromTitle();
         this.prize = title.getPrize();
     }
     public Trainer(Title title, Pokemon[] party) {
@@ -705,7 +707,7 @@ public class Trainer {
         testParties.add(Title.C_TRAINER_1);
         testParties.add(Title.C_TRAINER_3);
     }
-    public Pokemon[] getPartyOfTrainer() {
+    public Pokemon[] getPartyFromTitle() {
         Pokemon[] party = parties.getOrDefault(this.title, new Pokemon[]{
                 new Pokemon(Species.getSpecies("Pidgey"), 20, Pokemon.getShinyOdds())
         });
@@ -770,22 +772,32 @@ public class Trainer {
         int index = rand.nextInt(femaleNames.length);
         return femaleNames[index];
     }
+
     //procedurally generated trainers
-    private static final Random rand = new Random();
-    public static Trainer buildBattleLeagueTrainer() {
+    public static Trainer buildColosseumTrainer() {
+        Pokemon[] trainerParty = getProcedurallyMadeParty(50);
+        Title thisTitle = (rand.nextInt(0,2) == 0) ? Title.COLOSSEUM_BATTLER : Title.COLOSSEUM_BATTLER_F;
+         return new Trainer(thisTitle, trainerParty);
+    }
+    public static Trainer buildATypeSpecialistTrainer(Species.Type type) {
+        Pokemon[] trainerParty = getProcedurallyMadeParty(50, type);
+        Title thisTitle = (rand.nextInt(0,2) == 0) ? Title.BATTLE_SPECIALIST : Title.BATTLE_SPECIALIST_F;
+        return new Trainer(thisTitle, trainerParty);
+    }
+    //helpers for procedurally generated trainers
+    public static Pokemon[] getProcedurallyMadeParty(int BSTBound) {
         Pokemon[] trainerParty = new Pokemon[Party.p.length];
         int thisBST = 0;
         for (int i = 0; i < Party.p.length; i++) {
             if(Party.p[i] == null) continue;
             thisBST = Party.p[i].getBST();
-            trainerParty[i] = new Pokemon(getRandomSpeciesNearBST(thisBST), User.checkLevelCap());
+            trainerParty[i] = new Pokemon(getRandomSpeciesNearBST(thisBST, BSTBound), User.checkLevelCap());
         }
-        Title thisTitle = (rand.nextInt(0,2) == 0) ? Title.COLOSSEUM_BATTLER : Title.COLOSSEUM_BATTLER_F;
-         return new Trainer(thisTitle, trainerParty);
+        return trainerParty;
     }
-    private static Species getRandomSpeciesNearBST(int targetBST) {
-        int lowerBound = targetBST - 50;
-        int upperBound = targetBST + 50;
+    private static Species getRandomSpeciesNearBST(int targetBST, int bound) {
+        int lowerBound = targetBST - bound;
+        int upperBound = targetBST + bound;
         ArrayList<String> viableSpeciesChoices = new ArrayList<>();
         for (Map.Entry<String, Integer> entry : Species.baseStatTotals.entrySet()) {
             int thisBST = entry.getValue();
@@ -795,20 +807,19 @@ public class Trainer {
         }
         return Species.getSpecies(viableSpeciesChoices.get(rand.nextInt(0, viableSpeciesChoices.size())));
     }
-    public static Trainer buildATypeSpecialistTrainer(Species.Type type) {
+    public static Pokemon[] getProcedurallyMadeParty(int BSTBound, Species.Type targetType) {
         Pokemon[] trainerParty = new Pokemon[Party.p.length];
         for (int i = 0; i < Party.p.length; i++) {
             if(Party.p[i] == null) continue;
             int thisBST = Party.p[i].getBST();
-            trainerParty[i] = new Pokemon(getRandomSpeciesNearBST(thisBST, type), User.checkLevelCap());
+            trainerParty[i] = new Pokemon(getRandomSpeciesNearBST(thisBST, BSTBound, targetType), User.checkLevelCap());
         }
-        Title thisTitle = (rand.nextInt(0,2) == 0) ? Title.COLOSSEUM_BATTLER : Title.COLOSSEUM_BATTLER_F;
-        return new Trainer(thisTitle, trainerParty);
+        return trainerParty;
     }
-    private static Species getRandomSpeciesNearBST(int targetBST, Species.Type targetType) {
+    private static Species getRandomSpeciesNearBST(int targetBST, int bound, Species.Type targetType) {
         String targetTypeStr = targetType.getStr();
-        int lowerBound = targetBST - 50;
-        int upperBound = targetBST + 50;
+        int lowerBound = targetBST - bound;
+        int upperBound = targetBST + bound;
         ArrayList<String> viableSpeciesChoices = new ArrayList<>();
         for (Map.Entry<String, Integer> entry : Species.baseStatTotals.entrySet()) {
             Species thisSpecies = Species.getSpecies(entry.getKey());
@@ -819,6 +830,7 @@ public class Trainer {
                 viableSpeciesChoices.add(entry.getKey());
             }
         }
-        return Species.getSpecies(viableSpeciesChoices.get(rand.nextInt(0, viableSpeciesChoices.size())));
+        if (viableSpeciesChoices.isEmpty()) return getRandomSpeciesNearBST(targetBST, 50);
+        else return Species.getSpecies(viableSpeciesChoices.get(rand.nextInt(0, viableSpeciesChoices.size())));
     }
 }

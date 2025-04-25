@@ -1164,7 +1164,7 @@ public class Location {
             Graphics.printInsideOfTheColosseum(numTrainersBeaten);
             choice = sc1.nextLine().trim().toUpperCase();
             if(choice.equals("F")){
-                Trainer thisTrainerToBattle = Trainer.buildBattleLeagueTrainer();
+                Trainer thisTrainerToBattle = Trainer.buildColosseumTrainer();
                 if(Encounter.enterTrainerBattle(thisTrainerToBattle, sc1)) {
                     numTrainersBeaten++;
                     Bag.earnBP(numTrainersBeaten);
