@@ -1865,6 +1865,7 @@ public class Location {
             case CINNABAR_GYM_LEADER -> typeSpeciality = Species.Type.FIRE;
             case FUCHSIA_GYM_LEADER -> typeSpeciality = Species.Type.POISON;
             case SAFFRON_GYM_LEADER -> typeSpeciality = Species.Type.PSYCHIC;
+            case VERMILLION_GYM_LEADER -> typeSpeciality = Species.Type.ELECTRIC;
         }
         if (typeSpeciality == Species.Type.NONE) return new Trainer(gymLeaderTitle);
         else {

@@ -909,11 +909,9 @@ public class Encounter {
             if (slot != null && slot.equals("x")) graphic.append(slot);
         }
         int numEmptySlots = 0;
-        if (isFoe) numEmptySlots = 6 - partyArr.length;
-        else {
-            for (Pokemon pkm : partyArr) {
-                if (pkm == null) numEmptySlots++;
-            }
+        numEmptySlots = 6 - partyArr.length;
+        for (Pokemon pkm : partyArr) {
+            if (pkm == null) numEmptySlots++;
         }
         graphic.append("-".repeat(Math.max(0, numEmptySlots)));
         return graphic.toString();
