@@ -34,7 +34,7 @@ import java.util.concurrent.ExecutionException;
 public class Game {
 
     public static boolean playStatus = true;
-    public static boolean testStatus = false;
+    public static boolean testStatus = true;
 
     public static void main(String[] args) throws InterruptedException, ExecutionException {
         new javafx.embed.swing.JFXPanel();
@@ -378,7 +378,7 @@ public class Game {
         if (testStatus) {
             System.out.println("BOOTED IN VER. TEST");
             Sound.playMusicOnLoop("src/main/music/titleMusic.mp3");
-            Graphics.printThreeStarterPokeballs();
+            Graphics.printPokemon("tyranitar", true, true);
             Party.addToParty(new Pokemon(Species.getSpecies("scizor"), 20, true), sc1);
             Party.addToParty(new Pokemon(Species.getSpecies("Tyranitar"), 20, Pokemon.getShinyOdds()), sc1);
             Party.addToParty(new Pokemon(Species.getSpecies("mew"), 20, Pokemon.getShinyOdds()), sc1);
