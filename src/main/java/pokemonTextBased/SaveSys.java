@@ -14,11 +14,26 @@ public class SaveSys {
     // Call on boot to select and load a save file
     public static void promptUserToLoadGame(Scanner sc1) {
         while (true) {
-            System.out.println(" CHOOSE SAVE DATA TO LOAD");
-            System.out.println("==========================");
+            System.out.println(" ".repeat(24) + "LOAD SAVE DATA");
+            System.out.println("=".repeat(61));
             for (int i = 0; i < MAX_SLOTS; i++) {
                 File f = new File(SAVE_FILE_PREFIX + i + SAVE_FILE_SUFFIX);
-                System.out.printf("[%d] Slot %d %s%n", i, i, f.exists() ? "(load save)" : "(start new save)");
+                String lastPartOfLine = "";
+                if (f.exists()) {
+                    try {
+                        FileReader reader = new FileReader(SAVE_FILE_PREFIX + i + SAVE_FILE_SUFFIX);
+                        Gson gson = new Gson();
+                        SaveData data = gson.fromJson(reader, SaveData.class);
+                        lastPartOfLine = String.format("%-15s | Badges: %2d | Reputation: %-10d",
+                                data.username, tallyBadges(data.badgesEarned), data.reputation);
+                    } catch (IOException _) {
+                        System.out.println("Error trying to read save slot data.");
+                    }
+                } else {
+                    lastPartOfLine = "(start new game)";
+                }
+                System.out.printf("%-60s|%n", String.format("| [%d] %s", i, lastPartOfLine));
+                System.out.println("-".repeat(61));
             }
             System.out.print("Enter a slot number (0–" + (MAX_SLOTS - 1) + "): ");
             String input = sc1.nextLine();
@@ -52,8 +67,16 @@ public class SaveSys {
             }
         }
     }
-
-    // Call later when saving
+    public static int tallyBadges(Map<String, Boolean> badgeMap) {
+        int count = 0;
+        for (boolean earned : badgeMap.values()) {
+            if (earned) {
+                count++;
+            }
+        }
+        return count;
+    }
+    //Save to a current slot
     public static void promptUserToSaveGame(Scanner sc1) {
         if (currentSlot == -1) {
             System.out.println("No game loaded. Cannot save.");
@@ -72,6 +95,22 @@ public class SaveSys {
         } else {
             System.out.println("Game not saved.");
             Game.pressEnterToContinue();
+        }
+    }
+    public static void deleteSaveSlot(int slot) {
+        if (slot < 0 || slot >= MAX_SLOTS) {
+            System.out.println("Invalid slot number.");
+            return;
+        }
+        File f = new File(SAVE_FILE_PREFIX + slot + SAVE_FILE_SUFFIX);
+        if (f.exists()) {
+            if (f.delete()) {
+                System.out.println("Save slot " + slot + " deleted.");
+            } else {
+                System.out.println("Failed to delete save slot " + slot + ".");
+            }
+        } else {
+            System.out.println("No save file found in slot " + slot + ".");
         }
     }
 

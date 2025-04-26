@@ -34,7 +34,7 @@ import java.util.concurrent.ExecutionException;
 public class Game {
 
     public static boolean playStatus = true;
-    public static boolean testStatus = true;
+    public static boolean testStatus = false;
 
     public static void main(String[] args) throws InterruptedException, ExecutionException {
         new javafx.embed.swing.JFXPanel();
