@@ -709,7 +709,8 @@ public class Trainer {
         testParties.add(Title.C_TRAINER_1);
         testParties.add(Title.C_TRAINER_3);
     }
-    public Pokemon[] getPartyFromTitle() {
+    public Pokemon[] getPartyFromTitle()
+    {
         Pokemon[] party = parties.getOrDefault(this.title, new Pokemon[]{
                 new Pokemon(Species.getSpecies("Pidgey"), 20, Pokemon.getShinyOdds())
         });
@@ -720,6 +721,7 @@ public class Trainer {
         for (int i = 0; i < party.length; i++) {
             shuffledParty[i] = party[i].clone();
             shuffledParty[i].setLevel(getTrainerLevel(this.title));
+            shuffledParty[i].adjustPokemonStatsAfterLevelUp();
         }
 
         // Shuffle the party order

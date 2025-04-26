@@ -1,9 +1,6 @@
 package pokemonTextBased;// Zach Mahan, started 20250228, for fun Pokemon Game
 
-//BUGS: fix flinching ghosts (doesn't fail) (resolved?), engine choosing fake-out when it fails?
-
-//FILE SYS:
-// -Add savability when game is farther along (JSON)!
+//BUGS: Sound.stopAllSounds breaks after many usages (might be resolved, possible fix has been implemented)
 
 //STORY & Progression
 // -Add Silph Portable TV (in Bag), new news reels after each gym?
@@ -11,13 +8,13 @@ package pokemonTextBased;// Zach Mahan, started 20250228, for fun Pokemon Game
 // -Finish Gym Leader NPC dialogue
 
 //LOCATIONS
+// -Add Colosseum Steal feature
 // -Add more battle/encounter zones (e.g. mt moon)
 // -Add Rocket Safari Zone w/ special mons --> rock/bait mechanic
 // -procedural routes?
 
 //BATTLES & ENCOUNTERS
 // -Add full-fxning Tailwind, Light Screen, Reflect
-// -Make gym leaders have procedural parties
 
 //CLASS SPECIFIC ADDITIONS
 // -FIGHT: Add Move sounds (one per move type?)
@@ -26,7 +23,7 @@ package pokemonTextBased;// Zach Mahan, started 20250228, for fun Pokemon Game
 // -BOX: Make the Box not dogwater (pages, like 30 pkm per page)
 
 //OTHER FEATURES
-
+// -Add color to more pokemon
 
 import java.util.*;
 import java.util.concurrent.ExecutionException;
@@ -34,7 +31,7 @@ import java.util.concurrent.ExecutionException;
 public class Game {
 
     public static boolean playStatus = true;
-    public static boolean testStatus = true;
+    public static boolean testStatus = false;
 
     public static void main(String[] args) throws InterruptedException, ExecutionException {
         new javafx.embed.swing.JFXPanel();

@@ -401,7 +401,7 @@ public class Species {
         speciesMap.put("machoke", new Species("Machoke", "Fighting", "None", -1, 80, 100, 70, 45, 45, 55,
                 Arrays.asList(Move.getMove("Low Kick"), Move.getMove("Karate Chop"), Move.getMove("Close Combat"), Move.getMove("Swords Dance"))));
         speciesMap.put("machamp", new Species("Machamp", "Fighting", "None", -1, 90, 130, 80, 65, 85, 55,
-                Arrays.asList(Move.getMove("Low Kick"), Move.getMove("Karate Chop"), Move.getMove("Close Combat"), Move.getMove("Swords Dance"))));
+                Arrays.asList(Move.getMove("Low Kick"), Move.getMove("Rock Slide"), Move.getMove("Close Combat"), Move.getMove("Swords Dance"))));
         speciesMap.put("bellsprout", new Species("Bellsprout", "Grass", "Poison", 21, 50, 75, 35, 70, 30, 40,
                 Arrays.asList(Move.getMove("Vine Whip"), Move.getMove("Acid"), Move.getMove("Poison Powder"))));
         speciesMap.put("weepinbell", new Species("Weepinbell", "Grass", "Poison", 36, 65, 90, 50, 85, 45, 55,

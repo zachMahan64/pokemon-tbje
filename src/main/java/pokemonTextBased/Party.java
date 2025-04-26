@@ -498,7 +498,7 @@ public class Party {
         for(Pokemon pkm : p) {
             if(pkm != null) pkm.levelUpPokemon(User.checkLevelCap() - pkm.getLevel());
         }
-        System.out.println("You party's levels are now at the level cap!");
+        System.out.println("Your party member's levels are now at the level cap!");
         Sound.playSoundOnce("src/main/music/levelUp.mp3");
         Game.pressEnterToContinue();
     }
