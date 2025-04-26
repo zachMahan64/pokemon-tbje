@@ -162,8 +162,17 @@ public class Party {
         List<Move> availableMoves = pokemon.getMoves();
         for (int i = 0; i < availableMoves.size(); i++) {
             Move move = availableMoves.get(i);
-            System.out.println((i + 1) + ". " + move.getName() + " | Dmg: " + move.getDamage() + " | " + move.getType() + " | PP: " + move.getCurrentPp() + "/" + move.getTotalPp() + " | " + move.getAccuracy() + "% accurate | Other effect: " + move.getOtherEffect());
+            System.out.printf("%d. %-15s | Dmg: %-3d | Type: %-8s | PP: %2d/%-2d | Acc: %3d%% | Effect: %s%n",
+                    i + 1,
+                    move.getName(),
+                    move.getDamage(),
+                    move.getType(),
+                    move.getCurrentPp(),
+                    move.getTotalPp(),
+                    move.getAccuracy(),
+                    move.getOtherEffect());
         }
+
         System.out.println("=".repeat(100));
         Game.pressEnterToContinue(sc1);
     }
@@ -484,5 +493,13 @@ public class Party {
         }
 
         return totalLevel / partySize;
+    }
+    public static void setPartyLvlToLvlCap() throws InterruptedException {
+        for(Pokemon pkm : p) {
+            if(pkm != null) pkm.levelUpPokemon(User.checkLevelCap() - pkm.getLevel());
+        }
+        System.out.println("You party's levels are now at the level cap!");
+        Sound.playSoundOnce("src/main/music/levelUp.mp3");
+        Game.pressEnterToContinue();
     }
 }

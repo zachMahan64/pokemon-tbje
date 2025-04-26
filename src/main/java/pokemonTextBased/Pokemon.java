@@ -47,37 +47,7 @@ public class Pokemon {
     public Pokemon(String speciesName, int level) {
         this(Species.getSpecies(speciesName), level, Pokemon.getShinyOdds());
     }
-    public static void healPokemon(Pokemon pokemon) {
-        pokemon.currentHp = (int) (10.0 + pokemon.baseHp * (pokemon.level / 50.0));
-        pokemon.currentMaxHp = (int) (10.0 + pokemon.baseHp * (pokemon.level / 50.0));
-        pokemon.currentAttack = (int) (5.0 + pokemon.baseAttack * (pokemon.level / 50.0));
-        pokemon.currentDefense = (int) (5.0 + pokemon.baseDefense * (pokemon.level / 50.0));
-        pokemon.currentSpAtk = (int) (5.0 + pokemon.baseSpAtk * (pokemon.level / 50.0));
-        pokemon.currentSpDef = (int) (5.0 + pokemon.baseSpDef * (pokemon.level / 50.0));
-        pokemon.currentSpeed = (int) (5.0 + pokemon.baseSpeed * (pokemon.level / 50.0));
-        // Reset PP for each move
-        for (Move move : pokemon.moves) {
-            Move.resetMovePp(move);
-        }
-        pokemon.statusCondition = "None";
-        pokemon.setFlinched(false);
-        pokemon.setSkipNextTurn(false);
-        pokemon.resetStages();
-    }
-    public static void resetPokemonsNonHpStats(Pokemon pokemon) {
-        pokemon.currentMaxHp = (int) (10.0 + pokemon.baseHp * (pokemon.level / 50.0));
-        pokemon.currentAttack = (int) (5.0 + pokemon.baseAttack * (pokemon.level / 50.0));
-        pokemon.currentDefense = (int) (5.0 + pokemon.baseDefense * (pokemon.level / 50.0));
-        pokemon.currentSpAtk = (int) (5.0 + pokemon.baseSpAtk * (pokemon.level / 50.0));
-        pokemon.currentSpDef = (int) (5.0 + pokemon.baseSpDef * (pokemon.level / 50.0));
-        pokemon.currentSpeed = (int) (5.0 + pokemon.baseSpeed * (pokemon.level / 50.0));
-        pokemon.statusCondition = "None";
-        pokemon.setFlinched(false);
-        pokemon.setSkipNextTurn(false);
-        pokemon.setTurnSentOut(0);
-        pokemon.resetStages();
-        pokemon.setTimesSwitchedInBattle(0);
-    }
+    //more
     public Pokemon clone() {
         Pokemon cloned = new Pokemon(Species.getSpecies(this.name), this.level, this.shiny);
 
@@ -219,6 +189,38 @@ public class Pokemon {
         return shiny;
     }
     // stuff for stat changes
+    public static void healPokemon(Pokemon pokemon) {
+        pokemon.currentHp = (int) (10.0 + pokemon.baseHp * (pokemon.level / 50.0));
+        pokemon.currentMaxHp = (int) (10.0 + pokemon.baseHp * (pokemon.level / 50.0));
+        pokemon.currentAttack = (int) (5.0 + pokemon.baseAttack * (pokemon.level / 50.0));
+        pokemon.currentDefense = (int) (5.0 + pokemon.baseDefense * (pokemon.level / 50.0));
+        pokemon.currentSpAtk = (int) (5.0 + pokemon.baseSpAtk * (pokemon.level / 50.0));
+        pokemon.currentSpDef = (int) (5.0 + pokemon.baseSpDef * (pokemon.level / 50.0));
+        pokemon.currentSpeed = (int) (5.0 + pokemon.baseSpeed * (pokemon.level / 50.0));
+        // Reset PP for each move
+        for (Move move : pokemon.moves) {
+            Move.resetMovePp(move);
+        }
+        pokemon.statusCondition = "None";
+        pokemon.setFlinched(false);
+        pokemon.setSkipNextTurn(false);
+        pokemon.resetStages();
+    }
+    public static void resetPokemonsNonHpStats(Pokemon pokemon) {
+        pokemon.currentMaxHp = (int) (10.0 + pokemon.baseHp * (pokemon.level / 50.0));
+        pokemon.currentAttack = (int) (5.0 + pokemon.baseAttack * (pokemon.level / 50.0));
+        pokemon.currentDefense = (int) (5.0 + pokemon.baseDefense * (pokemon.level / 50.0));
+        pokemon.currentSpAtk = (int) (5.0 + pokemon.baseSpAtk * (pokemon.level / 50.0));
+        pokemon.currentSpDef = (int) (5.0 + pokemon.baseSpDef * (pokemon.level / 50.0));
+        pokemon.currentSpeed = (int) (5.0 + pokemon.baseSpeed * (pokemon.level / 50.0));
+        pokemon.statusCondition = "None";
+        pokemon.setFlinched(false);
+        pokemon.setSkipNextTurn(false);
+        pokemon.setTurnSentOut(0);
+        pokemon.setWakeUpTurn(0);
+        pokemon.setTimesSwitchedInBattle(0);
+        pokemon.resetStages();
+    }
     public void resetStages() {
         attackStage = 0; defenseStage = 0; spAtkStage = 0; spDefStage = 0; speedStage = 0;
     }
@@ -278,6 +280,9 @@ public class Pokemon {
     }
     public void setWakeUpTurnToTurnNum(Arena arena) {
         this.wakeUpTurn = arena.turnNum;
+    }
+    public void setWakeUpTurn(int k) {
+        this.wakeUpTurn = k;
     }
     public int getRechargeTurn() {
         return rechargeTurn;
@@ -479,6 +484,11 @@ public class Pokemon {
             this.level++;
             this.adjustPokemonStatsAfterLevelUp();
             tryEvolvePokemon(this);
+        }
+    }
+    public void levelUpPokemon(int n) throws InterruptedException{
+        for(int i = 0; i < n; i++) {
+            levelUpPokemon();
         }
     }
     public void adjustPokemonStatsAfterLevelUp() {

@@ -1365,7 +1365,7 @@ public class Encounter {
             Party.levelUpEntirePartyByOne();
             givePlayerMoneyAfterBeatingTrainer(arena, rewardMultiplier);
         } else if (playerHasRunAway) {
-            int losses = (int) (Bag.getPokedollars()*.05);
+            int losses = (int) Math.min(1000, (Bag.getPokedollars()*.05));
             System.out.println("You lost " +  losses + " Pokedollars to " + arena.trainer.name +"...");
             Bag.spendPokedollarsSilent(losses);
         }

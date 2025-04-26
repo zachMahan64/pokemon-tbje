@@ -1846,6 +1846,10 @@ public class Location {
             if(choice.equals("T")){
                 talkToGymLeader(gymLeadearTitle, sc1);
             }
+            if(choice.equals("C")){
+                Encounter.enterWildPkmBattle(new Pokemon("Chansey", 5), sc1);
+                Party.setPartyLvlToLvlCap();
+            }
             if(choice.equals("H")){
                 goToHelpDesk(sc1);
             }
@@ -1904,7 +1908,7 @@ public class Location {
     public static void openOptionsMenu(Scanner sc1) throws InterruptedException {
         label:
         while (true) {
-            System.out.println("                             Options");
+            System.out.println("                                  Options");
             System.out.println("============================================================================");
             System.out.println("[V] Party | [B] Bag | [P] Pokedex | [S] Save | [M] More Options | [R] Return");
             System.out.println("----------------------------------------------------------------------------");

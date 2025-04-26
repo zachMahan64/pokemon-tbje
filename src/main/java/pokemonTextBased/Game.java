@@ -393,7 +393,7 @@ public class Game {
             Bag.earnBP(500);
             //Bag.addSpecialItem("Rare Candy", 200);
             //User.unlockEverything();
-            //Encounter.enterWildPkmBattle(new Pokemon("Incineroar", 20, true), sc1);
+            Encounter.enterWildPkmBattle(new Pokemon("sceptile", 20, true), sc1);
             //Encounter.enterTrainerBattle(templateTrainer, sc1);
             //Encounter.enterTrainerBattle(Trainer.buildBattleLeagueTrainer(), sc1);
             enterMainMenu(sc1);
