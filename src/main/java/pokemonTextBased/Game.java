@@ -75,7 +75,7 @@ public class Game {
         System.out.println("\nObtained the Pokedex from Professor Oak!\n");
         Thread.sleep(openingWaitTime);
         System.out.println("Oh, and, uh, remind me, what's your name?");
-        User.setUsername(askForUsername(sc1));
+        User.setUsername(User.askForUsername(sc1));
         System.out.println("Right, of course, " + User.getUsername() + "!");
         Thread.sleep(openingWaitTime);
         System.out.println("Also, are you a boy or girl?");
@@ -162,17 +162,7 @@ public class Game {
         Sound.stopAllSounds();
         Graphics.printLoadingBar(120);
     }
-    public static String askForUsername(Scanner sc1) {
-        System.out.println("Enter your name: ");
-        String username;
-        while (true) {
-            username = sc1.nextLine().trim();
-            if (!username.isEmpty()) {
-                return username;
-            }
-            System.out.print("Invalid input. Please enter a valid name: ");
-        }
-    }
+
     public static int getUndecidedStarterSelection(Scanner sc1) {
         int starter;
         while (true) {

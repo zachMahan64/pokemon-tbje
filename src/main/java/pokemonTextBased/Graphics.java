@@ -7298,6 +7298,7 @@ public class Graphics {
         }
     }
     public static void printGymInterior(Trainer.Title gymLeader) {
+        String againOrBlank = (User.badgesEarned.get(gymLeader)) ? " to a rematch" : "";
         String gymName = "GYM";
         switch (gymLeader) {
             case PEWTER_GYM_LEADER:
@@ -7339,7 +7340,7 @@ public class Graphics {
                 "⠀⠀⠀⣧⠀⠀⠀⠀⠙⠃⠀⣠⣿⣿⣿⣿⣿⢿⣷⣾⣿⣷⣿⣷⣶⣶⣦⣴⠀⣴⣠⡆⢠⣤⣤⣤⣴⣾⣿⢼⣿⣿⣿⣿⣿⣿⠀⣠⣾⣇⡀⠾⠃⠀⢀⠀⠘⣿⡃⠀",
                 "⠀⠀⠀⣰⣀⠀⠀⠚⠃⡀⣨⡍⣿⢿⣿⣿⡟⣾⣿⣿⣿⣿⣿⡿⣿⣿⣿⣿⣶⣤⣤⣤⣾⣿⣿⣿⣿⡿⢿⡞⣿⣿⣿⣿⣿⣿⡆⣿⡛⣦⢰⡄⣀⠀⠀⠀⠀⢛⡄⠀" + "                Select",
                 "⠀⠀⠀⢸⣾⣤⣤⣼⣿⣧⣿⠙⠛⠘⠛⠚⠃⠛⠛⠛⣛⠛⢛⣃⣛⣛⣛⡛⠛⠛⠛⢛⠛⣉⣓⣘⡛⢛⡚⠃⠛⠛⠛⠛⠛⢻⠇⠙⠃⠻⣾⣷⢿⣿⣿⣿⡌⢄⠃⡆" + " ====================================",
-                "⠀⠀⠂⠀⢰⣶⣿⣿⣿⣿⡟⣸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⠀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣇⢻⣿⡎⣿⣿⣿⣷⡸⢰⠇" + " [F] Challenge Gym Leader " + gymLeader.getName(),
+                "⠀⠀⠂⠀⢰⣶⣿⣿⣿⣿⡟⣸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⠀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣇⢻⣿⡎⣿⣿⣿⣷⡸⢰⠇" + " [F] Challenge " + gymLeader.getName(),
                 "⢠⡀⢠⢀⣼⣿⣿⣿⣿⣿⢣⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡘⣿⣷⢹⣿⣿⣿⡇⣼⠀" + " [T] Talk to " + gymLeader.getName(),
                 "⢸⣇⠈⠀⠹⣿⡟⣩⣭⡅⣼⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠟⢛⡧⢻⢿⣟⠻⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣧⢉⣭⣍⢹⣿⣿⠃⡇⡀" + " [H] Help Desk",
                 "⢸⣧⡀⠀⢠⡿⢰⣿⣿⢡⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡟⠁⠁⣠⢖⣈⡻⢶⠍⢢⢻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡌⠀⣤⡄⢿⣿⢠⠁⣷",

@@ -5,7 +5,6 @@ import java.util.*;
 public class User {
     //general
     public static String username = "Cyan";
-
     public enum Gender {
         BOY("boy"),
         GIRL("girl");
@@ -422,6 +421,20 @@ public class User {
                 System.out.println("Invalid choice. Please select a difficulty.");
                 Game.pressEnterToContinue(sc1);
             }
+        }
+    }
+    public static String askForUsername(Scanner sc1) {
+        System.out.print("Enter your name: ");
+        String username;
+        while (true) {
+            username = sc1.nextLine().trim();
+            if (!username.isEmpty() && username.length() < 16) {
+                return username;
+            }
+            else if (username.length() >= 16) {
+                System.out.print("Name too long (max 15 characters). Please enter a valid name: ");
+            }
+            System.out.print("Invalid input. Please enter a valid name: ");
         }
     }
 }

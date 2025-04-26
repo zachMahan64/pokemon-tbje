@@ -30,7 +30,8 @@ public class SaveSys {
                         System.out.println("Error trying to read save slot data.");
                     }
                 } else {
-                    lastPartOfLine = "(start new game)";
+                    lastPartOfLine = String.format("%-15s | %10s | %-22s",
+                            "start new game", "", "");
                 }
                 System.out.printf("%-60s|%n", String.format("| [%d] %s", i, lastPartOfLine));
                 System.out.println("-".repeat(61));
