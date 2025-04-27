@@ -1240,6 +1240,8 @@ public class Location {
             System.out.println(" [4] Mystery Egg       |   10 BP");
             System.out.println(" [C] Cancel");
             System.out.println("-----------------------------------------");
+            System.out.println(" You have " + Bag.getBP() + " BP");
+            System.out.println("-----------------------------------------");
             System.out.println(" Make a selection: ");
 
             choice = sc1.nextLine().toUpperCase().trim();

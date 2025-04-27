@@ -258,8 +258,7 @@ public class Bag {
                 Random rand = new Random();
                 String randomSpeciesStr = possibleSpecies.get(rand.nextInt(possibleSpecies.size()));
                 Pokemon randomPkm = new Pokemon(randomSpeciesStr, User.checkLevelCap() / 2);
-                Graphics.printPokemon(randomPkm);
-                System.out.println("Wow! You hatched a " + randomSpeciesStr + "!");
+                System.out.println("\nWow! You hatched a " + randomSpeciesStr + "!");
                 Party.addToParty(randomPkm, sc1);
                 Bag.specialItems.put("Mystery Egg", Bag.specialItems.get("Mystery Egg") - 1);
             }

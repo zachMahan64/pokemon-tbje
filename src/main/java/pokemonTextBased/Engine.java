@@ -81,58 +81,6 @@ public class Engine {
         simulateAllMatchUpsMultithreaded(10);
     }
 
-    //singleThreaded
-    public static void simulateAllMatchups(int numSimsPerMatchUp) throws InterruptedException {
-        long startTime = System.currentTimeMillis();
-        User.textSpeed = 0;
-        Sound.disableSound = true;
-        int numWins = 0;
-        Engine engine = new Engine(new EnginePackage(EnginePackage.defaultEngineParameterMap), false);
-        Pokemon[] playerParArr = Trainer.parties.get(Trainer.Title.VAUGHAN_DISTRICT_GYM_LEADER);
-        Pokemon[] foeParArr = Trainer.parties.get(Trainer.Title.VAUGHAN_DISTRICT_GYM_LEADER);
-        numWins += simulateMatchUp(numSimsPerMatchUp, playerParArr, foeParArr, engine, true);
-        long endTime = System.currentTimeMillis();
-        System.out.println("Player won " + numWins + " total times with game engine ver" + engine.version);
-        System.out.printf("Completed in %.2f seconds\n\n", (endTime - startTime) / 1000.0);
-    }
-    public static int simulateMatchUp(int numSimsPerMatchUp, Pokemon[] playerParArr, Pokemon[] foeParArr, Engine engine, boolean doPrints) throws InterruptedException {
-        int numWins = 0;
-
-        long startTime = System.currentTimeMillis();
-
-        for (int i = 1; i <= (long) numSimsPerMatchUp; i++) {
-            if(doPrints) System.out.println("Sim #" + i);
-            Trainer foeTrainer = new Trainer(Trainer.Title.CHAMPION);
-            for (Pokemon pkm : playerParArr) {
-                if(pkm != null) pkm.setIsFoe(false);
-            }
-            Pokemon[] thisPlayerParArr = new Pokemon[playerParArr.length];
-            for (int k = 0; k < playerParArr.length; k++) {
-                if(playerParArr[k] != null) thisPlayerParArr[k] = playerParArr[k].clone();
-            }
-
-            Pokemon[] thisFoeParArr = new Pokemon[foeParArr.length];
-            for (int k = 0; k < foeParArr.length; k++) {
-                if(foeParArr[k] != null) thisFoeParArr[k] = foeParArr[k].clone();
-            }
-            Arena arena = new Arena(thisPlayerParArr, thisFoeParArr, foeTrainer, engine, engine);
-            arena.isSimulation = true;
-            boolean playerWon = simulateBattle(arena);
-            if (playerWon) {
-                if(doPrints) System.out.println("Player won!");
-                numWins++;
-            }
-            else if(doPrints) System.out.println("Player lost!");
-        }
-        if(doPrints) System.out.println("In this MATCH-UP, Player won " + numWins + "/" + numSimsPerMatchUp + " times.");
-        if(doPrints) System.out.println("Player party:" + Arrays.toString(playerParArr));
-        if(doPrints) System.out.println("Foe party:   " + Arrays.toString(foeParArr));
-
-        long endTime = System.currentTimeMillis();
-        System.out.printf("Completed in %.2f seconds\n\n", (endTime - startTime) / 1000.0);
-
-        return numWins;
-    }
     //Individual battle sim instance
     public static boolean simulateBattle(Arena arena) throws InterruptedException {
         //only lead with an advantage in harder difficulties, otherwise let starting pokemon remain random

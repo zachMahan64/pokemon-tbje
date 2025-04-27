@@ -567,7 +567,7 @@ public class Fight {
                 {0.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 2.0, 1.0, 1.0, 2.0, 1.0, 0.5, 1.0, 1.0, 1.0}, // GHOST
                 {1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 2.0, 1.0, 0.5, 0.0, 1.0}, // DRAGON
                 {1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 2.0, 1.0, 1.0, 2.0, 1.0, 0.5, 1.0, 0.5, 1.0}, // DARK
-                {1.0, 0.5, 1.0, 0.5, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 2.0, 1.0, 1.0, 1.0, 0.5, 2.0, 1.0}, // STEEL
+                {1.0, 0.5, 0.5, 0.5, 1.0, 2.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 2.0, 1.0, 1.0, 1.0, 0.5, 2.0, 1.0}, // STEEL
                 {1.0, 0.5, 1.0, 1.0, 1.0, 1.0, 2.0, 0.5, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 2.0, 2.0, 0.5, 1.0, 1.0}, // FAIRY
                 {1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0}  // NONE
         };
@@ -902,9 +902,7 @@ public class Fight {
         return move.getName().equals("Nasty Plot") || move.getName().equals("Dragon Dance") || move.getName().equals("Swords Dance")
                 || move.getName().equals("Bulk Up") || move.getName().equals("Calm Mind") || move.getName().equals("Iron Defense")
                 || move.getOtherEffect().equals("Opponent Burn") || move.getOtherEffect().equals("Opponent Poison")
-                || move.getOtherEffect().equals("Opponent Paralysis") || move.getOtherEffect().equals("Opponent Sleep")
-                || move.getOtherEffect().equals("Snowy") || move.getOtherEffect().equals("Rainy")
-                || move.getOtherEffect().equals("Sunny");
+                || move.getOtherEffect().equals("Opponent Paralysis") || move.getOtherEffect().equals("Opponent Sleep");
     }
     // Switch decision-making
     public static boolean switchSimplyAI(Arena arena, boolean alliesAreFoes) throws InterruptedException {
