@@ -76,7 +76,7 @@ public class Bag {
                 " BP you earn per win.",
                 "4) Come visit the Help Desk to claim prizes with your",
                 " BP.",
-                "5) Once you achieve a record of 25 trainers beaten,",
+                "5) Once you achieve a record of 10 trainers beaten,",
                 " you may procure one Pokemon from each trainer that ",
                 " you defeat in THE COLOSSEUM.",
                 "                                     -G. SAKAKI",

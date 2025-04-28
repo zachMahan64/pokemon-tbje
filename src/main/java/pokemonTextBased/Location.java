@@ -1256,9 +1256,8 @@ public class Location {
             System.out.println("        PRIZES         |  COST IN BP");
             System.out.println("=========================================");
             System.out.println(" [1] Rare Candy x10    |    3 BP");
-            System.out.println(" [2] Pokeball x10      |    5 BP");
-            System.out.println(" [3] Pokedollars x5000 |   20 BP");
-            System.out.println(" [4] Mystery Egg       |   10 BP");
+            System.out.println(" [2] Pokedollars x5000 |   20 BP");
+            System.out.println(" [3] Mystery Egg       |   10 BP");
             System.out.println(" [C] Cancel");
             System.out.println("-----------------------------------------");
             System.out.println(" You have " + Bag.getBP() + " BP");
@@ -1268,20 +1267,19 @@ public class Location {
             choice = sc1.nextLine().toUpperCase().trim();
             switch (choice) {
                 case "1":
-                    Bag.addSpecialItem("Rare Candy", 10);
+                    buySpecialItemWithBP("Rare Candy", 10, sc1);
                     Bag.spendBP(1);
                     break;
                 case "2":
-                    Bag.addItem("Pokeball", 10);
-                    Bag.spendBP(2);
+                    Bag.adjustPokedollarBalance(5000);
+                    if(Bag.getBP() >= 3) {
+                        Bag.spendBP(3);
+                    } else {
+                        System.out.println("Not enough BP");
+                    }
                     break;
                 case "3":
-                    Bag.adjustPokedollarBalance(5000);
-                    Bag.spendBP(3);
-                    break;
-                case "4":
-                    Bag.addSpecialItem("Mystery Egg", 1);
-                    Bag.spendBP(10);
+                    buySpecialItemWithBP("Mystery Egg", 10, sc1);
                     break;
                 case "C":
                     break;
@@ -1926,6 +1924,36 @@ public class Location {
                 Bag.addNote("GYM TIPS", sc1);
             }
         } while(!Party.checkIfEveryPkmHasFainted() && !choice.equals("L"));
+    }
+    private static void buySpecialItemWithBP(String item, int price, Scanner sc1) throws InterruptedException {
+        System.out.println("How many " + item + "s would you like to buy?");
+        System.out.print("Enter the amount or [0] to cancel: ");
+
+        try {
+            int amount = Integer.parseInt(sc1.nextLine().trim());
+            if (amount > 0) {
+                int totalCost = price * amount;
+                if (Bag.getBP() >= totalCost) {  // Check AFTER getting quantity
+                    Bag.spendBP(totalCost);
+                    Bag.addSpecialItem(item, amount);
+                    System.out.println("You received " + amount + " " + item + "(s).");
+                } else {
+                    System.out.println("You don't have enough BP for that!");
+                }
+                Game.pressEnterToContinue(sc1);
+            }
+            else if (amount == 0) {
+                System.out.println("Changed your mind?");
+                Game.pressEnterToContinue(sc1);
+            }
+            else {
+                System.out.println("Positive quantities only!");
+                Game.pressEnterToContinue(sc1);
+            }
+        } catch (NumberFormatException e) {
+            System.out.println("Integers only!");
+            Game.pressEnterToContinue(sc1);
+        }
     }
     //options logic
     public static void openOptionsMenu(Scanner sc1) throws InterruptedException {
