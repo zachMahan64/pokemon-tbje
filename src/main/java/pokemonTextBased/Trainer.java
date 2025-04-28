@@ -729,6 +729,13 @@ public class Trainer {
 
         return shuffledParty;
     }
+    public Pokemon[] cloneParty() {
+        Pokemon[] clonedParty = new Pokemon[party.length];
+        for (int i = 0; i < party.length; i++) {
+            if(party[i] != null) clonedParty[i] = party[i].clone();
+        }
+        return clonedParty;
+    }
     private static void shuffleArray(Pokemon[] array) {
         Random rnd = new Random();
         for (int i = array.length - 1; i > 0; i--) {

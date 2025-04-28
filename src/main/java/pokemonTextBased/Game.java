@@ -1,6 +1,7 @@
 package pokemonTextBased;// Zach Mahan, started 20250228, for fun Pokemon Game
 
 //BUGS: Sound.stopAllSounds breaks after many usages (might be resolved, possible fix has been implemented)
+//-Thunder Wave hits Ground types
 
 //STORY & Progression
 // -Add Silph Portable TV (in Bag), new news reels after each gym?
@@ -375,10 +376,10 @@ public class Game {
         if (testStatus) {
             System.out.println("BOOTED IN VER. TEST");
             Sound.playMusicOnLoop("src/main/music/titleMusic.mp3");
-            Graphics.printPokemon("tyranitar", true, true);
-            Party.addToParty(new Pokemon(Species.getSpecies("scizor"), 20, true), sc1);
-            Party.addToParty(new Pokemon(Species.getSpecies("Tyranitar"), 20, Pokemon.getShinyOdds()), sc1);
-            Party.addToParty(new Pokemon(Species.getSpecies("mew"), 20, Pokemon.getShinyOdds()), sc1);
+            //Graphics.printPokemon("tyranitar", true, true);
+            //Party.addToParty(new Pokemon(Species.getSpecies("scizor"), 20, true), sc1);
+            //Party.addToParty(new Pokemon(Species.getSpecies("Tyranitar"), 20, Pokemon.getShinyOdds()), sc1);
+            //Party.addToParty(new Pokemon(Species.getSpecies("mew"), 20, Pokemon.getShinyOdds()), sc1);
             Party.addToParty(new Pokemon(Species.getSpecies("excadrill"), 20, Pokemon.getShinyOdds()), sc1);
 //            Party.addToParty(new Pokemon(Species.getSpecies("Togekiss"), 20, Pokemon.getShinyOdds()), sc1);
 //            Party.addToParty(new Pokemon(Species.getSpecies("dragapult"), 20, Pokemon.getShinyOdds()), sc1);
@@ -390,9 +391,10 @@ public class Game {
             Bag.earnBP(500);
             //Bag.addSpecialItem("Rare Candy", 200);
             //User.unlockEverything();
-            Encounter.enterWildPkmBattle(new Pokemon("sceptile", 20, true), sc1);
+            //Encounter.enterWildPkmBattle(new Pokemon("sceptile", 20, true), sc1);
             //Encounter.enterTrainerBattle(templateTrainer, sc1);
             //Encounter.enterTrainerBattle(Trainer.buildBattleLeagueTrainer(), sc1);
+            User.recordColosseumTrainersBeaten = 10;
             enterMainMenu(sc1);
         }
     }

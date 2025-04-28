@@ -1168,14 +1168,15 @@ public class Location {
             choice = sc1.nextLine().trim().toUpperCase();
             if(choice.equals("F")){
                 Trainer thisTrainerToBattle = Trainer.buildColosseumTrainer();
+                Pokemon [] partyContainingMembersToPotentiallyProcure = thisTrainerToBattle.cloneParty();
                 if(Encounter.enterTrainerBattle(thisTrainerToBattle, sc1)) {
                     numTrainersBeaten++;
                     Bag.earnBP(numTrainersBeaten);
                     if (numTrainersBeaten > User.recordColosseumTrainersBeaten) {
                         User.recordColosseumTrainersBeaten = numTrainersBeaten;
                     }
-                    if (User.recordColosseumTrainersBeaten >= 25) {
-                        letUserProcureAPkmOfTheirChoice(thisTrainerToBattle.party, sc1);
+                    if (User.recordColosseumTrainersBeaten >= 10) {
+                        letUserProcureAPkmOfTheirChoice(partyContainingMembersToPotentiallyProcure, sc1);
                     }
                     healPartyWithDialogueAndSound();
                 }
@@ -1210,8 +1211,28 @@ public class Location {
             Game.pressEnterToContinue(sc1);
         }
         rushToNearestPokemonCenterIfFainted();
-    }
+    } //letsProc @ 10 wins
     private static void letUserProcureAPkmOfTheirChoice(Pokemon[] party, Scanner sc1) throws InterruptedException {
+        int index = -1;
+        String choice;
+        do {
+            System.out.println(" WHICH POKEMON DO YOU WANT TO PROCURE?");
+            System.out.println("=======================================");
+            for (int i = 0; i < party.length; i++) {
+                if (party[i] == null) continue;;
+                System.out.println(" [" + (i + 1) + "] " + party[i].toStringHideHP());
+            }
+            System.out.println(" [N] None");
+            choice = sc1.nextLine().trim().toUpperCase();
+            if (choice.equals("N")) continue;
+            try {
+                index = Integer.parseInt(choice) - 1;
+            } catch (NumberFormatException e) {
+                index = -1; // force retry
+                System.out.println("Invalid input.");
+            }
+        } while ((index < 0 || index >= party.length) && !choice.equals("N"));
+        Party.addToParty(party[index].clone(), sc1);
     }
     public static void goToHelpDeskInColosseum(Scanner sc1) throws InterruptedException {
         String choice = "";

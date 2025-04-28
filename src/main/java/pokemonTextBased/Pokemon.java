@@ -539,6 +539,17 @@ public class Pokemon {
             return name + star+ " lv. " + level + " | " + type1 + " | HP: " + currentHp + "/" + currentMaxHp;
         }
     }
+    public String toStringHideHP() {
+        String star = "";
+        if(isShiny()){
+            star = " ✨";
+        }
+        if (!type2.equals("None")) {
+            return name + star + " lv. " + level + " | " + type1 + "/" + type2;
+        } else {
+            return name + star+ " lv. " + level + " | " + type1;
+        }
+    }
     public boolean isFoe() {
         return isFoe;
     }
