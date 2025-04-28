@@ -80,7 +80,7 @@ public class Engine {
     }
 
     public static void main(String[] args) throws InterruptedException, ExecutionException {
-        simulateAllMatchUpsMultithreaded(1);
+        simulateAllMatchUpsMultithreaded(5);
     }
 
     //Individual battle sim instance
@@ -296,60 +296,31 @@ public class Engine {
         User.textSpeed = 2000;
         Sound.disableSound = false;
     }
-    public static int simulateMatchUpMultithreaded(int numSimsPerMatchUp, Pokemon[] playerParArr, Pokemon[] foeParArr, Engine testEngine, Engine nullHypEngine, boolean doPrints) throws InterruptedException, ExecutionException {
+    public static int simulateMatchUpMultithreaded(int numSimsPerMatchUp, Pokemon[] playerParArr, Pokemon[] foeParArr, Engine testEngine, Engine nullHypEngine, boolean doPrints) throws InterruptedException {
+        int wins = 0;
 
-        int numThreads = Runtime.getRuntime().availableProcessors();
-        ExecutorService executor = Executors.newFixedThreadPool(numThreads);
+        Pokemon[] basePlayerParty = cloneParty(playerParArr, false);
+        Pokemon[] baseFoeParty = cloneParty(foeParArr, true);
+        Trainer foeTrainer = new Trainer(Trainer.Title.CHAMPION);
 
-        int baseSimsPerThread = numSimsPerMatchUp / numThreads;
-        int remainingSims = numSimsPerMatchUp % numThreads;
+        for (int i = 0; i < numSimsPerMatchUp; i++) {
+            Pokemon[] playerTeam = cloneParty(basePlayerParty, false);
+            Pokemon[] foeTeam = cloneParty(baseFoeParty, true);
 
-        long startTime = System.currentTimeMillis();
+            Arena arena = new Arena(playerTeam, foeTeam, foeTrainer, testEngine, nullHypEngine);
+            arena.isSimulation = true;
 
-        //aggregate results
-        List<Future<Integer>> futures = new ArrayList<>(numThreads);
-
-        for (int i = 0; i < numThreads; i++) {
-             int threadSims = baseSimsPerThread + (i < remainingSims ? 1 : 0);
-            if (threadSims <= 0) continue;
-
-            futures.add(executor.submit(() -> {
-                int threadWins = 0;
-
-                Pokemon[] thisPlayerParArr = cloneParty(playerParArr, false);
-                Pokemon[] thisFoeParArr = cloneParty(foeParArr, true);
-                Trainer foeTrainer = new Trainer(Trainer.Title.CHAMPION);
-
-                for (int j = 0; j < threadSims; j++) {
-                    Pokemon[] playerTeam = cloneParty(thisPlayerParArr, false);
-                    Pokemon[] foeTeam = cloneParty(thisFoeParArr, true);
-
-                    Arena arena = new Arena(playerTeam, foeTeam, foeTrainer, testEngine, nullHypEngine);
-                    arena.isSimulation = true;
-
-                    if (simulateBattle(arena)) {
-                        threadWins++;
-                    }
-                }
-                return threadWins;
-            }));
+            if (simulateBattle(arena)) {
+                wins++;
+            }
         }
-
-        // Aggregate results
-        int totalWins = 0;
-        for (Future<Integer> future : futures) {
-            totalWins += future.get();
-        }
-
-        executor.shutdown();
 
         if (doPrints) {
-            System.out.println("Player won " + totalWins + "/" + numSimsPerMatchUp + " battles");
-            long endTime = System.currentTimeMillis();
-            System.out.printf("Completed in %.2f seconds\n\n", (endTime - startTime) / 1000.0);
+            System.out.println("Player won " + wins + "/" + numSimsPerMatchUp + " battles");
         }
-        return totalWins;
+        return wins;
     }
+
     //helper
     public static Pokemon[] cloneParty(Pokemon[] original, boolean isFoe) {
         Pokemon[] partyClone = new Pokemon[original.length];
