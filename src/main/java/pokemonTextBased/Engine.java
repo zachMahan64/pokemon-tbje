@@ -2,6 +2,8 @@ package pokemonTextBased;
 
 import java.util.*;
 import java.util.concurrent.*;
+import java.util.concurrent.atomic.AtomicInteger;
+
 public class Engine {
     public int version = 0;
     public int iteration = 0;
@@ -78,7 +80,7 @@ public class Engine {
     }
 
     public static void main(String[] args) throws InterruptedException, ExecutionException {
-        simulateAllMatchUpsMultithreaded(10);
+        simulateAllMatchUpsMultithreaded(1);
     }
 
     //Individual battle sim instance
@@ -190,12 +192,6 @@ public class Engine {
 
     //multithreaded
     public static void simulateAllMatchUpsMultithreaded(int numSimsPerMatchUp) throws InterruptedException, ExecutionException {
-//       ALL TRAINERS
-//        for (HashMap.Entry<Trainer.Title, Pokemon[]> thisPlayerParty : Trainer.parties.entrySet()) {
-//            for (HashMap.Entry<Trainer.Title, Pokemon[]> thisFoeParty : Trainer.parties.entrySet()) {
-//                playerWins += simulateMatchUpMultithreaded(numSimsPerMatchUp, thisPlayerParty.getValue(), thisFoeParty.getValue(), testEngine, nullHypEngine, false);
-//            }
-//        }
         User.textSpeed = 0;
         Sound.disableSound = true;
 
@@ -216,13 +212,13 @@ public class Engine {
 
             int totalMatchUps = Trainer.competitiveParties.size() * Trainer.competitiveParties.size();
             int totalBattles = numSimsPerMatchUp * totalMatchUps;
-            int battlesCompleted = 0;
+            AtomicInteger battlesCompleted = new AtomicInteger(0);
             int LOADING_BAR_LENGTH = 30;
             int[] loadingBarIntervals = new int[LOADING_BAR_LENGTH];
             for (int i = 0; i < loadingBarIntervals.length; i++) {
                 loadingBarIntervals[i] = (int) ((double) (i + 1) / LOADING_BAR_LENGTH * totalBattles);
             }
-            int loadingIndex = 0;
+            AtomicInteger loadingIndex = new AtomicInteger(0);
 
             System.out.println(" Starting Match-up Simulation");
             System.out.println("==============================");
@@ -230,34 +226,43 @@ public class Engine {
             System.out.print("Progress: [");
 
             long startTime = System.currentTimeMillis();
-            int playerWins = 0;
+            AtomicInteger playerWins = new AtomicInteger(0);
+
+            ExecutorService executor = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
+            List<Future<Void>> futures = new ArrayList<>();
 
             for (Trainer.Title thisPlayerPartyOwner : Trainer.competitiveParties) {
                 for (Trainer.Title thisFoePartyOwner : Trainer.competitiveParties) {
-                    playerWins += simulateMatchUpMultithreaded(
-                            numSimsPerMatchUp,
-                            Trainer.parties.get(thisPlayerPartyOwner),
-                            Trainer.parties.get(thisFoePartyOwner),
-                            testEngine,
-                            nullHypEngine,
-                            false);
+                    final Pokemon[] playerParty = Trainer.parties.get(thisPlayerPartyOwner);
+                    final Pokemon[] foeParty = Trainer.parties.get(thisFoePartyOwner);
 
-                    battlesCompleted+= numSimsPerMatchUp;
+                    futures.add(executor.submit(() -> {
+                        int wins = simulateMatchUpMultithreaded(numSimsPerMatchUp, playerParty, foeParty, testEngine, nullHypEngine, false);
+                        playerWins.addAndGet(wins);
+                        int completedBattles = battlesCompleted.addAndGet(numSimsPerMatchUp);
 
-                    if (loadingIndex < LOADING_BAR_LENGTH && battlesCompleted >= loadingBarIntervals[loadingIndex]) {
-                        System.out.print("⣿");
-                        loadingIndex++;
-                    }
+                        if (loadingIndex.get() < LOADING_BAR_LENGTH && completedBattles >= loadingBarIntervals[loadingIndex.get()]) {
+                            System.out.print("⣿");
+                            loadingIndex.incrementAndGet();
+                        }
+                        return null;
+                    }));
                 }
             }
 
-            System.out.println("] Done.");
+            // Wait for all simulations to complete
+            for (Future<Void> future : futures) {
+                future.get();
+            }
 
+            executor.shutdown();
+
+            System.out.println("] Done.");
 
             long endTime = System.currentTimeMillis();
 
             // Calculate and display results
-            double winProp = (double) playerWins / totalBattles;
+            double winProp = (double) playerWins.get() / totalBattles;
 
             double zScore = (winProp - .5) / Math.sqrt((.5 * .5) / totalBattles);
 
@@ -268,16 +273,13 @@ public class Engine {
             double winRateAsPercent = 100.0 * winProp;
             System.out.println("\n Simulation Results");
             System.out.println("=======================");
-            //System.out.println("NULL HYP ENGINE HASH: " + System.identityHashCode(nullHypEnginePackage));
-            //System.out.println("TEST ENGINE HASH: " + System.identityHashCode(testEnginePackage));
             System.out.println("NULL HYP ENG PACKAGE PARAMS:");
             System.out.println(nullHypEnginePackage);
             System.out.println();
             System.out.println("TEST ENG PACKAGE PARAMS:");
             System.out.println(testEnginePackage);
             System.out.println();
-            System.out.printf("Player won %d out of %d battles (%.4f%% win rate)\n",
-                    playerWins, totalBattles, winRateAsPercent);
+            System.out.printf("Player won %d out of %d battles (%.4f%% win rate)\n", playerWins.get(), totalBattles, winRateAsPercent);
             System.out.printf("z-score = %.4f (crit. value is %.4f)\n", zScore, zCritValue);
             System.out.printf("Completed in %.2f seconds\n\n", (endTime - startTime) / 1000.0);
             System.out.println("Using game engine version " + nullHypEngine.version + '.' + nullHypEngine.iteration);
