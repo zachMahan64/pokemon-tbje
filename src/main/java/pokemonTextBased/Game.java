@@ -32,7 +32,7 @@ import java.util.concurrent.ExecutionException;
 public class Game {
 
     public static boolean playStatus = true;
-    public static boolean testStatus = false;
+    public static boolean testStatus = true;
 
     public static void main(String[] args) throws InterruptedException, ExecutionException {
         new javafx.embed.swing.JFXPanel();
@@ -376,11 +376,11 @@ public class Game {
         if (testStatus) {
             System.out.println("BOOTED IN VER. TEST");
             Sound.playMusicOnLoop("src/main/music/titleMusic.mp3");
-            //Graphics.printPokemon("tyranitar", true, true);
-            //Party.addToParty(new Pokemon(Species.getSpecies("scizor"), 20, true), sc1);
-            //Party.addToParty(new Pokemon(Species.getSpecies("Tyranitar"), 20, Pokemon.getShinyOdds()), sc1);
+            //Graphics.printPokemon("garchomp", false, true);
+            Party.addToParty(new Pokemon(Species.getSpecies("Zekrom"), 20, true), sc1);
+            Party.addToParty(new Pokemon(Species.getSpecies("Garchomp"), 20, Pokemon.getShinyOdds()), sc1);
             //Party.addToParty(new Pokemon(Species.getSpecies("mew"), 20, Pokemon.getShinyOdds()), sc1);
-            Party.addToParty(new Pokemon(Species.getSpecies("excadrill"), 20, Pokemon.getShinyOdds()), sc1);
+            //Party.addToParty(new Pokemon(Species.getSpecies("excadrill"), 20, Pokemon.getShinyOdds()), sc1);
 //            Party.addToParty(new Pokemon(Species.getSpecies("Togekiss"), 20, Pokemon.getShinyOdds()), sc1);
 //            Party.addToParty(new Pokemon(Species.getSpecies("dragapult"), 20, Pokemon.getShinyOdds()), sc1);
             //User.askUserToSetHints(sc1);
@@ -394,7 +394,7 @@ public class Game {
             //Encounter.enterWildPkmBattle(new Pokemon("sceptile", 20, true), sc1);
             //Encounter.enterTrainerBattle(templateTrainer, sc1);
             //Encounter.enterTrainerBattle(Trainer.buildBattleLeagueTrainer(), sc1);
-            User.recordColosseumTrainersBeaten = 10;
+            User.recordColosseumTrainersBeaten = 25;
             enterMainMenu(sc1);
         }
     }

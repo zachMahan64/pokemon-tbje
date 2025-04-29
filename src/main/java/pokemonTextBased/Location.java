@@ -1175,7 +1175,7 @@ public class Location {
                     if (numTrainersBeaten > User.recordColosseumTrainersBeaten) {
                         User.recordColosseumTrainersBeaten = numTrainersBeaten;
                     }
-                    if (User.recordColosseumTrainersBeaten >= 10) {
+                    if (User.recordColosseumTrainersBeaten >= 25) {
                         letUserProcureAPkmOfTheirChoice(partyContainingMembersToPotentiallyProcure, sc1);
                     }
                     healPartyWithDialogueAndSound();
