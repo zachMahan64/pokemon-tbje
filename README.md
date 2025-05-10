@@ -2,8 +2,8 @@
 
 POKEMON TEXT-BASED JAVA EDITION
 
-A Terminal-Based and Text-Based Pokemon game written entirely in Java
-This was my first big coding project
+A Terminal-Based and Text-Based Pokemon game written entirely in Java.
+This was my first big coding project.
 
 Has all Gen. 1 Pokemon as well as some Pokemon from Gen. 2 - 8 (About 250 in total)
 Takes place in a re-imagined Kanto Region
