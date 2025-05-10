@@ -15,7 +15,7 @@ Contains many new features:
 
 This game was made for educational purposes only.
 I do not own the rights to any images, sounds, or music used.
-All usages fall under Fair Usage.
+All usages fall under Fair Use.
 
 Zach
 MAY 2025
