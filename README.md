@@ -13,6 +13,7 @@ A full-featured terminal-based Pokémon battle game, written entirely in Java, c
 - Full single-player campaign: gym leaders, wild encounters, Team Rocket
 - Terminal UI using Unicode + ANSI (Mac/Linux recommended)
 - Catching system, items, switching, trick room, and more
+- Save file system
 
 ## AI Engine
 
