@@ -32,7 +32,7 @@ import java.util.concurrent.ExecutionException;
 public class Game {
 
     public static boolean playStatus = true;
-    public static boolean testStatus = true;
+    public static boolean testStatus = false;
 
     public static void main(String[] args) throws InterruptedException, ExecutionException {
         new javafx.embed.swing.JFXPanel();
@@ -248,7 +248,7 @@ public class Game {
         Sound.stopAllSounds();
         while (true) {
             Sound.playMusicOnLoop("src/main/music/manWhoSoldTheWorld.mp3");
-            for(int i = 0; i < 10; i++) {
+            for(int i = 0; i < 1; i++) {
                 System.out.println("=".repeat(137));
             }
             Graphics.printBigTitleImage();
