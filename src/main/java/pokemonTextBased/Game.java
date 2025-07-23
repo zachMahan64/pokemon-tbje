@@ -1,5 +1,8 @@
 package pokemonTextBased;// Zach Mahan, started 20250228, for fun Pokemon Game
 
+//PRIORITY:
+// Replace "src/main/music/"... with "/music/"... and use getResource() so it works in builds
+
 //BUGS: Sound.stopAllSounds breaks after many usages (might be resolved, possible fix has been implemented)
 //-Thunder Wave hits Ground types
 
