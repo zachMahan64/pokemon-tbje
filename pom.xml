@@ -4,8 +4,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>zachMahanGames</groupId>
-    <artifactId>pokemon_Text_Based_Java_Edtion</artifactId>
-    <version>1.0-ALPHA</version>
+    <artifactId>pokemon_tbje</artifactId>
+    <version>1.0</version>
 
     <properties>
         <maven.compiler.release>24</maven.compiler.release>

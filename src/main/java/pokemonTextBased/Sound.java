@@ -5,8 +5,8 @@ import javafx.scene.media.MediaPlayer;
 
 import javax.sound.sampled.*;
 import java.io.BufferedInputStream;
+import java.io.File;
 import java.io.InputStream;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -19,7 +19,7 @@ public class Sound {
     private static final HashMap<String, Boolean> loopingMedia = new HashMap<>();
 
     public static void loadSound(String resourcePath) {
-        if (resourcePath.endsWith(".mp3")) return; // MP3s are streamed, not loaded
+        if (resourcePath.endsWith(".mp3")) return; // MP3s streamed, not preloaded
         try {
             if (clips.containsKey(resourcePath)) return;
 
@@ -59,7 +59,6 @@ public class Sound {
             clip.open(audioStream);
             clip.start();
 
-            // Clean up once playback is done
             clip.addLineListener(event -> {
                 if (event.getType() == LineEvent.Type.STOP) {
                     clip.close();
@@ -106,15 +105,23 @@ public class Sound {
                 loopingMedia.remove(resourcePath);
             }
 
-            URL mediaUrl = Sound.class.getResource("/" + resourcePath);
-            if (mediaUrl == null) {
+            InputStream resourceStream = Sound.class.getResourceAsStream("/" + resourcePath);
+            if (resourceStream == null) {
                 System.out.println("MP3 resource not found: " + resourcePath);
                 return;
             }
 
-            Media media = new Media(mediaUrl.toString());
+            File tempFile = File.createTempFile("sound_", ".mp3");
+            tempFile.deleteOnExit();
+
+            try (var out = new java.io.FileOutputStream(tempFile)) {
+                resourceStream.transferTo(out);
+            }
+
+            Media media = new Media(tempFile.toURI().toString());
             MediaPlayer mediaPlayer = new MediaPlayer(media);
             loopingMedia.put(resourcePath, loop);
+
             if (loop) {
                 mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
             } else {
@@ -157,7 +164,7 @@ public class Sound {
     public static void stopAllSounds() {
         if (disableSound) return;
 
-        ArrayList<String> clipKeys = new ArrayList<>(loopingClips.keySet());
+        var clipKeys = new ArrayList<>(loopingClips.keySet());
         for (String key : clipKeys) {
             Clip clip = clips.get(key);
             if (clip != null) {
@@ -173,7 +180,7 @@ public class Sound {
             loopingClips.remove(key);
         }
 
-        ArrayList<String> mediaKeys = new ArrayList<>(loopingMedia.keySet());
+        var mediaKeys = new ArrayList<>(loopingMedia.keySet());
         for (String key : mediaKeys) {
             MediaPlayer player = mediaPlayers.get(key);
             if (player != null) {
@@ -190,7 +197,7 @@ public class Sound {
         }
     }
 
-    // specific sounds example - use relative paths from resources root
+    // Specific sound examples - use relative paths from resources root
     public static void click() {
         if (disableSound) return;
         playSoundOnce("music/click.wav");
