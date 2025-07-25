@@ -6,7 +6,7 @@ import java.util.*;
 
 public class SaveSys {
 
-    private static final String SAVE_FILE_PREFIX = "save";
+    private static final String SAVE_FILE_PREFIX = "saves/save";
     private static final String SAVE_FILE_SUFFIX = ".json";
     private static final int MAX_SLOTS = 6;
     private static int currentSlot = -1; // -1 = no game loaded
