@@ -147,24 +147,6 @@ public class Sound {
             loopingClips.remove(filePath);
         }
     }
-    public static void setVolume(Clip clip, float volume) {
-        if (disableSound || clip == null) return;
-
-        try {
-            FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
-            float dB = Math.max(gainControl.getMinimum(), Math.min(gainControl.getMaximum(), volume));
-            gainControl.setValue(dB);
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.out.println("Error adjusting volume.");
-        }
-    }
-    public static Clip getClip(String filePath) {
-        if (!clips.containsKey(filePath)) {
-            loadSound(filePath);
-        }
-        return clips.get(filePath);
-    }
     public static void stopAllSounds() {
         if (disableSound) return;
 
