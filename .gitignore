@@ -1,5 +1,5 @@
 ### IntelliJ IDEA ###
-out/
+out*/
 !**/**/out/
 !**/src/test/**/out/
 target*
