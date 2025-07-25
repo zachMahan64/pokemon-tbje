@@ -264,6 +264,7 @@ public class Game {
             if (choice.isBlank()) {
                 Sound.click();
                 System.out.println("For the best playing experience, enlarge the terminal window and use a mono-spaced font.");
+                Game.pressEnterToContinue();
                 break;
             } else if (choice.equals("E")) {
                 askToConfirmExit(sc1);
