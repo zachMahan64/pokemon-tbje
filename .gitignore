@@ -1,6 +1,6 @@
 ### IntelliJ IDEA ###
 out/
-!**/src/main/**/out/
+!**/**/out/
 !**/src/test/**/out/
 target/
 
@@ -13,7 +13,7 @@ target/
 .springBeans
 .sts4-cache
 bin/
-!**/src/main/**/bin/
+!**/**/bin/
 !**/src/test/**/bin/
 
 ### NetBeans ###

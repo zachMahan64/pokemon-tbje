@@ -42,7 +42,7 @@ public class Party {
             return;
         }
         User.pokemonRegisteredInPokedex.add(pkmNameStr);
-        Sound.playSoundOnce("src/main/music/pokedexNotification.mp3");
+        Sound.playSoundOnce("music/pokedexNotification.mp3");
         System.out.println(pkmNameStr + "'s data has been added to your Pokedex!");
         Game.pressEnterToContinue();
     }
@@ -433,7 +433,7 @@ public class Party {
     }
     //tools
     public static void levelUpEntirePartyByOne() throws InterruptedException {
-        Sound.playSoundOnce("src/main/music/levelUp.mp3");
+        Sound.playSoundOnce("music/levelUp.mp3");
         for (Pokemon pokemon : p) {
             if (pokemon != null) {
                 pokemon.levelUpPokemonTwoThirdsChance();
@@ -499,7 +499,7 @@ public class Party {
             if(pkm != null) pkm.levelUpPokemon(User.checkLevelCap() - pkm.getLevel());
         }
         System.out.println("Your party member's levels are now at the level cap!");
-        Sound.playSoundOnce("src/main/music/levelUp.mp3");
+        Sound.playSoundOnce("music/levelUp.mp3");
         Game.pressEnterToContinue();
     }
 }

@@ -143,23 +143,23 @@ public class Fight {
         if (moveToUse.getDamage() > 0) {
             if (getType1Effectiveness(moveToUse, recipient) * getType2Effectiveness(moveToUse, recipient) > 1.0) {
                 System.out.println("It's super effective!\n");
-                Sound.playSoundOnce("src/main/music/superEffective.mp3");
+                Sound.playSoundOnce("music/superEffective.mp3");
                 Thread.sleep(User.textSpeed);
             } else if (getType1Effectiveness(moveToUse, recipient) * getType2Effectiveness(moveToUse, recipient) == 0) {
                 System.out.println("It has no effect on " + recipient.getName() + "!\n");
                 Thread.sleep(User.textSpeed);
             } else if (getType1Effectiveness(moveToUse, recipient) * getType2Effectiveness(moveToUse, recipient) < 1.0) {
                 System.out.println("It's not very effective!\n");
-                Sound.playSoundOnce("src/main/music/cut.mp3");
+                Sound.playSoundOnce("music/cut.mp3");
                 Thread.sleep(User.textSpeed);
             }
             else {
-                Sound.playSoundOnce("src/main/music/cut.mp3");
+                Sound.playSoundOnce("music/cut.mp3");
                 Thread.sleep((long)(.5 * User.textSpeed));
             }
         }
         else if (moveToUse.getName().equalsIgnoreCase("Trick Room")) {
-            Sound.playSoundOnce("src/main/music/trickRoom.mp3");
+            Sound.playSoundOnce("music/trickRoom.mp3");
             Thread.sleep((long)(1.25 *User.textSpeed));
         }
     }
@@ -253,52 +253,52 @@ public class Fight {
                     case "Opponent Attack -1":
                         if(arena.playerEngine.battleDialogsAreEnabled) System.out.println(recipient.getName() + "'s Attack fell!\n");
                         recipient.changeStatStage("Attack", -1);
-                        Sound.playSoundOnce("src/main/music/statLower.mp3");
+                        Sound.playSoundOnce("music/statLower.mp3");
                         break;
                     case "Opponent Attack -2":
                         if(arena.playerEngine.battleDialogsAreEnabled) System.out.println(recipient.getName() + "'s Attack harshly fell!\n");
                         recipient.changeStatStage("Attack", -2);
-                        Sound.playSoundOnce("src/main/music/statLower.mp3");
+                        Sound.playSoundOnce("music/statLower.mp3");
                         break;
                     case "Opponent Defense -1":
                         if(arena.playerEngine.battleDialogsAreEnabled) System.out.println(recipient.getName() + "'s Defense fell!\n");
                         recipient.changeStatStage("Defense", -1);
-                        Sound.playSoundOnce("src/main/music/statLower.mp3");
+                        Sound.playSoundOnce("music/statLower.mp3");
                         break;
                     case "Opponent Defense -2":
                         if(arena.playerEngine.battleDialogsAreEnabled) System.out.println(recipient.getName() + "'s Defense harshly fell!\n");
                         recipient.changeStatStage("Defense", -2);
-                        Sound.playSoundOnce("src/main/music/statLower.mp3");
+                        Sound.playSoundOnce("music/statLower.mp3");
                         break;
                     case "Opponent SpDef -1":
                         if(arena.playerEngine.battleDialogsAreEnabled) System.out.println(recipient.getName() + "'s Special Defense fell!\n");
                         recipient.changeStatStage("SpDef", -1);
-                        Sound.playSoundOnce("src/main/music/statLower.mp3");
+                        Sound.playSoundOnce("music/statLower.mp3");
                         break;
                     case "Own Defense +1":
                         if(arena.playerEngine.battleDialogsAreEnabled) System.out.println(dealer.getName() + "'s Defense rose!\n");
                         dealer.changeStatStage("Defense", 1);
-                        Sound.playSoundOnce("src/main/music/statRaise.mp3");
+                        Sound.playSoundOnce("music/statRaise.mp3");
                         break;
                     case "Own Speed +1":
                         if(arena.playerEngine.battleDialogsAreEnabled) System.out.println(dealer.getName() + "'s Speed rose!\n");
                         dealer.changeStatStage("Speed", 1);
-                        Sound.playSoundOnce("src/main/music/statRaise.mp3");
+                        Sound.playSoundOnce("music/statRaise.mp3");
                         break;
                     case "Own Speed +2":
                         if(arena.playerEngine.battleDialogsAreEnabled) System.out.println(dealer.getName() + "'s Speed sharply rose!\n");
                         dealer.changeStatStage("Speed", 2);
-                        Sound.playSoundOnce("src/main/music/statRaise.mp3");
+                        Sound.playSoundOnce("music/statRaise.mp3");
                         break;
                     case "Opponent Speed -1":
                         if(arena.playerEngine.battleDialogsAreEnabled) System.out.println(recipient.getName() + "'s Speed fell!\n");
                         recipient.changeStatStage("Speed", -1);
-                        Sound.playSoundOnce("src/main/music/statLower.mp3");
+                        Sound.playSoundOnce("music/statLower.mp3");
                         break;
                     case "Opponent Speed -2":
                         if(arena.playerEngine.battleDialogsAreEnabled) System.out.println(recipient.getName() + "'s Speed harshly fell!\n");
                         recipient.changeStatStage("Speed", -2);
-                        Sound.playSoundOnce("src/main/music/statLower.mp3");
+                        Sound.playSoundOnce("music/statLower.mp3");
                         break;
                     case "Faint":
                         if(getTypeEffectivenessOfMove(moveToUse, recipient) == 0) break;
@@ -390,7 +390,7 @@ public class Fight {
                         if(arena.playerEngine.battleDialogsAreEnabled) System.out.println(recipient.getName() + "'s Attack and Special Attack fell!\n");
                         recipient.changeStatStage("SpAtk", -1);
                         recipient.changeStatStage("Attack", -1);
-                        Sound.playSoundOnce("src/main/music/statLower.mp3");
+                        Sound.playSoundOnce("music/statLower.mp3");
                         Thread.sleep(User.textSpeed);
                         if(dealer.isFoe()) {
                             switchSimplyAI(arena, true);
@@ -434,7 +434,7 @@ public class Fight {
                         if(arena.playerEngine.battleDialogsAreEnabled) System.out.println(dealer.getName() + " cut its own HP and maximized its Attack!\n");
                         dealer.setCurrentHp(dealer.getCurrentHp() - (int) (0.5 * dealer.getCurrentMaxHp()));
                         dealer.changeStatStage("Attack", 6);
-                        Sound.playSoundOnce("src/main/music/statRaise.mp3");
+                        Sound.playSoundOnce("music/statRaise.mp3");
                         break;
                     case "Recoil":
                         if(arena.playerEngine.battleDialogsAreEnabled) System.out.println(dealer.getName() + " was hurt by recoil!\n");
@@ -457,55 +457,55 @@ public class Fight {
                         if(arena.playerEngine.battleDialogsAreEnabled) System.out.println(dealer.getName() + "'s Defense and Special Defense fell!\n");
                         dealer.changeStatStage("Defense", -1);
                         dealer.changeStatStage("SpDef", -1);
-                        Sound.playSoundOnce("src/main/music/statLower.mp3");
+                        Sound.playSoundOnce("music/statLower.mp3");
                         break;
                     case "Own SpAtk -2":
                         if(arena.playerEngine.battleDialogsAreEnabled) System.out.println(dealer.getName() + "'s Special Attack harshly fell!\n");
                         dealer.changeStatStage("SpAtk", -2);
-                        Sound.playSoundOnce("src/main/music/statLower.mp3");
+                        Sound.playSoundOnce("music/statLower.mp3");
                         break;
                     case "Own Attack +1 & Defense +1":
                         if(arena.playerEngine.battleDialogsAreEnabled) System.out.println(dealer.getName() + "'s Attack and Defense rose!\n");
                         dealer.changeStatStage("Attack", 1);
                         dealer.changeStatStage("Defense", 1);
-                        Sound.playSoundOnce("src/main/music/statRaise.mp3");
+                        Sound.playSoundOnce("music/statRaise.mp3");
                         break;
                     case "Own SpAtk +2":
                         if(arena.playerEngine.battleDialogsAreEnabled) System.out.println(dealer.getName() + "'s Special Attack sharply rose!\n");
                         dealer.changeStatStage("SpAtk", 2);
-                        Sound.playSoundOnce("src/main/music/statRaise.mp3");
+                        Sound.playSoundOnce("music/statRaise.mp3");
                         break;
                     case "Opponent SpAtk -1":
                         if(arena.playerEngine.battleDialogsAreEnabled) System.out.println(recipient.getName() + "'s Special Attack fell!\n");
                         recipient.changeStatStage("SpAtk", -1);
-                        Sound.playSoundOnce("src/main/music/statLower.mp3");
+                        Sound.playSoundOnce("music/statLower.mp3");
                         break;
                     case "Own SpAtk +1 & SpDef +1":
                         if(arena.playerEngine.battleDialogsAreEnabled) System.out.println(dealer.getName() + "'s Special Attack and Special Defense rose!\n");
                         dealer.changeStatStage("SpAtk", 1);
                         dealer.changeStatStage("SpDef", 1);
-                        Sound.playSoundOnce("src/main/music/statRaise.mp3");
+                        Sound.playSoundOnce("music/statRaise.mp3");
                         break;
                     case "Own Attack +1 & Speed +1":
                         if(arena.playerEngine.battleDialogsAreEnabled) System.out.println(dealer.getName() + "'s Attack and Speed rose!\n");
                         dealer.changeStatStage("Attack", 1);
                         dealer.changeStatStage("Speed", 1);
-                        Sound.playSoundOnce("src/main/music/statRaise.mp3");
+                        Sound.playSoundOnce("music/statRaise.mp3");
                         break;
                     case "Own Attack +1":
                         if(arena.playerEngine.battleDialogsAreEnabled) System.out.println(dealer.getName() + "'s Attack rose!\n");
                         dealer.changeStatStage("Attack", 1);
-                        Sound.playSoundOnce("src/main/music/statRaise.mp3");
+                        Sound.playSoundOnce("music/statRaise.mp3");
                         break;
                     case "Own Attack +2":
                         if(arena.playerEngine.battleDialogsAreEnabled) System.out.println(dealer.getName() + "'s Attack rose sharply!\n");
                         dealer.changeStatStage("Attack", 2);
-                        Sound.playSoundOnce("src/main/music/statRaise.mp3");
+                        Sound.playSoundOnce("music/statRaise.mp3");
                         break;
                     case "Own SpAtk +1":
                         if(arena.playerEngine.battleDialogsAreEnabled) System.out.println(dealer.getName() + "'s Special Attack rose!\n");
                         dealer.changeStatStage("SpAtk", 1);
-                        Sound.playSoundOnce("src/main/music/statRaise.mp3");
+                        Sound.playSoundOnce("music/statRaise.mp3");
                         break;
                     default:
                         break;

@@ -92,7 +92,7 @@ public class Bag {
 
             notes.put(noteKey, copy);
             System.out.println(noteKey + " has been added to your notes pocket.");
-            Sound.playSoundOnce("src/main/music/gotItem.mp3");
+            Sound.playSoundOnce("music/gotItem.mp3");
             Game.pressEnterToContinue(sc1);
             return true;
         }
@@ -246,7 +246,7 @@ public class Bag {
 
             ArrayList<String> possibleSpecies = new ArrayList<>();
             if (choice.equals("Y")) {
-                Sound.playSoundOnce("src/main/music/openEgg.mp3");
+                Sound.playSoundOnce("music/openEgg.mp3");
                 for (String pkm : Species.speciesListedInPokedexOrder) {
                     Species spc = Species.getSpecies(pkm);
                     int evoLvl = spc.getEvolutionLevel();
@@ -423,7 +423,7 @@ public class Bag {
                     specialItems.put("Rare Candy", candyCount - actualAmount);
 
                     // Feedback
-                    Sound.playSoundOnce("src/main/music/levelUp.mp3");
+                    Sound.playSoundOnce("music/levelUp.mp3");
                     System.out.printf("%s grew to Lv. %d!%n",
                             selectedPkm.getName(), selectedPkm.getLevel());
                     System.out.printf("You have %d Rare Candies remaining.%n", candyCount - actualAmount);
@@ -603,25 +603,25 @@ public class Bag {
         Random rand = new Random();
         boolean success = getCatchSuccess(arena);
         Graphics.printFlyingPokeball();
-        Sound.playSoundOnce("src/main/music/throwBall.mp3");
+        Sound.playSoundOnce("music/throwBall.mp3");
         System.out.println("You threw a Pokeball.");
         Thread.sleep((long) (.75 * User.textSpeed));
         Graphics.printLandedPokeball();
-        Sound.playSoundOnce("src/main/music/ballShake.mp3");
+        Sound.playSoundOnce("music/ballShake.mp3");
         System.out.println("The Pokeball landed on the ground.");
         Thread.sleep(User.textSpeed);
         Graphics.printAltLandedPokeball();
-        Sound.playSoundOnce("src/main/music/ballShakeAgain.mp3");
+        Sound.playSoundOnce("music/ballShakeAgain.mp3");
         System.out.println("It shook once!");
         Thread.sleep((long) (.75 * User.textSpeed));
         if(rand.nextInt(2) == 1) {
             Graphics.printLandedPokeball();
-            Sound.playSoundOnce("src/main/music/ballShakeAgain.mp3");
+            Sound.playSoundOnce("music/ballShakeAgain.mp3");
             System.out.println("It shook twice!");
             Thread.sleep((long) (.75 * User.textSpeed));
             if(rand.nextInt(2) == 1) {
                 Graphics.printAltLandedPokeball();
-                Sound.playSoundOnce("src/main/music/ballShakeAgain.mp3");
+                Sound.playSoundOnce("music/ballShakeAgain.mp3");
                 System.out.println("It shook for a third time!");
                 Thread.sleep((long) (.75 * User.textSpeed));
             }
@@ -679,15 +679,15 @@ public class Bag {
             Sound.stopAllSounds();
             Graphics.printStarPokeball();
             System.out.println("You caught the wild " + arena.fp[0].getName() + "!");
-            Sound.playSoundOnce("src/main/music/caughtJingle.mp3");
+            Sound.playSoundOnce("music/caughtJingle.mp3");
             Thread.sleep(2L *User.textSpeed);
-            Sound.playMusicOnLoop("src/main/music/victoryVsWildPkmTheme.mp3");
+            Sound.playMusicOnLoop("music/victoryVsWildPkmTheme.mp3");
             Graphics.printHeldPokeball();
             Party.addToParty(arena.fp[0], sc1);
             arena.isCaught = true;
         } else {
             Graphics.printOpenedPokeball();
-            Sound.playSoundOnce("src/main/music/catchFail.mp3");
+            Sound.playSoundOnce("music/catchFail.mp3");
             System.out.println("\nThe Pokémon broke free!\n");
             Thread.sleep(User.textSpeed);
         }
@@ -863,7 +863,7 @@ public class Bag {
         if (amount > 0) {
             battleItems.put(item, battleItems.getOrDefault(item, 0) + amount);
             System.out.println(amount + " " + item + "(s) added to your bag.");
-            Sound.playSoundOnce("src/main/music/gotItem.mp3");
+            Sound.playSoundOnce("music/gotItem.mp3");
             Game.pressEnterToContinue();
         } else {
             System.out.println("Invalid amount for " + item + ".");
@@ -872,7 +872,7 @@ public class Bag {
     public static void adjustPokedollarBalance(long amount) {
         pokedollars += amount;
         System.out.println("Your new balance is " + pokedollars + " Pokedollars.\n");
-        if(amount>0) Sound.playSoundOnce("src/main/music/glitter.mp3");
+        if(amount>0) Sound.playSoundOnce("music/glitter.mp3");
     }
     public static void spendPokedollars(long pokedollarsSpent) {
         if (pokedollars >= pokedollarsSpent) {
@@ -908,7 +908,7 @@ public class Bag {
         if (amount > 0) {
             specialItems.put(item, specialItems.getOrDefault(item, 0) + amount);
             System.out.println(amount + " " + item + "(s) added to your bag.\n");
-            Sound.playSoundOnce("src/main/music/gotItem.mp3");
+            Sound.playSoundOnce("music/gotItem.mp3");
             Game.pressEnterToContinue();
         } else {
             System.out.println("Invalid amount for " + item + ".\n");
@@ -921,7 +921,7 @@ public class Bag {
     }
     public static void addGoldBars(int changeGoldBars) {
         Bag.goldBars += changeGoldBars;
-        if(changeGoldBars>0) Sound.playSoundOnce("src/main/music/glitter.mp3");
+        if(changeGoldBars>0) Sound.playSoundOnce("music/glitter.mp3");
     }
     public static long getDebt() {
         return debt;
@@ -934,7 +934,7 @@ public class Bag {
         if (stockPortfolio.get(stockName) <= 0) {
             stockPortfolio.remove(stockName);
         }
-        if(amount>0) Sound.playSoundOnce("src/main/music/glitter.mp3");
+        if(amount>0) Sound.playSoundOnce("music/glitter.mp3");
     }
     public static int getStockCount(String stockName) {
         return stockPortfolio.getOrDefault(stockName, 0);
@@ -946,7 +946,7 @@ public class Bag {
     public static void earnBP(int BPGain) {
         BP += BPGain;
         System.out.println("You earned " + BPGain + " BP! (You have: " + BP + " total BP)");
-        Sound.playSoundOnce("src/main/music/glitter.mp3");
+        Sound.playSoundOnce("music/glitter.mp3");
         Game.pressEnterToContinue();
     }
     public static void spendBP(int BPLoss) {

@@ -444,7 +444,7 @@ public class Pokemon {
             evolvePokemon(pokemon, newSpecies);
             Graphics.printPokemon(pokemon);
             System.out.println("Congratulations! Your " + originalName + " evolved into " + newSpecies.getName() + "!\n");
-            Sound.playSoundOnce("src/main/music/levelUp.mp3");
+            Sound.playSoundOnce("music/levelUp.mp3");
             Game.pressEnterToContinue();
             Party.checkIfPlayerHasPokemonRegistered(pokemon);
         }
@@ -475,7 +475,7 @@ public class Pokemon {
             evolvePokemon(pokemon, newSpecies);
             Graphics.printPokemon(pokemon);
             System.out.println("Congratulations! Your " + originalName + " evolved into " + newSpecies.getName() + "!\n");
-            Sound.playSoundOnce("src/main/music/levelUp.mp3");
+            Sound.playSoundOnce("music/levelUp.mp3");
             Game.pressEnterToContinue();
         }
     }

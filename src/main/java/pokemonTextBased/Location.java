@@ -58,7 +58,7 @@ public class Location {
         Sound.stopAllSounds();
         label:
         while (!Party.checkIfEveryPkmHasFainted()) {
-            Sound.playMusicOnLoop("src/main/music/creditsTheme.mp3");
+            Sound.playMusicOnLoop("music/creditsTheme.mp3");
             Graphics.printMap();
             System.out.println("Where would you like to go?");
 
@@ -133,7 +133,7 @@ public class Location {
         if (Party.checkIfEveryPkmHasFainted()) {
             System.out.println("You whited out and were rushed to the nearest Pokemon Center!");
             Party.healParty();
-            Sound.playSoundOnce("src/main/music/heal.mp3");
+            Sound.playSoundOnce("music/heal.mp3");
             Game.pressEnterToContinue();
         }
     }
@@ -143,7 +143,7 @@ public class Location {
         Sound.stopAllSounds();
         String choice= " ";
         do{
-            Sound.playMusicOnLoop("src/main/music/palletTownTheme.mp3");
+            Sound.playMusicOnLoop("music/palletTownTheme.mp3");
             Graphics.printPalletTown();
             choice = sc1.nextLine().trim().toUpperCase();
             if(choice.equals("H")){
@@ -161,7 +161,7 @@ public class Location {
     public static void goHome(Scanner sc1) throws InterruptedException{
         String choice= "";
         do{
-            Sound.playMusicOnLoop("src/main/music/palletTownTheme.mp3");
+            Sound.playMusicOnLoop("music/palletTownTheme.mp3");
             Graphics.printHome();
             choice = sc1.nextLine().trim().toUpperCase();
             if(choice.equals("T")){
@@ -179,7 +179,7 @@ public class Location {
         Sound.stopAllSounds();
         String choice= " ";
         do{
-            Sound.playMusicOnLoop("src/main/music/labTheme.mp3");
+            Sound.playMusicOnLoop("music/labTheme.mp3");
             Graphics.printOakLabs();
             choice = sc1.nextLine().trim().toUpperCase();
             if(choice.equals("T")){
@@ -196,7 +196,7 @@ public class Location {
         Sound.stopAllSounds();
         String choice= " ";
         do{
-            Sound.playMusicOnLoop("src/main/music/viridianTheme.mp3");
+            Sound.playMusicOnLoop("music/viridianTheme.mp3");
             Graphics.printViridianCity();
             choice = sc1.nextLine().trim().toUpperCase();
             if(choice.equals("P")){
@@ -217,7 +217,7 @@ public class Location {
     public static void goToViridianGym(Scanner sc1) throws InterruptedException, ExecutionException {
         String choice= " ";
         do{
-            Sound.playMusicOnLoop("src/main/music/viridianTheme.mp3");
+            Sound.playMusicOnLoop("music/viridianTheme.mp3");
             Graphics.printViridianGymExterior();
             choice = sc1.nextLine().trim().toUpperCase();
             if(choice.equals("E")){
@@ -233,7 +233,7 @@ public class Location {
         Sound.stopAllSounds();
         String choice= "";
         do{
-            Sound.playMusicOnLoop("src/main/music/pewterTheme.mp3");
+            Sound.playMusicOnLoop("music/pewterTheme.mp3");
             Graphics.printPewterCity();
             choice = sc1.nextLine().trim().toUpperCase();
             if(choice.equals("P")){
@@ -254,7 +254,7 @@ public class Location {
     public static void goToPewterGym(Scanner sc1) throws InterruptedException, ExecutionException {
         String choice= " ";
         do{
-            Sound.playMusicOnLoop("src/main/music/pewterTheme.mp3");
+            Sound.playMusicOnLoop("music/pewterTheme.mp3");
             Graphics.printPewterGymExterior();
             choice = sc1.nextLine().trim().toUpperCase();
             if(choice.equals("E")){
@@ -270,7 +270,7 @@ public class Location {
         Sound.stopAllSounds();
         String choice= "";
         do{
-            Sound.playMusicOnLoop("src/main/music/ceruleanTheme.mp3");
+            Sound.playMusicOnLoop("music/ceruleanTheme.mp3");
             Graphics.printCeruleanCity();
             choice = sc1.nextLine().trim().toUpperCase();
             if(choice.equals("P")){
@@ -291,7 +291,7 @@ public class Location {
     public static void goToCeruleanGym(Scanner sc1) throws InterruptedException, ExecutionException {
         String choice= " ";
         do{
-            Sound.playMusicOnLoop("src/main/music/ceruleanTheme.mp3");
+            Sound.playMusicOnLoop("music/ceruleanTheme.mp3");
             Graphics.printCeruleanGymExterior();
             choice = sc1.nextLine().trim().toUpperCase();
             if(choice.equals("E")){
@@ -307,7 +307,7 @@ public class Location {
         Sound.stopAllSounds();
         String choice= "";
         do{
-            Sound.playMusicOnLoop("src/main/music/vermillionTheme.mp3");
+            Sound.playMusicOnLoop("music/vermillionTheme.mp3");
             Graphics.printVermillionCity();
             choice = sc1.nextLine().trim().toUpperCase();
             if(choice.equals("P")){
@@ -328,7 +328,7 @@ public class Location {
     public static void goToVermillionGym(Scanner sc1) throws InterruptedException, ExecutionException {
         String choice= " ";
         do{
-            Sound.playMusicOnLoop("src/main/music/vermillionTheme.mp3");
+            Sound.playMusicOnLoop("music/vermillionTheme.mp3");
             Graphics.printVermillionGymExterior();
             choice = sc1.nextLine().trim().toUpperCase();
             if(choice.equals("E")){
@@ -344,7 +344,7 @@ public class Location {
         Sound.stopAllSounds();
         String choice= "";
         do{
-            Sound.playMusicOnLoop("src/main/music/lavenderTownTheme.mp3");
+            Sound.playMusicOnLoop("music/lavenderTownTheme.mp3");
             Graphics.printLavenderTown();
             choice = sc1.nextLine().trim().toUpperCase();
             if(choice.equals("P")){
@@ -368,7 +368,7 @@ public class Location {
     public static void goToPokemonTower(Scanner sc1) throws InterruptedException {
         String choice= "";
         do{
-            Sound.playMusicOnLoop("src/main/music/lavenderTownTheme.mp3");
+            Sound.playMusicOnLoop("music/lavenderTownTheme.mp3");
             Graphics.printPokemonTower();
             choice = sc1.nextLine().trim().toUpperCase();
             if(choice.equals("E")){
@@ -384,7 +384,7 @@ public class Location {
         Sound.stopAllSounds();
         String choice= "";
         do{
-            Sound.playMusicOnLoop("src/main/music/churchTheme.mp3");
+            Sound.playMusicOnLoop("music/churchTheme.mp3");
             Graphics.printStVagaChurchExterior();
             choice = sc1.nextLine().trim().toUpperCase();
             if(choice.equals("E")){
@@ -467,7 +467,7 @@ public class Location {
         Sound.stopAllSounds();
         String choice= "";
         do{
-            Sound.playMusicOnLoop("src/main/music/saffronTheme.mp3");
+            Sound.playMusicOnLoop("music/saffronTheme.mp3");
             Graphics.printSaffronCity();
             choice = sc1.nextLine().trim().toUpperCase();
             if(choice.equals("P")){
@@ -488,7 +488,7 @@ public class Location {
     public static void goToSaffronGym(Scanner sc1) throws InterruptedException, ExecutionException {
         String choice= " ";
         do{
-            Sound.playMusicOnLoop("src/main/music/saffronTheme.mp3");
+            Sound.playMusicOnLoop("music/saffronTheme.mp3");
             Graphics.printSaffronGymExterior();
             choice = sc1.nextLine().trim().toUpperCase();
             if(choice.equals("E")){
@@ -504,7 +504,7 @@ public class Location {
     }
     public static void slideIntoSaffronNightClub(Scanner sc1) throws InterruptedException {
         Sound.stopAllSounds();
-        Sound.playMusicOnLoop("src/main/music/nightClubTheme.mp3");
+        Sound.playMusicOnLoop("music/nightClubTheme.mp3");
         String choice= " ";
         do{
             Graphics.printNightClub();
@@ -534,17 +534,17 @@ public class Location {
                         }
                         case "1" -> {
                             Sound.stopAllSounds();
-                            Sound.playMusicOnLoop("src/main/music/nightClubTheme.mp3");
+                            Sound.playMusicOnLoop("music/nightClubTheme.mp3");
                             break label;
                         }
                         case "2" -> {
                             Sound.stopAllSounds();
-                            Sound.playMusicOnLoop("src/main/music/sabrinasSong.mp3");
+                            Sound.playMusicOnLoop("music/sabrinasSong.mp3");
                             break label;
                         }
                         case "3" -> {
                             Sound.stopAllSounds();
-                            Sound.playMusicOnLoop("src/main/music/happySong.mp3");
+                            Sound.playMusicOnLoop("music/happySong.mp3");
                             break label;
                         }
                         default -> {
@@ -565,7 +565,7 @@ public class Location {
         Sound.stopAllSounds();
         String choice= "";
         do{
-            Sound.playMusicOnLoop("src/main/music/fuchsiaTheme.mp3");
+            Sound.playMusicOnLoop("music/fuchsiaTheme.mp3");
             Graphics.printFuchsiaCity();
             choice = sc1.nextLine().trim().toUpperCase();
             if(choice.equals("P")){
@@ -586,7 +586,7 @@ public class Location {
     public static void goToFuchsiaGym(Scanner sc1) throws InterruptedException, ExecutionException {
         String choice= " ";
         do{
-            Sound.playMusicOnLoop("src/main/music/fuchsiaTheme.mp3");
+            Sound.playMusicOnLoop("music/fuchsiaTheme.mp3");
             Graphics.printFuchsiaGymExterior();
             choice = sc1.nextLine().trim().toUpperCase();
             if(choice.equals("E")){
@@ -602,7 +602,7 @@ public class Location {
         Sound.stopAllSounds();
         String choice= "";
         do{
-            Sound.playMusicOnLoop("src/main/music/cinnabarTheme.mp3");
+            Sound.playMusicOnLoop("music/cinnabarTheme.mp3");
             Graphics.printCinnabarIsland();
             choice = sc1.nextLine().trim().toUpperCase();
             if(choice.equals("P")){
@@ -623,7 +623,7 @@ public class Location {
     public static void goToCinnabarGym(Scanner sc1) throws InterruptedException, ExecutionException {
         String choice= "";
         do{
-            Sound.playMusicOnLoop("src/main/music/cinnabarTheme.mp3");
+            Sound.playMusicOnLoop("music/cinnabarTheme.mp3");
             Graphics.printCinnabarGym();
             choice = sc1.nextLine().trim().toUpperCase();
             if(choice.equals("E")){
@@ -639,7 +639,7 @@ public class Location {
         Sound.stopAllSounds();
         String choice= "";
         do{
-            Sound.playMusicOnLoop("src/main/music/indigoPlateauTheme.mp3");
+            Sound.playMusicOnLoop("music/indigoPlateauTheme.mp3");
             Graphics.printIndigoPlateau();
             choice = sc1.nextLine().trim().toUpperCase();
             if(choice.equals("P")){
@@ -660,7 +660,7 @@ public class Location {
     public static void faceThePokemonLeague(Scanner sc1) throws InterruptedException, ExecutionException {
         String choice= "";
         do{
-            Sound.playMusicOnLoop("src/main/music/indigoPlateauTheme.mp3");
+            Sound.playMusicOnLoop("music/indigoPlateauTheme.mp3");
             Graphics.printPokemonLeagueStadium();
             choice = sc1.nextLine().trim().toUpperCase();
             if(choice.equals("B")){
@@ -678,21 +678,21 @@ public class Location {
             boolean beatLance = false;
             openOptionsOrContinue(sc1);
             beatLorelei = Encounter.enterTrainerBattle(new Trainer(Trainer.Title.ELITE_FOUR_LORELEI), sc1);
-            Sound.playMusicOnLoop("src/main/music/indigoPlateauTheme.mp3");
+            Sound.playMusicOnLoop("music/indigoPlateauTheme.mp3");
             if (beatLorelei) {
                 openOptionsOrContinue(sc1);
                 beatBruno = Encounter.enterTrainerBattle(new Trainer(Trainer.Title.ELITE_FOUR_BRUNO), sc1);
-                Sound.playMusicOnLoop("src/main/music/indigoPlateauTheme.mp3");
+                Sound.playMusicOnLoop("music/indigoPlateauTheme.mp3");
             }
             if (beatBruno) {
                 openOptionsOrContinue(sc1);
                 beatAgatha = Encounter.enterTrainerBattle(new Trainer(Trainer.Title.ELITE_FOUR_AGATHA), sc1);
-                Sound.playMusicOnLoop("src/main/music/indigoPlateauTheme.mp3");
+                Sound.playMusicOnLoop("music/indigoPlateauTheme.mp3");
             }
             if (beatAgatha) {
                 openOptionsOrContinue(sc1);
                 beatLance = Encounter.enterTrainerBattle(new Trainer(Trainer.Title.ELITE_FOUR_LANCE), sc1);
-                Sound.playMusicOnLoop("src/main/music/indigoPlateauTheme.mp3");
+                Sound.playMusicOnLoop("music/indigoPlateauTheme.mp3");
             }
             if (beatLance) {
                 System.out.println("You beat the elite four...");
@@ -706,7 +706,7 @@ public class Location {
         Sound.stopAllSounds();
         String choice= " ";
         do{
-            Sound.playMusicOnLoop("src/main/music/vaughanDistrictTheme.mp3");
+            Sound.playMusicOnLoop("music/vaughanDistrictTheme.mp3");
             Graphics.printRocketopolis();
             choice = sc1.nextLine().trim().toUpperCase();
             if(choice.equals("O")){
@@ -739,7 +739,7 @@ public class Location {
     public static void goToRocketopolisGym(Scanner sc1) throws InterruptedException, ExecutionException {
         String choice= "";
         do{
-            Sound.playMusicOnLoop("src/main/music/vaughanDistrictTheme.mp3");
+            Sound.playMusicOnLoop("music/vaughanDistrictTheme.mp3");
             Graphics.printRocketopolisGymExterior();
             choice = sc1.nextLine().trim().toUpperCase();
             if(choice.equals("E")){
@@ -752,7 +752,7 @@ public class Location {
     }
     public static void enterCasino(Scanner sc1) throws  InterruptedException{
         Sound.stopAllSounds();
-        Sound.playMusicOnLoop("src/main/music/casinoTheme.mp3");
+        Sound.playMusicOnLoop("music/casinoTheme.mp3");
         String choice;
         do{
             Graphics.printCasinoLogo();
@@ -787,7 +787,7 @@ public class Location {
         Sound.stopAllSounds();
         String choice;
         do{
-            Sound.playMusicOnLoop("src/main/music/rocketopolisTheme.mp3");
+            Sound.playMusicOnLoop("music/rocketopolisTheme.mp3");
             Graphics.printRocketopolisStreets();
             choice = sc1.nextLine().trim().toUpperCase();
             if(choice.equals("O")){
@@ -839,7 +839,7 @@ public class Location {
     public static void visitSchizoJoe(Scanner sc1) throws InterruptedException{
         String choice;
         do{
-            Sound.playMusicOnLoop("src/main/music/rocketopolisTheme.mp3");
+            Sound.playMusicOnLoop("music/rocketopolisTheme.mp3");
             Graphics.printSchizoJoe();
             choice = sc1.nextLine().trim().toUpperCase();
             if(choice.equals("T")) {
@@ -856,7 +856,7 @@ public class Location {
     public static void whisperToSchizoJoe(Scanner sc1) throws InterruptedException{
         String whisperChoice;
         do{
-            Sound.playMusicOnLoop("src/main/music/rocketopolisTheme.mp3");
+            Sound.playMusicOnLoop("music/rocketopolisTheme.mp3");
             Graphics.printNPC(NPC.Character.SCHIZO_JOE);
             System.out.println("Whisper to Schizo Joe or [C] to cancel: ");
             whisperChoice = sc1.nextLine().trim().toUpperCase();
@@ -878,7 +878,7 @@ public class Location {
     }
     public static void enterSchizoGodMode(Scanner sc1) throws InterruptedException{
         Sound.stopAllSounds();
-        Sound.playMusicOnLoop("src/main/music/odeToJoy.mp3");
+        Sound.playMusicOnLoop("music/odeToJoy.mp3");
         String choice;
         do{
             Graphics.printSchizoJoeAscension();
@@ -1146,7 +1146,7 @@ public class Location {
         Sound.stopAllSounds();
         String choice= "";
         do{
-            Sound.playMusicOnLoop("src/main/music/indigoPlateauTheme.mp3");
+            Sound.playMusicOnLoop("music/indigoPlateauTheme.mp3");
             Graphics.printTheColosseum();
             choice = sc1.nextLine().trim().toUpperCase();
             if(choice.equals("E")){
@@ -1163,7 +1163,7 @@ public class Location {
         int numTrainersBeaten = 0;
         int startingHighScore = User.recordColosseumTrainersBeaten;
         do{
-            Sound.playMusicOnLoop("src/main/music/indigoPlateauTheme.mp3");
+            Sound.playMusicOnLoop("music/indigoPlateauTheme.mp3");
             Graphics.printInsideOfTheColosseum(numTrainersBeaten);
             choice = sc1.nextLine().trim().toUpperCase();
             if(choice.equals("F")){
@@ -1294,7 +1294,7 @@ public class Location {
         Sound.stopAllSounds();
         String choice= " ";
         do{
-            Sound.playMusicOnLoop("src/main/music/vaughanDistrictTheme.mp3");
+            Sound.playMusicOnLoop("music/vaughanDistrictTheme.mp3");
             Graphics.printVaughanDistrict();
             choice = sc1.nextLine().trim().toUpperCase();
             switch (choice) {
@@ -1432,7 +1432,7 @@ public class Location {
     public static void goToVaughanGym(Scanner sc1) throws InterruptedException, ExecutionException {
         String choice= "";
         do{
-            Sound.playMusicOnLoop("src/main/music/vaughanDistrictTheme.mp3");
+            Sound.playMusicOnLoop("music/vaughanDistrictTheme.mp3");
             Graphics.printVaughanGymExterior();
             choice = sc1.nextLine().trim().toUpperCase();
             if(choice.equals("E")){
@@ -1448,7 +1448,7 @@ public class Location {
         Sound.stopAllSounds();
         String choice= " ";
         do{
-            Sound.playMusicOnLoop("src/main/music/celadonTheme.mp3");
+            Sound.playMusicOnLoop("music/celadonTheme.mp3");
             Graphics.printCityCenter();
             choice = sc1.nextLine().trim().toUpperCase();
             if(choice.equals("P")){
@@ -1472,7 +1472,7 @@ public class Location {
     public static void goToCeladonGym(Scanner sc1) throws InterruptedException, ExecutionException {
         String choice= " ";
         do{
-            Sound.playMusicOnLoop("src/main/music/celadonTheme.mp3");
+            Sound.playMusicOnLoop("music/celadonTheme.mp3");
             Graphics.printCeladonGymExterior();
             choice = sc1.nextLine().trim().toUpperCase();
             if(choice.equals("E")){
@@ -1486,7 +1486,7 @@ public class Location {
     public static void goToCeladonDepartmentStore(Scanner sc1) throws InterruptedException {
         String choice= "";
         do{
-            Sound.playMusicOnLoop("src/main/music/celadonTheme.mp3");
+            Sound.playMusicOnLoop("music/celadonTheme.mp3");
             Graphics.printCeladonDepartmentStore();
             choice = sc1.nextLine().trim().toUpperCase();
             if(choice.equals("E")){
@@ -1502,7 +1502,7 @@ public class Location {
         String choice= "";
         do{
             Graphics.printCeladonDepartmentStoreInterior();
-            Sound.playMusicOnLoop("src/main/music/boutiqueTheme.mp3");
+            Sound.playMusicOnLoop("music/boutiqueTheme.mp3");
             choice = sc1.nextLine().trim().toUpperCase();
             if(choice.equals("B")){
                 buyItemMenu(sc1);
@@ -1520,7 +1520,7 @@ public class Location {
     public static void goOnRouteWithInfinite149Enc(Scanner sc1) throws InterruptedException, ExecutionException{
         Sound.stopAllSounds();
         while (!Party.checkIfEveryPkmHasFainted()) {
-            Sound.playMusicOnLoop("src/main/music/earlyRouteTheme.mp3");
+            Sound.playMusicOnLoop("music/earlyRouteTheme.mp3");
             Graphics.printTallGrass();
             System.out.println("Walk into the tall grass?\n[W] Walk in | [V] View Party | [B] Open Bag | [T] Turn Back");
             String choiceGrass = sc1.nextLine().trim().toUpperCase();
@@ -1544,16 +1544,16 @@ public class Location {
         label:
         while (!Party.checkIfEveryPkmHasFainted()) {
             if(routeNum < 4) {
-                Sound.playMusicOnLoop("src/main/music/earlyRouteTheme.mp3");
+                Sound.playMusicOnLoop("music/earlyRouteTheme.mp3");
             }
             else if(routeNum < 11) {
-                Sound.playMusicOnLoop("src/main/music/route4Theme.mp3");
+                Sound.playMusicOnLoop("music/route4Theme.mp3");
             }
             else if(routeNum < 24) {
-                Sound.playMusicOnLoop("src/main/music/route11Theme.mp3");
+                Sound.playMusicOnLoop("music/route11Theme.mp3");
             }
             else if(routeNum == 24 || routeNum == 25) {
-                Sound.playMusicOnLoop("src/main/music/route24Theme.mp3");
+                Sound.playMusicOnLoop("music/route24Theme.mp3");
             }
 
             Graphics.printRoute(routeNum);
@@ -1650,7 +1650,7 @@ public class Location {
     public static void enterPokemonCenter(Scanner sc1) throws InterruptedException{
         String choice;
         Sound.stopAllSounds();
-        Sound.playMusicOnLoop("src/main/music/pokemonCenterTheme.mp3");
+        Sound.playMusicOnLoop("music/pokemonCenterTheme.mp3");
         do{
             Graphics.printPokemonCenterInterior();
             choice = sc1.nextLine().trim().toUpperCase();
@@ -1673,7 +1673,7 @@ public class Location {
             choice = sc1.nextLine().trim().toUpperCase();
             if(choice.equals("Y")){
                 Party.healParty();
-                Sound.playSoundOnce("src/main/music/heal.mp3");
+                Sound.playSoundOnce("music/heal.mp3");
                 System.out.println("Healing...");
                 Thread.sleep(User.textSpeed);
                 System.out.println("\nYour party has been restored back to full health!\n");
@@ -1858,7 +1858,7 @@ public class Location {
         String choice = "";
         do {
             Graphics.printGymInterior(gymLeadearTitle);
-            Sound.playMusicOnLoop("src/main/music/gymTheme.mp3");
+            Sound.playMusicOnLoop("music/gymTheme.mp3");
             choice = sc1.nextLine().trim().toUpperCase();
             if(choice.equals("F")){
                 Trainer gymLeader = buildGymLeader(gymLeadearTitle);
@@ -2137,7 +2137,7 @@ public class Location {
     }
     public static void healPartyWithDialogueAndSound() throws InterruptedException{
         Party.healParty();
-        Sound.playSoundOnce("src/main/music/heal.mp3");
+        Sound.playSoundOnce("music/heal.mp3");
         System.out.println("Healing your party...");
         Thread.sleep(User.textSpeed);
         System.out.println("\nYour party has been restored back to full health!\n");

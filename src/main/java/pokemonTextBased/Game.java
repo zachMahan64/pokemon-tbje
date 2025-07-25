@@ -1,7 +1,7 @@
 package pokemonTextBased;// Zach Mahan, started 20250228, for fun Pokemon Game
 
 //PRIORITY:
-// Replace "src/main/music/"... with "/music/"... and use getResource() so it works in builds
+// Replace "music/"... with "/music/"... and use getResource() so it works in builds
 
 //BUGS: Sound.stopAllSounds breaks after many usages (might be resolved, possible fix has been implemented)
 //-Thunder Wave hits Ground types
@@ -62,7 +62,7 @@ public class Game {
         Graphics.printSmallTitleImage();
         Graphics.printLoadingBar(60);
         Sound.stopAllSounds();
-        Sound.playMusicOnLoop("src/main/music/labTheme.mp3");
+        Sound.playMusicOnLoop("music/labTheme.mp3");
         int openingWaitTime = User.textSpeed;
         Graphics.printProfessorOak();
         System.out.println("Welcome to the world of Pokemon! I'm Professor Oak.");
@@ -138,9 +138,9 @@ public class Game {
         System.out.println("Ah! I think it likes you. Why don't you go take " + starter.getName() + " home?");
         Thread.sleep((long) (1.5 * openingWaitTime));
         pressEnterToContinue(sc1);
-        Sound.stopMusic("src/main/music/labTheme.mp3");
+        Sound.stopMusic("music/labTheme.mp3");
         Graphics.printLoadingBar(60);
-        Sound.playMusicOnLoop("src/main/music/palletTownTheme.mp3");
+        Sound.playMusicOnLoop("music/palletTownTheme.mp3");
         System.out.println();
         Graphics.printHomeImage();
         Thread.sleep(openingWaitTime);
@@ -222,7 +222,7 @@ public class Game {
     public static void enterMainMenu(Scanner sc1) throws InterruptedException, ExecutionException {
         Sound.stopAllSounds();
         while (true) {
-            Sound.playMusicOnLoop("src/main/music/manWhoSoldTheWorld.mp3");
+            Sound.playMusicOnLoop("music/manWhoSoldTheWorld.mp3");
             for(int i = 0; i < 10; i++) {
                 System.out.println("=".repeat(137));
             }
@@ -250,7 +250,7 @@ public class Game {
     public static void enterDummyMainMenu(Scanner sc1) throws InterruptedException, ExecutionException {
         Sound.stopAllSounds();
         while (true) {
-            Sound.playMusicOnLoop("src/main/music/manWhoSoldTheWorld.mp3");
+            Sound.playMusicOnLoop("music/manWhoSoldTheWorld.mp3");
             for(int i = 0; i < 1; i++) {
                 System.out.println("=".repeat(137));
             }
@@ -276,7 +276,7 @@ public class Game {
     public static void enterPlayMenu(Scanner sc1) throws InterruptedException, ExecutionException {
         label:
         while (true) {
-            Sound.playMusicOnLoop("src/main/music/titleMusic.mp3");
+            Sound.playMusicOnLoop("music/titleMusic.mp3");
             Graphics.printPlayer(true);
             System.out.println("==========================================================================");
             System.out.println("| [M] Open Map | [V] View Badges | [O] Options | [R] Return to Main Menu |");
@@ -371,14 +371,14 @@ public class Game {
 
     //tools
     public static void bootIntoVer(boolean testStatus, Scanner sc1) throws InterruptedException, ExecutionException {
-        Sound.playMusicOnLoop("src/main/music/titleMusic.mp3");
+        Sound.playMusicOnLoop("music/titleMusic.mp3");
         System.out.println("ALPHA 4/2025");
         if(!testStatus) {
             System.out.println("BOOTED IN VER. REG");
         }
         if (testStatus) {
             System.out.println("BOOTED IN VER. TEST");
-            Sound.playMusicOnLoop("src/main/music/titleMusic.mp3");
+            Sound.playMusicOnLoop("music/titleMusic.mp3");
             //Graphics.printPokemon("garchomp", false, true);
             Party.addToParty(new Pokemon(Species.getSpecies("Zekrom"), 20, true), sc1);
             Party.addToParty(new Pokemon(Species.getSpecies("Garchomp"), 20, Pokemon.getShinyOdds()), sc1);

@@ -703,10 +703,10 @@ public class Encounter {
         Pokemon[] fp = {wildPokemon};
         Engine engine = new Engine(new EnginePackage(EnginePackage.defaultEngineParameterMap), true);
         Arena arena = new Arena(Party.p, fp, engine, engine);
-        Sound.playMusicOnLoop("src/main/music/wildBattleTheme.mp3");
+        Sound.playMusicOnLoop("music/wildBattleTheme.mp3");
         Graphics.printPokemon(wildPokemon.getName(), false, wildPokemon.isShiny());
         System.out.println("A wild " + arena.fp[0].getName() + " appeared!");
-        if(arena.fp[0].isShiny()) Sound.playSoundOnce("src/main/music/shinySparkles.mp3");
+        if(arena.fp[0].isShiny()) Sound.playSoundOnce("music/shinySparkles.mp3");
         Thread.sleep(User.textSpeed);
         Graphics.printPokemon(arena.p[0].getName(), false, arena.p[0].isShiny());
         System.out.println("You sent out " + arena.p[0].getName() + "!");
@@ -761,7 +761,7 @@ public class Encounter {
                         continue;
                     case "R":
                         System.out.println("You ran away from the wild " + arena.fp[0].getName() + ".");
-                        Sound.playSoundOnce("src/main/music/runAway.mp3");
+                        Sound.playSoundOnce("music/runAway.mp3");
                         playerHasRunAway = true;
                         break;
                     default: continue;
@@ -812,7 +812,7 @@ public class Encounter {
         if (arena.fp[0].getCurrentHp() == 0) {
             Sound.stopAllSounds();
             System.out.println("The wild " + arena.fp[0].getName() + " fainted!\n");
-            Sound.playMusicOnLoop("src/main/music/victoryVsWildPkmTheme.mp3");
+            Sound.playMusicOnLoop("music/victoryVsWildPkmTheme.mp3");
             Thread.sleep((long) (User.textSpeed * .75));
         } else if (wildPkmIsCaught) {
             //handled in bag!
@@ -961,13 +961,13 @@ public class Encounter {
         if(arena.p[0].getStatusCondition().equals("Burn") || arena.p[0].getStatusCondition().equals("Poison")) {
             arena.p[0].setCurrentHp(Math.max(arena.p[0].getCurrentHp() - (int) (arena.p[0].getCurrentMaxHp()*.125), 0));
             if(arena.playerEngine.battleDialogsAreEnabled) System.out.println(arena.p[0].getName() + " took damage due to its " + arena.p[0].getStatusCondition().toLowerCase() + "!\n");
-            Sound.playSoundOnce("src/main/music/cut.mp3");
+            Sound.playSoundOnce("music/cut.mp3");
             Thread.sleep(User.textSpeed);
         }
         if(arena.fp[0].getStatusCondition().equals("Burn") || arena.fp[0].getStatusCondition().equals("Poison")) {
             arena.fp[0].setCurrentHp(Math.max(arena.fp[0].getCurrentHp() - (int) (arena.fp[0].getCurrentMaxHp()*.125), 0));
             if(arena.playerEngine.battleDialogsAreEnabled) System.out.println(arena.fp[0].getName() + " took damage due to its " + arena.fp[0].getStatusCondition().toLowerCase() + "!\n");
-            Sound.playSoundOnce("src/main/music/cut.mp3");
+            Sound.playSoundOnce("music/cut.mp3");
             Thread.sleep(User.textSpeed);
         }
     }
@@ -1165,11 +1165,11 @@ public class Encounter {
         Arena arena = new Arena(Party.p, trainer, engine, engine);
 
         if (trainer.title == Trainer.Title.VAUGHAN_DISTRICT_GYM_LEADER) {
-            Sound.playMusicOnLoop("src/main/music/vaughanBattleTheme.mp3");
+            Sound.playMusicOnLoop("music/vaughanBattleTheme.mp3");
         } else if (arena.isFacingGymLeader()) {
-            Sound.playMusicOnLoop("src/main/music/gymLeaderBattleTheme.mp3");
+            Sound.playMusicOnLoop("music/gymLeaderBattleTheme.mp3");
         } else {
-            Sound.playMusicOnLoop("src/main/music/trainerBattleTheme.mp3");
+            Sound.playMusicOnLoop("music/trainerBattleTheme.mp3");
         }
 
         // Display trainer's intro message & GRAPHIC!!
@@ -1330,7 +1330,7 @@ public class Encounter {
             User.badgesEarned.put(arena.trainer.title, true);
             Graphics.printBadge(arena.trainer.title);
             System.out.println(arena.trainer.title.getName() + " handed you the " + arena.trainer.title.getBadgeName() + "!");
-            Sound.playSoundOnce("src/main/music/importantItemGotten.mp3");
+            Sound.playSoundOnce("music/importantItemGotten.mp3");
             Thread.sleep((long) (1.5 * User.textSpeed));
             Game.pressEnterToContinue(sc1);
         }
@@ -1350,7 +1350,7 @@ public class Encounter {
     public static void doTrainerBattleOutcome(Arena arena, boolean playerHasWon, boolean playerHasRunAway, Scanner sc1) throws InterruptedException {
         if (playerHasWon) {
             Sound.stopAllSounds();
-            Sound.playMusicOnLoop("src/main/music/victoryVsTrainerTheme.mp3");
+            Sound.playMusicOnLoop("music/victoryVsTrainerTheme.mp3");
             double rewardMultiplier = 1.0;
             if((arena.isFacingGymLeader() && User.badgesEarned.get(arena.trainer.title))
                     || (arena.isFacingMajorTrainer() && User.majorTrainersBeaten.get(arena.trainer.title))) {

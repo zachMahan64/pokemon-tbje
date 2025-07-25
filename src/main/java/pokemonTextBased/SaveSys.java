@@ -51,13 +51,13 @@ public class SaveSys {
                     if (!confirm.equals("Y")) continue;
                     else {
                         System.out.println("Starting new game...");
-                        Sound.playSoundOnce("src/main/music/glitter.mp3");
+                        Sound.playSoundOnce("music/glitter.mp3");
                         Game.pressEnterToContinue(sc1);
                     }
                 } else {
                     loadAll(slot);
                     System.out.println("Loaded save " + slot + "...");
-                    Sound.playSoundOnce("src/main/music/glitter.mp3");
+                    Sound.playSoundOnce("music/glitter.mp3");
                     Game.pressEnterToContinue();
                 }
                 currentSlot = slot;
@@ -91,7 +91,7 @@ public class SaveSys {
         if (input.equalsIgnoreCase("Y")) {
             saveAll(currentSlot);
             System.out.println("Saved to slot " + currentSlot + ".");
-            Sound.playSoundOnce("src/main/music/glitter.mp3");
+            Sound.playSoundOnce("music/glitter.mp3");
             Game.pressEnterToContinue(sc1);
         } else {
             System.out.println("Game not saved.");

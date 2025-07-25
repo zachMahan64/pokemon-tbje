@@ -32,7 +32,7 @@ public class GameLauncherUI extends Application {
         root.setTop(title);
 
         // Image placeholder
-        ImageView logo = new ImageView(new Image("file:src/main/resources/titleLogoImage.png"));
+        ImageView logo = new ImageView(new Image("file:resources/titleLogoImage.png"));
         logo.setPreserveRatio(true);
         logo.setFitWidth(300);
 
