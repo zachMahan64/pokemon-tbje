@@ -1268,7 +1268,6 @@ public class Location {
             switch (choice) {
                 case "1":
                     buySpecialItemWithBP("Rare Candy", 10, sc1);
-                    Bag.spendBP(1);
                     break;
                 case "2":
                     Bag.adjustPokedollarBalance(5000);
