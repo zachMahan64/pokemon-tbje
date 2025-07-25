@@ -163,6 +163,7 @@ public class SaveSys {
             gson.toJson(data, writer);
         } catch (IOException e) {
             System.err.println("Failed to save game to slot " + slot + ": " + e.getMessage());
+            System.err.println("Make your a \"saves\" folder lives in the same directory as your jar");
         }
     }
     public static void loadAll(int slot) {
