@@ -10,7 +10,8 @@
 - Real battle mechanics: type matchups, stat changes, status effects, weather
 - Smart AI trained via custom in-game ML multi-threaded simulation engine
 - Dynamic difficulty scaling, procedurally generated trainers/opponents
-- Full single-player campaign: gym leaders, wild encounters, Team Rocket, Colosseum, 
+- Full single-player campaign: gym leaders, wild encounters, Team Rocket, Colosseum, and Elite Four
+- Improved money system: Proper bank, loans, stocks, gold assets, and a casino with playable mini-games!
 - Terminal UI using Unicode + ANSI escape strings
 - Catching system, items, switching, trick room, and more
 - Save file system to track all progress
@@ -47,7 +48,9 @@ The AI/Analysis Engine:
 - Uses Unicode braille characters as pixel-art dot matrices. Also uses ANSI escape strings for color.
 - Also coloring was done by hand.
 - Dot-converted Pokémon, trainer, and location images. Used: https://emojicombos.com/dot-art-generator (amazing website, btw).
-- Background music & sound effects via JavaFX (YouTube-sourced MP3s, I do not own the rights)
+- Background music & sound effects via JavaFX (YouTube-sourced MP3s and waveforms, I do not own the rights)
+- Over 50 soundtracks and sound effects are in the game!
+- All assets 
 - **See screenshot section to view visuals for yourself**
 
 ## Platform Support
@@ -99,3 +102,5 @@ The AI/Analysis Engine:
 ^ list of all pokemon in the pokedex; red is uncaught and green are caught pokemon.
 ![mew_pkdx.png](resources/mew_pkdx.png)
 ^ searching up mew in pokedex! look at all that sweet data
+![secret_shop.png](resources/secret_shop.png)
+^ an unassuming hot dog stand that doubles as a way to purchase pokemon (totally not a black market)
