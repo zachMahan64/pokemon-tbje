@@ -50,7 +50,7 @@ The AI/Analysis Engine:
 - Dot-converted Pokémon, trainer, and location images. Used: https://emojicombos.com/dot-art-generator (amazing website, btw).
 - Background music & sound effects via JavaFX (YouTube-sourced MP3s and waveforms, I do not own the rights)
 - Over 50 soundtracks and sound effects are in the game!
-- All assets 
+- Disclaimer: All assets used for educational purposes.
 - **See screenshot section to view visuals for yourself**
 
 ## Platform Support
