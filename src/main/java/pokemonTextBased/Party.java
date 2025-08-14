@@ -93,6 +93,16 @@ public class Party {
                 p[i+1] = null;
             }
         }
+        if (p[0].getCurrentHp() > 0) return;
+        for (int i = 0; i < p.length; i++) {
+            if (p[i] == null) continue;
+            if (p[i].getCurrentHp() > 0) {
+                Pokemon temp = p[0];
+                p[0] = p[i];
+                p[i] = temp;
+                break;
+            }
+        }
     }
     //wrappers
     public static boolean switchPokemon(boolean automaticallyForcedToSwitch, Scanner sc1) throws InterruptedException {

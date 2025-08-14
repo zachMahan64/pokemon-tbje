@@ -717,6 +717,7 @@ public class Encounter {
         arena.fp[0] = null;
         Game.pressEnterToContinue(sc1);
         Sound.stopAllSounds();
+        Party.smushParty();
     }
     public static void playWildPkmBattle(Arena arena, Scanner sc1) throws InterruptedException, ExecutionException{
         boolean wildPkmIsCaught = arena.isCaught;
@@ -1187,7 +1188,7 @@ public class Encounter {
         // Reset after the battle
         Game.pressEnterToContinue(sc1);
         Sound.stopAllSounds();
-
+        Party.smushParty();
         return playerHasWon;
     }
     public static boolean playTrainerBattle(Arena arena, Scanner sc1) throws InterruptedException, ExecutionException {

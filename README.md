@@ -54,6 +54,18 @@ The AI/Analysis Engine:
 
 - This was my first project. Some early code is messy. Most of it has been painstakingly refactored. Multiple times.
 - Project on hold for now, might add more features in the future or use the game core for a proper GUI version.
-
 ## Screenshots
-**(coming soon)**
+![battle_sim_demo.png](resources/battle_sim_demo.png)
+![charizawrd_vs_snorlax.png](resources/charizawrd_vs_snorlax.png)
+![map.png](resources/map.png)
+^ map coloring isn't completely finished (manually insering ansi escape strings is quite tedious)
+![move_ratings_demo.png](resources/move_ratings_demo.png)
+![rocketopolis.png](resources/rocketopolis.png)
+![south_kanto_sea.png](resources/south_kanto_sea.png)
+![squirtle_vs_celebi.ong.png](resources/squirtle_vs_celebi.ong.png)
+![the_colosseum_outside.png](resources/the_colosseum_outside.png)
+![the_colosseum_demo.png](resources/the_colosseum_demo.png)
+![title_img.png](resources/title_img.png)
+![tyranitar_vs_venusaur.png](resources/tyranitar_vs_venusaur.png)
+![vaughan_distric_gyn.png](resources/vaughan_distric_gyn.png)
+![viridian_city_gym.png](resources/viridian_city_gym.png)

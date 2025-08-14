@@ -276,6 +276,7 @@ public class Game {
         }
     }
     public static void enterPlayMenu(Scanner sc1) throws InterruptedException, ExecutionException {
+        Party.smushParty();
         label:
         while (true) {
             Sound.playMusicOnLoop("music/titleMusic.mp3");
