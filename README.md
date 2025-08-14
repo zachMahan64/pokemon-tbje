@@ -1,6 +1,6 @@
 # pokemonTextBasedJavaEdition
 ![title_img.png](resources/title_img.png)
-### AKA pokemon_tbje; by Zach Mahan
+### (A.K.A. pokemon_tbje) - by Zach Mahan
 
 **A terminal-based Pokémon battle game, written in Java, complete with 241 species, faithful game mechanics, adjustable difficultly, dynamic AI, procedurally generated opponents, random wild encounters, competitive battles, and custom graphics. Built from scratch over 2 months.**
 
