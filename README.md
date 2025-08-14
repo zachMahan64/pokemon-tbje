@@ -27,7 +27,7 @@
    - `mvn clean package` (this builds w/ Maven)
    - `java -jar target/pokemon_tbje-1.0.jar`
    - Enjoy the game
-3. Make sure terminal font is size is < 14.0 and line spacing is set to 1.0!
+3. Make sure terminal font is size is < 14.0 (not too important as long as you have at least ~70 rows) and line spacing is set to 1.0 (crucial for visual proportions)!
 4. Remember, the visuals may not look right if you're on a Windows terminal or not using a mono-spaced font (mono-space propo is also okay).
 
 ## AI Engine
