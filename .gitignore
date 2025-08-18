@@ -5,6 +5,9 @@ out*/
 target*
 .idea*/
 
+### Maven ###
+dependency-reduced-pom.xml
+
 ### Eclipse ###
 .apt_generated
 .classpath
