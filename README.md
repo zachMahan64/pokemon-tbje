@@ -56,8 +56,9 @@ The AI/Analysis Engine:
 ## Platform Support
 
 - Works best on **Mac/Linux** terminals.
-- Windows' terminal may clobber the visuals a bit due to character spacing issues.
-- Potential build issues: JavaFx packages are platform dependent and may cause issues! However, the build process I laid out should work, but Maven is absolutely required.
+- Windows' terminal may clobber the visuals a bit due to character spacing issues. Use Msys2 on Windows!
+- Potential build issues: the build will fail if Java or Maven are not pointing to open-jdk-24. Ensure Java 24 is installed on your computer.
+- Run `java --version` and `mvn --version` to check if Java 24 is installed and active.
 
 ## Notes
 
