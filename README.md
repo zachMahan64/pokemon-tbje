@@ -2,7 +2,7 @@
 ![title_img.png](resources/title_img.png)
 ### (A.K.A. pokemon_tbje) - by Zach Mahan
 
-**A terminal-based Pokémon battle game, written in Java, complete with 241 species, faithful game mechanics, adjustable difficultly, dynamic AI, procedurally generated opponents, random wild encounters, competitive battles, and custom graphics. Built from scratch over 2 months.**
+**A terminal-based Pokémon battle game, written in Java, complete with 241 species, faithful game mechanics, adjustable difficulty, dynamic AI, procedurally generated opponents, random wild encounters, competitive battles, and custom graphics. Built from scratch over 2 months.**
 
 ## Features
 
@@ -46,7 +46,7 @@ The AI/Analysis Engine:
 ## Visuals & Audio
 
 - Uses Unicode braille characters as pixel-art dot matrices. Also uses ANSI escape strings for color.
-- Also coloring was done by hand.
+- All coloring was done by hand.
 - Dot-converted Pokémon, trainer, and location images. Used: https://emojicombos.com/dot-art-generator (amazing website, btw).
 - Background music & sound effects via JavaFX (YouTube-sourced MP3s and waveforms, I do not own the rights)
 - Over 50 soundtracks and sound effects are in the game!
@@ -68,7 +68,7 @@ The AI/Analysis Engine:
 ![battle_sim_demo.png](resources/battle_sim_demo.png)
 ^ see the match-up analysis interface (and our shiny charizard)
 ![map.png](resources/map.png)
-^ map coloring isn't completely finished (manually insering ansi escape strings is quite tedious)
+^ map coloring isn't completely finished (manually inserting ansi escape strings is quite tedious)
 ![move_ratings_demo.png](resources/move_ratings_demo.png)
 ^ see move rating interface
 ![rocketopolis.png](resources/rocketopolis.png)
@@ -80,7 +80,7 @@ The AI/Analysis Engine:
 ![the_colosseum_outside.png](resources/the_colosseum_outside.png)
 ^ the outside of the battle colosseum, fun
 ![the_colosseum_demo.png](resources/the_colosseum_demo.png)
-^ the inside of the colosseum, this is a long battle rush where opponents' parties scale to your party's size, level, and stats. you get progressively more BP (battle points) as your win streak increases and you can steal one of your opponents pokemon in each battle after reaching 25 record wins in a row. this is a quick way to get many rare pokemon.
+^ the inside of the colosseum, this is a long battle rush where opponents' parties scale to your party's size, level, and stats. you get progressively more BP (battle points) as your win streak increases and you can steal one of your opponent's pokemon in each battle after reaching 25 record wins in a row. this is a quick way to get many rare pokemon.
 ![play_menu.png](resources/play_menu.png)
 ^ play menu -> open map to go to locations, etc. see badges, level cap, reputation, etc are tracked. the date is based on the in-game storyline. the difficulty is shown ('PROFESSIONAL' is the hardest with the smartest opponents). 
 ![tyranitar_vs_venusaur.png](resources/tyranitar_vs_venusaur.png)
